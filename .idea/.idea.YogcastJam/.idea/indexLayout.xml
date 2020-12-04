@@ -23,7 +23,6 @@
       <Path>Logs</Path>
       <Path>Temp</Path>
       <Path>UserSettings</Path>
-      <Path>Yogscast Game Jam</Path>
       <Path>obj</Path>
     </explicitExcludes>
   </component>
