@@ -1,32 +1,11 @@
 {
-    "name": "Player",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Player",
             "id": "195aec4e-f538-4c19-b6df-b405a45d9db3",
-            "actions": [
-                {
-                    "name": "Space",
-                    "type": "Button",
-                    "id": "6fc21ce6-c536-4735-abb0-c27027755982",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "2dedf862-0512-4787-98cd-7d1bf9d96243",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Space",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": []
