@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c612c37-deea-42c1-90f1-1fdc2e515782" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/EmmisionBasic/GreenEmmisive.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/EmmisionBasic/GreenEmmisive.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NikinovTestScene/NikinovScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NikinovTestScene/NikinovScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
