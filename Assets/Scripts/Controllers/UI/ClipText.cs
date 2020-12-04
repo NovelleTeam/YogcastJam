@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(CanvasGroup))]
-public class ClipText : MonoBehaviour
+namespace Controllers.UI
 {
-    [SerializeField] private Transform follow;
-    [SerializeField] private Camera cam;
-    
-    // Update is called once per frame
-    void Update()
+    [RequireComponent(typeof(CanvasGroup))]
+    public class ClipText : MonoBehaviour
     {
-        Vector3 namePos = cam.WorldToScreenPoint(follow.position);
-        this.transform.position = namePos;
+        [SerializeField] private Transform follow;
+        [SerializeField] private Camera cam;
+
+        // Update is called once per frame
+        private void Update()
+        {
+            var namePos = cam.WorldToScreenPoint(follow.position);
+            transform.position = namePos;
+        }
     }
 }
