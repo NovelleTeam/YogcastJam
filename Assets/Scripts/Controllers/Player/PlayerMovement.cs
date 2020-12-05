@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Controllers.Player
 {
@@ -13,8 +12,6 @@ namespace Controllers.Player
         // The ground check
         private bool isGrounded => 
             Physics.CheckSphere(groundCheck.position, 0.2f, LayerMask.GetMask("Ground"));
-
-        private bool _previousGrounded;
         
         // Components
         private Rigidbody _rb;
@@ -69,20 +66,8 @@ namespace Controllers.Player
         private void Update()
         {
             if (!isGrounded) return;
-<<<<<<< HEAD
-
-            // If collided with the ground set to 0
-            if (!_previousGrounded) alreadyJumped = 0;
-            
-=======
             _jumpsLeft = maxJumps;
->>>>>>> parent of ce644f4... Merge branch 'main' of https://github.com/NovelleTeam/YogcastJam into main
             Move();
-        }
-
-        private void LateUpdate()
-        {
-            _previousGrounded = isGrounded;
         }
 
         #region Input Event Functions
@@ -94,17 +79,11 @@ namespace Controllers.Player
 
         private void OnJump()
         {
-<<<<<<< HEAD
-            if (alreadyJumped >= maxJumps) return;
-
-            alreadyJumped++;
-=======
             _jumpsLeft--;
             
             // Jumping if possible
             if (_jumpsLeft <= 0) return;
             
->>>>>>> parent of ce644f4... Merge branch 'main' of https://github.com/NovelleTeam/YogcastJam into main
             Jump(jumpForce);
         }
 
