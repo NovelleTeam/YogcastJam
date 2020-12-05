@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Controllers.Player
 {
@@ -12,6 +13,8 @@ namespace Controllers.Player
         // The ground check
         private bool isGrounded => 
             Physics.CheckSphere(groundCheck.position, 0.2f, LayerMask.GetMask("Ground"));
+
+        private bool _previousGrounded;
         
         // Components
         private Rigidbody _rb;
@@ -66,8 +69,16 @@ namespace Controllers.Player
         private void Update()
         {
             if (!isGrounded) return;
-            alreadyJumped = 0;
+
+            // If collided with the ground set to 0
+            if (!_previousGrounded) alreadyJumped = 0;
+            
             Move();
+        }
+
+        private void LateUpdate()
+        {
+            _previousGrounded = isGrounded;
         }
 
         #region Input Event Functions
@@ -80,7 +91,8 @@ namespace Controllers.Player
         private void OnJump()
         {
             if (alreadyJumped >= maxJumps) return;
-            
+
+            alreadyJumped++;
             Jump(jumpForce);
         }
 
@@ -106,8 +118,6 @@ namespace Controllers.Player
 
         private void Jump(float force)
         {
-            alreadyJumped++;
-            
             var velocity = _rb.velocity;
             velocity = new Vector3(velocity.x, 0f, velocity.z);
             _rb.velocity = velocity;
