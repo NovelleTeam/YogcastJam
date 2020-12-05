@@ -61,8 +61,38 @@ public class PlayerInteract : MonoBehaviour
             }
             if (_interactive != null && Vector3.SqrMagnitude(_interactive.transform.position - transform.position) <= takeDistance)
             {
-                _interactive.gameObject.transform.DOMove(interactiveObjectDestination.position, interactiveObjectTravelDuration);
+                if (_interactive.IsTakeAble)
+                {
+                    _interactive.gameObject.transform.DOMove(interactiveObjectDestination.position, interactiveObjectTravelDuration);
+                    _interactive.Interact();
+                    if(_interactive.DisableAfterTake)
+                        StartCoroutine(waitForInteract(_interactive));
+                    _interactive = null;
+                }
+                else
+                {
+                    _interactive.Interact();
+                    _interactive = null;
+                }
             }
         }
     }
+
+    IEnumerator waitForInteract(interactiveObject interactiveObj)
+    {
+        yield return new WaitForSeconds(interactiveObjectTravelDuration);
+        interactiveObj.gameObject.SetActive(false);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class interactiveBox : interactiveObject
+public class interactiveStick : interactiveObject
 {
-    public interactiveBox()
+    public interactiveStick()
     {
         IsTakeAble = true;
-        DisableAfterTake = true;
+        DisableAfterTake = false;
     }
     public override void Interact()
     {
