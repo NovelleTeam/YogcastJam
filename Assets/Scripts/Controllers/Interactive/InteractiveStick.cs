@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Controllers.Interactive
 {
-    public class InteractiveStick : interactiveObject
+    public class InteractiveStick : InteractiveObject
     {
         public Transform destenationN;
 

@@ -1,6 +1,6 @@
 ﻿namespace Controllers.Interactive
 {
-    public class InteractiveChest : interactiveObject
+    public class InteractiveChest : InteractiveObject
     {
         public InteractiveChest()
         {

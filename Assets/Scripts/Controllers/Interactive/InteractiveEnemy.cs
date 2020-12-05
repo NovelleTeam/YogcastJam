@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class interactiveEnemy : interactiveObject
+﻿namespace Controllers.Interactive
 {
-    public interactiveEnemy()
+    public class InteractiveEnemy : InteractiveObject
     {
-        IsTakeAble = false;
-    }
-    public override void Interact()
-    {
+        public InteractiveEnemy()
+        {
+            IsTakeAble = false;
+        }
+        public override void Interact()
+        {
         
+        }
     }
 }

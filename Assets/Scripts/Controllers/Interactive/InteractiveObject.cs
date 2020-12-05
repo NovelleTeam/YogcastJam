@@ -1,23 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class interactiveObject : MonoBehaviour
+namespace Controllers.Interactive
 {
-    public bool IsTakeAble { get; protected set; }
-    public bool DisableAfterTake { get; protected set; }
-    public Transform destenation { get; protected set; }
-
-    public interactiveObject()
+    public class InteractiveObject : MonoBehaviour
     {
-        IsTakeAble = true;
-        DisableAfterTake = true;
-        destenation = null;
-    }
+        public bool IsTakeAble { get; protected set; }
+        public bool DisableAfterTake { get; protected set; }
+        public Transform destenation { get; protected set; }
 
-    public virtual void Interact()
-    {
+        public InteractiveObject()
+        {
+            IsTakeAble = true;
+            DisableAfterTake = true;
+            destenation = null;
+        }
+
+        public virtual void Interact()
+        {
         
+        }
     }
 }

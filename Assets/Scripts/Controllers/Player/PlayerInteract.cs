@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Controllers.Interactive;
 using DG.Tweening;
 using TMPro.EditorUtilities;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class PlayerInteract : MonoBehaviour
     
     private PlayerInput _playerInput;
     private Camera _camera;
-    private interactiveObject _interactive;
+    private InteractiveObject _interactive;
     
     // Start is called before the first frame update
     void Awake()
@@ -51,9 +52,9 @@ public class PlayerInteract : MonoBehaviour
         //Will check if we looking at some object in takeDistance
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hitInfo, takeDistance))
         {
-            if (hitInfo.collider != null && hitInfo.collider.gameObject.GetComponent<interactiveObject>() != null)
+            if (hitInfo.collider != null && hitInfo.collider.gameObject.GetComponent<InteractiveObject>() != null)
             {
-                _interactive = hitInfo.collider.gameObject.GetComponent<interactiveObject>();
+                _interactive = hitInfo.collider.gameObject.GetComponent<InteractiveObject>();
             }
             else
             {
@@ -81,7 +82,7 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    IEnumerator waitForInteract(interactiveObject interactiveObj)
+    IEnumerator waitForInteract(InteractiveObject interactiveObj)
     {
         yield return new WaitForSeconds(interactiveObjectTravelDuration);
         interactiveObj.gameObject.SetActive(false);
