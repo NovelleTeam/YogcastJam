@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Controllers.Interactive;
 using UnityEngine;
 
 public class FindDestination : MonoBehaviour
@@ -8,6 +9,6 @@ public class FindDestination : MonoBehaviour
     {
 		var destination = GameObject.Find("Destination").transform.position;
 
-		GetComponent<interactiveObject>().SetDestination(destination);
+		GetComponent<InteractiveObject>().SetDestination(destination);
     }
 }

@@ -1,77 +1,52 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Controllers.Interactive;
 using DG.Tweening;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+namespace Controllers.Player
 {
-    public float takeDistance = 3;
-    
-    private PlayerInput _playerInput;
-    private Camera _camera;
-    private interactiveObject _interactive;
-    
-    // Start is called before the first frame update
-    void Awake()
+    public class PlayerInteract : MonoBehaviour
     {
-        _camera = Camera.main;
-        _playerInput = new PlayerInput();
-        _playerInput.Player.Interact.performed += ctx => CheckIfCanTake();
-    }
+        public float takeDistance = 3;
 
-    private void Start()
-    {
-        DOTween.Init();
-    }
+        private PlayerInput _playerInput;
+        private Camera _camera;
+        private InteractiveObject _interactive;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
-    private void OnEnable()
-    {
-        _playerInput.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _playerInput.Disable();
-    }
-
-    private void CheckIfCanTake()
-    {
-        RaycastHit hitInfo;
-
-        //Will check if we looking at some object in takeDistance
-        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hitInfo, takeDistance + 10))
+        private void Awake()
         {
-            if (hitInfo.collider != null && hitInfo.collider.gameObject.GetComponent<interactiveObject>() != null)
+            _camera = Camera.main;
+            _playerInput = new PlayerInput();
+            _playerInput.Player.Interact.performed += ctx => CheckIfCanTake();
+        }
+
+        private void Start()
+        {
+            DOTween.Init();
+        }
+
+        private void OnEnable()
+        {
+            _playerInput.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _playerInput.Disable();
+        }
+
+        private void CheckIfCanTake()
+        {
+            //Will check if we looking at some object in takeDistance
+            if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hitInfo,
+                takeDistance + 10)) return;
+
+            if (hitInfo.collider != null && hitInfo.collider.gameObject.GetComponent<InteractiveObject>() != null)
             {
-                _interactive = hitInfo.collider.gameObject.GetComponent<interactiveObject>();
+                _interactive = hitInfo.collider.gameObject.GetComponent<InteractiveObject>();
                 _interactive.Interact();
-                _interactive = null;
-                
             }
-            else
-            {
-                _interactive = null;
-            }
+
+            _interactive = null;
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

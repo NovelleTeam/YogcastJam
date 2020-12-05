@@ -5,11 +5,11 @@ namespace Controllers.Player
     public class CameraMovement : MonoBehaviour
     {
         private PlayerInput _controls;
-        
+
         // Transforms
         private Transform _cameraHolder;
         private Transform _player;
-        
+
         // Values needed to move the camera
         private Vector2 _input;
 
@@ -18,9 +18,7 @@ namespace Controllers.Player
 
         private float _xRotation;
 
-        [Header("Values")] 
-        
-        [SerializeField] private float sensitivity = 20f;
+        [Header("Values")] [SerializeField] private float sensitivity = 20f;
         [SerializeField] private float xMultiplier = 1.5f;
         [SerializeField] private float yMultiplier = 1f;
 
@@ -51,6 +49,7 @@ namespace Controllers.Player
         }
 
         #endregion
+
         private void Update()
         {
             Look();

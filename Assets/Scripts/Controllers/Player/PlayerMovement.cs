@@ -8,34 +8,33 @@ namespace Controllers.Player
 
         // The default input vector
         private Vector3 _input;
-        
+
         // The ground check
-        private bool isGrounded => 
+        private bool isGrounded =>
             Physics.CheckSphere(groundCheck.position, 0.2f, LayerMask.GetMask("Ground"));
 
         private bool _previousGrounded;
-        
+
         // Components
         private Rigidbody _rb;
         private Transform _pos;
-        
+
         // Ground check object's Transform
         [SerializeField] private Transform groundCheck;
-        
+
         // Number of jumps made
         public int alreadyJumped;
-        
-        [Header("Values")]
-        
-        [SerializeField] private float maxSpeed = 5f;
+
+        [Header("Values")] [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float jumpForce = 5f;
 
         [SerializeField] private float sprintModifier = 2f;
 
         // Maximum number of jumps (can be changed by upgrades/downgrades)
         public int maxJumps;
-        
+
         // Basic setup for the input system and all components
+
         #region Setup
 
         private void Awake()
@@ -89,7 +88,7 @@ namespace Controllers.Player
         private void OnJump()
         {
             if (alreadyJumped >= maxJumps) return;
-            
+
             Jump(jumpForce);
         }
 
@@ -109,14 +108,14 @@ namespace Controllers.Player
         {
             // Creating a vector relative to where the player is looking
             var direction = _pos.forward * _input.z + _pos.right * _input.x;
-            
+
             _rb.velocity = direction * maxSpeed + Vector3.up * _rb.velocity.y;
         }
 
         private void Jump(float force)
         {
             alreadyJumped++;
-            
+
             var velocity = _rb.velocity;
             velocity = new Vector3(velocity.x, 0f, velocity.z);
             _rb.velocity = velocity;
