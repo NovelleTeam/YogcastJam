@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 783a5ab7256804b108296b047ba6cfef
+<<<<<<< HEAD
+guid: 38b1f6893718f7142a2fe6e1305a96c4
 =======
-guid: aa1441b74568b424a8338bc891d2c4dc
->>>>>>> Stashed changes
+guid: 783a5ab7256804b108296b047ba6cfef
+>>>>>>> cb6e4906cb14c5f8672ef7b4a3c32299b5f17d2a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-<<<<<<< Updated upstream
-    enableMipMap: 1
-=======
+<<<<<<< HEAD
     enableMipMap: 0
->>>>>>> Stashed changes
+=======
+    enableMipMap: 1
+>>>>>>> cb6e4906cb14c5f8672ef7b4a3c32299b5f17d2a
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -28,11 +28,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-<<<<<<< Updated upstream
   isReadable: 0
-=======
-  isReadable: 1
->>>>>>> Stashed changes
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -43,8 +39,19 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+=======
     filterMode: -1
-<<<<<<< Updated upstream
     aniso: -1
     mipBias: -100
     wrapU: -1
@@ -54,34 +61,28 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 0
-=======
-    aniso: 1
-    mipBias: -100
-    wrapU: 1
-    wrapV: 1
-    wrapW: -1
-  nPOTScale: 0
-  lightmap: 0
-  compressionQuality: 50
-  spriteMode: 1
->>>>>>> Stashed changes
+>>>>>>> cb6e4906cb14c5f8672ef7b4a3c32299b5f17d2a
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+=======
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-<<<<<<< Updated upstream
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
-=======
-  alphaIsTransparency: 1
-  spriteTessellationDetail: -1
-  textureType: 8
->>>>>>> Stashed changes
+>>>>>>> cb6e4906cb14c5f8672ef7b4a3c32299b5f17d2a
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -101,44 +102,56 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< Updated upstream
-=======
+<<<<<<< HEAD
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 2
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 2
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 2
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
->>>>>>> Stashed changes
+=======
+>>>>>>> cb6e4906cb14c5f8672ef7b4a3c32299b5f17d2a
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape: []
     bones: []
-<<<<<<< Updated upstream
-    spriteID: 
-=======
+<<<<<<< HEAD
     spriteID: 5e97eb03825dee720800000000000000
->>>>>>> Stashed changes
+=======
+    spriteID: 
+>>>>>>> cb6e4906cb14c5f8672ef7b4a3c32299b5f17d2a
     internalID: 0
     vertices: []
     indices: 

@@ -20,8 +20,8 @@ namespace Controllers.Player
         // Ground check object's Transform
         [SerializeField] private Transform groundCheck;
         
-        // Number of jumps made
-        public int alreadyJumped;
+        // Number of jumps left
+        private int _jumpsLeft;
         
         [Header("Values")]
         
@@ -31,7 +31,7 @@ namespace Controllers.Player
         [SerializeField] private float sprintModifier = 2f;
 
         // Maximum number of jumps (can be changed by upgrades/downgrades)
-        public int maxJumps;
+        public int maxJumps = 3;
         
         // Basic setup for the input system and all components
         #region Setup
@@ -66,7 +66,7 @@ namespace Controllers.Player
         private void Update()
         {
             if (!isGrounded) return;
-            alreadyJumped = 0;
+            _jumpsLeft = maxJumps;
             Move();
         }
 
@@ -79,7 +79,10 @@ namespace Controllers.Player
 
         private void OnJump()
         {
-            if (alreadyJumped >= maxJumps) return;
+            _jumpsLeft--;
+            
+            // Jumping if possible
+            if (_jumpsLeft <= 0) return;
             
             Jump(jumpForce);
         }
@@ -106,8 +109,6 @@ namespace Controllers.Player
 
         private void Jump(float force)
         {
-            alreadyJumped++;
-            
             var velocity = _rb.velocity;
             velocity = new Vector3(velocity.x, 0f, velocity.z);
             _rb.velocity = velocity;
