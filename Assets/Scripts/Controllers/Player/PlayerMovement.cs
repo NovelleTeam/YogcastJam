@@ -25,10 +25,12 @@ namespace Controllers.Player
         // Number of jumps made
         public int alreadyJumped;
 
-        [Header("Values")] [SerializeField] private float maxSpeed = 5f;
+        [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float jumpForce = 5f;
 
         [SerializeField] private float sprintModifier = 2f;
+
+        [SerializeField] private float inAirMultiplier = 0.5f;
 
         // Maximum number of jumps (can be changed by upgrades/downgrades)
         public int maxJumps;
@@ -66,11 +68,18 @@ namespace Controllers.Player
 
         private void Update()
         {
-            if (!isGrounded) return;
-            if (!_previousGrounded)
-                alreadyJumped = 0;
-
-            Move();
+            var modifier = 1f;
+            if (isGrounded)
+            {
+                if (!_previousGrounded)
+                    alreadyJumped = 0;
+            }
+            else
+            {
+                modifier = inAirMultiplier;
+            }
+            
+            Move(modifier);
         }
 
         private void LateUpdate()
@@ -104,7 +113,7 @@ namespace Controllers.Player
 
         #endregion
 
-        private void Move()
+        private void Move(float modifier)
         {
             // Creating a vector relative to where the player is looking
             var direction = _pos.forward * _input.z + _pos.right * _input.x;
