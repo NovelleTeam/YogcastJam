@@ -13,6 +13,11 @@ public class Vitals : MonoBehaviour
 	public event Action onDeath;
 	public event Action onTakeDamage;
 
+	private void Awake()
+	{
+		CurHealth = maxHealth;
+	}
+
 	public void TakeDamage(int health)
 	{
 		if (health < 0)
