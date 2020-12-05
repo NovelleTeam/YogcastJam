@@ -11,9 +11,9 @@ namespace Managers.Generation
 
         private void Start()
         {
-            var p1 = new PathGenerator(10, 1, 10, 10);
+            var p1 = new PathGenerator(5, 1, 5, 8);
             p1.Path.Add(new Platform(new Vector3(0, 0, 0), 1, 0));
-            p1.GeneratePath(new Vector3(0, 0, 0), new Vector3(0, 0, 100));
+            p1.GeneratePath(new Vector3(0, 0, 0), new Vector3(0, 0, 200));
             _platforms.AddRange(p1.GetPlatforms());
             SpawnSmallPlatforms(_platforms);
             Debug.Log(_platforms.Count);

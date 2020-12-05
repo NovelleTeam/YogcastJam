@@ -10,8 +10,8 @@ namespace Managers.Generation
         private float _speed;
         private float _gForce;
 
-        private float _margin = 0.2f;
-        private float _mindist = 5;
+        private float _margin = 0.3f;
+        private float _mindist = 3f;
 
         private float _maxHeightSingle;
         private float _maxDistSingle;
@@ -33,6 +33,11 @@ namespace Managers.Generation
             _maxDistSingle = 2 * _jumpBoost / _gForce * _speed;
             _maxHeightTotal = _maxHeightSingle * _jumpCount;
             _maxDistTotal = _maxDistSingle * _jumpCount;
+
+            _maxHeightTotal = 7.5f;
+            _maxDistTotal = 20f;
+
+
             Debug.Log(_maxDistTotal);
             Debug.Log(_maxHeightTotal);
 
@@ -47,13 +52,19 @@ namespace Managers.Generation
             var chanceModifier = 1f;
             var exitCheck = false;
             var progress = 1f;
+            Platform lastPlatform = Path[0];
+            lastPlatform = new Platform(new Vector3(0, 0, 0), 0, -1);
 
             while (true)
             {
-                var currentProgress = Random.Range(0f, 1f) / progress;
+                var currentProgress = Random.Range(1f-progress, 1f);// * progress;
+                //currentProgress = 0.9f;
                 //progress *= 0.99f;
                 //float currentProgress = Mathf.Pow(Random.Range(0.0f, 1.0f), 2);
                 //curprog *= (1 - Mathf.Abs(1 - currentProgress / (currentProgress + 0.001f)));
+
+                //Debug.Log(currentProgress);
+
                 var platformPos = direction * currentProgress;
                 platformPos.y += _pathSize.y * Random.Range(-1.0f, 1.0f);
                 var normal = Vector3.Cross(direction, new Vector3(0, 1, 0));
@@ -61,38 +72,83 @@ namespace Managers.Generation
                 platformPos += normal * +_pathSize.x * Random.Range(-1.0f, 1.0f);
                 platformPos += pfrom;
 
+                //Debug.Log(platformPos);
+
                 var chance = 1f;
                 var canJump = 0f;
 
                 var newPlatform = new Platform(platformPos, 1, 0); // Replace with one that randomizes platform
 
+
                 foreach (var platform in Path)
-                    if (CanJumpTo(platform.Position - platformPos))
+                {
+                    if (newPlatform.CanJumpTo(platform, _maxHeightTotal, _maxDistTotal, _margin))
                         canJump = 1;
+                    if (newPlatform.distanceTo(platform).magnitude < newPlatform.distanceTo(lastPlatform).magnitude)
+                    {
+                        lastPlatform = platform;
+                    }
+                }
 
                 if (canJump == 0)
+<<<<<<< Updated upstream
                     Debug.Log("boop");
 
                 chance *= canJump;
+=======
+                {
+                    Debug.Log("adjusting");
+                    var closevec = lastPlatform.Position;
+                    var closeDirection = platformPos - closevec;
+                    closeDirection = closeDirection.normalized;
+                    Debug.Log(closeDirection);
+                    closeDirection.x *= _maxDistTotal * Random.Range(0.7f, 1f);
+                    closeDirection.y *= _maxHeightTotal * Random.Range(0.7f, 1f);
+                    closeDirection.z *= _maxDistTotal * Random.Range(0.7f, 1f);
+                    Debug.Log(closeDirection);
+                    platformPos = closevec + closeDirection;
+                    Debug.Log(platformPos);
+                    newPlatform.Position = platformPos;
+                    canJump = 1;
+                }
+>>>>>>> Stashed changes
 
+                chance *= canJump;
+                //if (newPlatform.CheckProx(Path, _mindist) == 0) Debug.Log("zoop");
                 chance *= newPlatform.CheckProx(Path, _mindist);
 
-                if (chance > Random.Range(0.0f, 1.0f))
+                if (chance > Random.Range(0.0f, 1.1f))
                 {
                     Path.Add(newPlatform);
-                    if (CanJumpTo(to - platformPos)) exitCheck = true;
+                    //Debug.Log("Added");
+                    if (newPlatform.CanJumpTo(new Platform(to,0,-1), _maxHeightTotal, _maxDistTotal, _margin))
+                    {
+                        Debug.Log("Can exit");
+                        exitCheck = true;
+                    }
+                    /*Debug.Log((platformPos - to).magnitude);
+                    if ((platformPos - to).magnitude < _maxDistTotal*5)
+                    {
+                        Debug.Log("Can exit");
+                        exitCheck = true;
+                    }*/
                     //break;
-                    if (currentProgress > progress) progress = currentProgress;
+                    if (currentProgress + _maxDistTotal / direction.magnitude > progress)
+                    {
+                        //progress /= 1.1f;
+                        lastPlatform = newPlatform;
+                    }
                     chanceModifier = 1;
                 }
                 else
                 {
                     chanceModifier *= 1.1f;
+                    //infCheck--;
                 }
 
                 //Debug.Log(infcheck);
                 infCheck++;
-                if (infCheck > 10000)
+                if (infCheck > 1000)
                 {
                     Debug.Log("timed out");
                     break;
@@ -111,12 +167,16 @@ namespace Managers.Generation
         {
         }
 
+<<<<<<< Updated upstream
         private bool CanJumpTo(Vector3 relative)
         {
             var total = Mathf.Abs(relative.y) / _maxHeightTotal +
                         Mathf.Sqrt(relative.x * relative.x + relative.z * relative.z) / _maxDistTotal;
             return total + _margin < 1;
         }
+=======
+        
+>>>>>>> Stashed changes
     }
 
     public class Platform
@@ -137,12 +197,30 @@ namespace Managers.Generation
             var ans = 1f;
             foreach (var plat in list)
             {
-                Vector2 to = plat.Position - Position;
+                
+                Vector3 to = plat.Position - Position;
+                to.y = to.y * 3;
+                Debug.Log(to);
                 var dist = to.magnitude;
+                Debug.Log(dist + "; " + (Radius + mindist + plat.Radius));
                 if (dist < Radius + mindist + plat.Radius) ans = 0;
             }
 
             return ans;
+        }
+
+        public bool CanJumpTo(Platform target, float maxHeight, float maxDist, float margin)
+        {
+            var relative = target.Position - Position;
+            var total = (Mathf.Clamp(relative.y,0,Mathf.Infinity)+1) / maxHeight +
+                         (Mathf.Sqrt(relative.x * relative.x + relative.z * relative.z)) / maxDist;
+            //if (target.Index == -1) Debug.Log(total);
+            if (total < 1) Debug.Log("yay");
+            return total < 1;
+        }
+        public Vector3 distanceTo(Platform target)
+        {
+            return target.Position - Position;
         }
     }
 }
