@@ -1,9 +1,10 @@
 ﻿namespace Controllers.Interactive
 {
-    public class InteractiveBox : InteractiveObject
+    public class InteractiveBox : interactiveObject
     {
         public override void Interact()
         {
+            
         }
     }
 }

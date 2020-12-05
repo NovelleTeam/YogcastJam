@@ -1,20 +1,15 @@
-﻿using Controllers.Player.Upgrades;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Controllers.Interactive
+public class interactiveEnemy : interactiveObject
 {
-    [RequireComponent(typeof(Vitals))]
-    public class InteractiveEnemy : InteractiveObject
+    public interactiveEnemy()
     {
-        protected override void Awake()
-        {
-            isTakeAble = false;
-            disableAfterTake = false;
-        }
-
-        public override void Interact()
-        {
-            GetComponent<Vitals>().TakeDamage(2);
-        }
+        IsTakeAble = false;
+    }
+    public override void Interact()
+    {
+        
     }
 }

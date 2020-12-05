@@ -1,49 +1,23 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
-namespace Controllers.Interactive
+public class interactiveObject : MonoBehaviour
 {
-    public class InteractiveObject : MonoBehaviour
+    public bool IsTakeAble { get; protected set; }
+    public bool DisableAfterTake { get; protected set; }
+    public Transform destenation { get; protected set; }
+
+    public interactiveObject()
     {
-        public bool isTakeAble { get; protected set; }
-        public Vector3 destination;
-        public float moveSpeed;
-        protected float MoveDuration;
+        IsTakeAble = true;
+        DisableAfterTake = true;
+        destenation = null;
+    }
 
-        public bool disableAfterTake { get; protected set; }
-
-        protected int NumInteractions;
-        public bool shouldLimitNumInteractions;
-        public int maxNumInteractions = 1;
-
-        protected virtual void Awake()
-        {
-            isTakeAble = true;
-            disableAfterTake = true;
-
-            SetDestination(destination);
-        }
-
-        // Only useful for takeable interactiveObjects.
-        public void SetDestination(Vector3 position)
-        {
-            if (!isTakeAble) return;
-            destination = position;
-
-            MoveDuration = (transform.position - destination).magnitude / moveSpeed;
-        }
-
-        public virtual void Interact()
-        {
-            if (shouldLimitNumInteractions && NumInteractions >= maxNumInteractions) return;
-
-            ++NumInteractions;
-
-            if (isTakeAble)
-                transform.DOMove(destination, MoveDuration).OnComplete(() =>
-                {
-                    if (disableAfterTake) gameObject.SetActive(false); // Should call Destroy here.
-                });
-        }
+    public virtual void Interact()
+    {
+        
     }
 }

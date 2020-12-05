@@ -1,11 +1,11 @@
 ﻿namespace Controllers.Interactive
 {
-    public class InteractiveChest : InteractiveObject
+    public class InteractiveChest : interactiveObject
     {
-        protected override void Awake()
+        public InteractiveChest()
         {
-            isTakeAble = false;
-            disableAfterTake = false;
+            IsTakeAble = false;
+            DisableAfterTake = false;
         }
 
         public override void Interact()
