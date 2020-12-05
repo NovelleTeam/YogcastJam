@@ -62,9 +62,8 @@ namespace Controllers.Player
 
         private void Update()
         {
-            if (isGrounded)
-                _jumpsLeft = maxJumps;
-            
+            if (!isGrounded) return;
+            _jumpsLeft = maxJumps;
             Move();
         }
 
