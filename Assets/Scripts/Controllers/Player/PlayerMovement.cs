@@ -4,7 +4,7 @@ namespace Controllers.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        private PlayerInput _playerInput;
+        private PlayerInput _controls;
 
         // The default input vector
         private Vector3 _input;
@@ -23,6 +23,7 @@ namespace Controllers.Player
         private int _jumpsLeft;
         
         [Header("Values")]
+        
         [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float jumpForce = 5f;
 
@@ -36,21 +37,21 @@ namespace Controllers.Player
 
         private void Awake()
         {
-            _playerInput = new PlayerInput();
-            _playerInput.Player.Movement.performed += ctx => OnMovement(ctx.ReadValue<Vector2>());
-            _playerInput.Player.Jump.performed += ctx => OnJump();
-            _playerInput.Player.SprintEnter.performed += ctx => OnSprintEnter();
-            _playerInput.Player.SprintExit.performed += ctx => OnSprintExit();
+            _controls = new PlayerInput();
+            _controls.Player.Movement.performed += ctx => OnMovement(ctx.ReadValue<Vector2>());
+            _controls.Player.Jump.performed += ctx => OnJump();
+            _controls.Player.SprintEnter.performed += ctx => OnSprintEnter();
+            _controls.Player.SprintExit.performed += ctx => OnSprintExit();
         }
 
         private void OnEnable()
         {
-            _playerInput.Enable();
+            _controls.Enable();
         }
 
         private void OnDisable()
         {
-            _playerInput.Disable();
+            _controls.Disable();
         }
 
         private void Start()
