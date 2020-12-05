@@ -12,7 +12,7 @@ public class MainGen : MonoBehaviour
     void Start()
     {
         
-        PathGen p1 = new PathGen(20, 1, 5, 10);
+        PathGen p1 = new PathGen(10, 1, 10, 10);
         p1.path.Add(new Platform(new Vector3(0, 0, 0), 1, 0));
         p1.genPath(new Vector3(0, 0, 0), new Vector3(0, 0, 100));
         plats.AddRange(p1.getPlats());
