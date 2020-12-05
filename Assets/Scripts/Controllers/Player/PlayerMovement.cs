@@ -4,7 +4,7 @@ namespace Controllers.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        private PlayerInput _playerInput;
+        private PlayerInput _controls;
 
         // The default input vector
         private Vector3 _input;
@@ -15,6 +15,7 @@ namespace Controllers.Player
         
         // Components
         private Rigidbody _rb;
+        private Transform _pos;
         
         // Ground check object's Transform
         [SerializeField] private Transform groundCheck;
@@ -23,6 +24,7 @@ namespace Controllers.Player
         private int _jumpsLeft;
         
         [Header("Values")]
+        
         [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float jumpForce = 5f;
 
@@ -36,26 +38,27 @@ namespace Controllers.Player
 
         private void Awake()
         {
-            _playerInput = new PlayerInput();
-            _playerInput.Player.Movement.performed += ctx => OnMovement(ctx.ReadValue<Vector2>());
-            _playerInput.Player.Jump.performed += ctx => OnJump();
-            _playerInput.Player.SprintEnter.performed += ctx => OnSprintEnter();
-            _playerInput.Player.SprintExit.performed += ctx => OnSprintExit();
+            _controls = new PlayerInput();
+            _controls.Player.Movement.performed += ctx => OnMovement(ctx.ReadValue<Vector2>());
+            _controls.Player.Jump.performed += ctx => OnJump();
+            _controls.Player.SprintEnter.performed += ctx => OnSprintEnter();
+            _controls.Player.SprintExit.performed += ctx => OnSprintExit();
         }
 
         private void OnEnable()
         {
-            _playerInput.Enable();
+            _controls.Enable();
         }
 
         private void OnDisable()
         {
-            _playerInput.Disable();
+            _controls.Disable();
         }
 
         private void Start()
         {
             _rb = GetComponent<Rigidbody>();
+            _pos = transform;
         }
 
         #endregion
@@ -96,7 +99,10 @@ namespace Controllers.Player
 
         private void Move()
         {
-            _rb.velocity = _input * maxSpeed + Vector3.up * _rb.velocity.y;
+            // Creating a vector relative to where the player is looking
+            var direction = _pos.forward * _input.z + _pos.right * _input.x;
+            
+            _rb.velocity = direction * maxSpeed + Vector3.up * _rb.velocity.y;
         }
 
         private void Jump(float force)
