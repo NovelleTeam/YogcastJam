@@ -5,47 +5,42 @@ namespace Controllers.Player
     public class PlayerMovement : MonoBehaviour
     {
         private PlayerInput _controls;
-
-        // The default input vector
-        private Vector3 _input;
-
-        // The ground check
-        private bool isGrounded =>
-            Physics.CheckSphere(groundCheck.position, 0.2f, LayerMask.GetMask("Ground"));
-
-        private bool _previousGrounded;
-
-        // Components
-        private Rigidbody _rb;
+        
+        //Assingables
         private Transform _pos;
-
-        // Ground check object's Transform
         [SerializeField] private Transform groundCheck;
 
-        // Number of jumps made
-        public int alreadyJumped;
+        //Other
+        private Rigidbody _rb;
 
-        [SerializeField] private float maxSpeed = 5f;
-        [SerializeField] private float jumpForce = 5f;
+        //Movement
+        [SerializeField] private float moveSpeed = 4500;
+        [SerializeField] private float maxSpeed = 20;
+        private bool isGrounded => Physics.CheckSphere(groundCheck.position, 0.2f, LayerMask.GetMask("Ground"));
+        private bool _previousGrounded;
 
-        [SerializeField] private float sprintModifier = 2f;
+        //Jumping
+        [SerializeField] private float jumpForce = 550f;
+        [SerializeField] private int maxJumps;
+        private int _alreadyJumped;
 
-        [SerializeField] private float inAirMultiplier = 0.5f;
+        //Input
+        private float _x, _y;
 
-        // Maximum number of jumps (can be changed by upgrades/downgrades)
-        public int maxJumps;
-
-        // Basic setup for the input system and all components
+        //Sliding
+        private readonly Vector3 _normalVector = Vector3.up;
+        private Vector3 _wallNormalVector;
 
         #region Setup
 
         private void Awake()
         {
+            _rb = GetComponent<Rigidbody>();
+            _pos = transform;
+            
             _controls = new PlayerInput();
-            _controls.Player.Movement.performed += ctx => OnMovement(ctx.ReadValue<Vector2>());
+            _controls.Player.Movement.performed += ctx => OnMove(ctx.ReadValue<Vector2>());
             _controls.Player.Jump.performed += ctx => OnJump();
-            _controls.Player.SprintEnter.performed += ctx => OnSprintEnter();
-            _controls.Player.SprintExit.performed += ctx => OnSprintExit();
         }
 
         private void OnEnable()
@@ -60,26 +55,21 @@ namespace Controllers.Player
 
         private void Start()
         {
-            _rb = GetComponent<Rigidbody>();
-            _pos = transform;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         #endregion
+        
+        private void FixedUpdate()
+        {
+            Movement();
+        }
 
         private void Update()
         {
-            var modifier = 1f;
-            if (isGrounded)
-            {
-                if (!_previousGrounded)
-                    alreadyJumped = 0;
-            }
-            else
-            {
-                modifier = inAirMultiplier;
-            }
-            
-            Move(modifier);
+            if (isGrounded && !_previousGrounded)
+                _alreadyJumped = 0;
         }
 
         private void LateUpdate()
@@ -87,48 +77,59 @@ namespace Controllers.Player
             _previousGrounded = isGrounded;
         }
 
-        #region Input Event Functions
-
-        private void OnMovement(Vector2 input)
+        private void OnMove(Vector2 input)
         {
-            _input = new Vector3(input.x, 0f, input.y);
+            _x = input.x;
+            _y = input.y;
         }
 
         private void OnJump()
         {
-            if (alreadyJumped >= maxJumps) return;
-
-            Jump(jumpForce);
+            if (_alreadyJumped >= maxJumps) return;
+            Jump();
+            _alreadyJumped++;
         }
 
-        private void OnSprintEnter()
+        private void Movement()
         {
-            maxSpeed += sprintModifier;
+            //Some multipliers
+            var multiplier = 1f;
+
+            // Movement in air
+            if (!isGrounded)
+            {
+                multiplier = 0.5f;
+            }
+
+            //Apply forces to move player
+            _rb.AddForce(_pos.forward * (_y * moveSpeed * Time.deltaTime * multiplier) +
+                         _pos.right * (_x * moveSpeed * Time.deltaTime * multiplier), ForceMode.Acceleration);
+            
+            ClampHorizontalVelocity();
         }
 
-        private void OnSprintExit()
+        private void Jump()
         {
-            maxSpeed -= sprintModifier;
-        }
-
-        #endregion
-
-        private void Move(float modifier)
-        {
-            // Creating a vector relative to where the player is looking
-            var direction = _pos.forward * _input.z + _pos.right * _input.x;
-
-            _rb.velocity = direction * maxSpeed + Vector3.up * _rb.velocity.y;
-        }
-
-        private void Jump(float force)
-        {
-            alreadyJumped++;
-
+            // Cancel vertical velocity
             var velocity = _rb.velocity;
             velocity = new Vector3(velocity.x, 0f, velocity.z);
             _rb.velocity = velocity;
-            _rb.AddForce(Vector3.up * force, ForceMode.Impulse);
+
+            _rb.AddForce(Vector2.up * (jumpForce * 1.5f), ForceMode.Impulse);
+            _rb.AddForce(_normalVector * (jumpForce * 0.5f), ForceMode.Impulse);
+        }
+
+        private void ClampHorizontalVelocity()
+        {
+            var velocity = _rb.velocity;
+            var horizontalVelocity = new Vector2(velocity.x, velocity.z);
+            
+            if (horizontalVelocity.magnitude <= maxSpeed) return;
+
+            var clamped = horizontalVelocity.normalized * maxSpeed;
+            var fallSpeed = velocity.y;
+            
+            _rb.velocity = new Vector3(clamped.x, fallSpeed, clamped.y);
         }
     }
 }
