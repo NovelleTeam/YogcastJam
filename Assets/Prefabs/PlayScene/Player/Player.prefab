@@ -40,8 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100993908289021975}
   - component: {fileID: 100993908289021972}
-  - component: {fileID: 100993908289021973}
-  - component: {fileID: 100993908289021974}
+  - component: {fileID: 7118424920422922820}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -82,21 +81,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &100993908289021973
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100993908289021992}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &100993908289021974
+--- !u!114 &7118424920422922820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,13 +90,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100993908289021992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bdcd825877d242d1a08a25dd605313f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0548b01a8e27cc84b96f16d5e22a5dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 100993907928948194}
+  alreadyJumped: 0
   maxSpeed: 5
   jumpForce: 5
-  sprintModifier: 3
+  sprintModifier: 2
   maxJumps: 1
 --- !u!1 &100993908380131474
 GameObject:
@@ -331,10 +317,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 548290384334118758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a3395081f99b3f4a8f40f189a774349, type: 3}
+  m_Script: {fileID: 11500000, guid: ea9692723e9800d4f82272e68a3ff257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 100993908289021975}
   sensitivity: 20
   xMultiplier: 1.5
   yMultiplier: 1
