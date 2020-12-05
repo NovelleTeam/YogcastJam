@@ -23,8 +23,10 @@ namespace Controllers.Player
         private int _jumpsLeft;
         
         [Header("Values")]
-        [SerializeField] private float speed = 5f;
+        [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float jumpForce = 5f;
+
+        [SerializeField] private float sprintModifier = 3f;
 
         // Maximum number of jumps (can be changed by upgrades/downgrades)
         public int maxJumps = 1;
@@ -83,19 +85,19 @@ namespace Controllers.Player
 
         private void OnSprintEnter()
         {
-            
+            maxSpeed += sprintModifier;
         }
 
         private void OnSprintExit()
         {
-            
+            maxSpeed -= sprintModifier;
         }
 
         #endregion
 
         private void Move()
         {
-            _rb.velocity = _input * speed + Vector3.up * _rb.velocity.y;
+            _rb.velocity = _input * maxSpeed + Vector3.up * _rb.velocity.y;
         }
 
         private void Jump(float force)
