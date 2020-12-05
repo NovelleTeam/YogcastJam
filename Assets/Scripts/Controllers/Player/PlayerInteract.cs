@@ -38,8 +38,15 @@ namespace Controllers.Player
 
         private void OnInteract()
         {
-            _interactive = GetObjectAtRaycast().GetComponent<InteractiveObject>();
-
+            try
+            {
+                _interactive = GetObjectAtRaycast().GetComponent<InteractiveObject>();
+            }
+            catch
+            {
+                return;
+            }
+            
             if (CanTake())
             {
                 interactiveObjectDestination = _interactive.destination;
