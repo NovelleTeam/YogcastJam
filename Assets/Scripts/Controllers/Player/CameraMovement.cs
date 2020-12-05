@@ -18,9 +18,9 @@ namespace Controllers.Player
 
         private float _xRotation;
 
-        [SerializeField] private float sensitivity = 20f;
-        [SerializeField] private float xMultiplier = 1.5f;
-        [SerializeField] private float yMultiplier = 1f;
+        [SerializeField] private float sensitivity;
+        [SerializeField] private float xMultiplier;
+        [SerializeField] private float yMultiplier;
 
         #region Setup
 
