@@ -23,12 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c612c37-deea-42c1-90f1-1fdc2e515782" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/BigPlatformManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/FromTextures/Grass.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/FromTextures/Grass.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScenes/PlayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScenes/PlayScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NikinovTestScene/NikinovScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NikinovTestScene/NikinovScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerInteract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerInteract.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FBX/Materials/chest-Metal.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FBX/Materials/chest-Metal.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FBX/Materials/chest-Planks.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FBX/Materials/chest-Planks.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FBX/Materials/luckyBlock-LuckyBlock.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FBX/Materials/luckyBlock-LuckyBlock.mat.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,15 +36,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/BigPlatformManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerInteract.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Interactive/interactiveEnemy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PlayerManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/3DParty/MouseLook.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/UI/ClipText.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Interactive/interactiveStick.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/3DParty/MouseLook.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerInteract.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/3DParty/PlatformSpecific/MobileInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PlayerManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Interactive/interactiveStick.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/BigPlatformManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Interactive/interactiveEnemy.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
