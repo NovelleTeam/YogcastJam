@@ -1,8 +1,11 @@
-﻿public enum UpgradeType
+﻿namespace Controllers.Player.Upgrades
 {
-    Speed,
-	Weapon,
-	MultiJump,
-	Life,
-	Count
+    public enum UpgradeType
+    {
+        Speed,
+        Weapon,
+        MultiJump,
+        Life,
+        Count
+    }
 }

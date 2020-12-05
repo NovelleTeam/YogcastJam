@@ -1,60 +1,57 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerLives : MonoBehaviour
+namespace Controllers.Player.Upgrades
 {
-	[SerializeField]
-	private Transform playerRoot;
+    public class PlayerLives : MonoBehaviour
+    {
+        [SerializeField] private Transform playerRoot;
 
-	public Transform respawnTransform;
+        public Transform respawnTransform;
 
-	[SerializeField]
-	private int startingLives;
-	[SerializeField]
-	private bool capMaxLives;
-	[SerializeField]
-	private int maxLifeCap;
-	public int StartingLives { get { return startingLives; } }
-	public int CurrentLives { get; private set; }
+        [SerializeField] private int startingLives;
+        [SerializeField] private bool capMaxLives;
+        [SerializeField] private int maxLifeCap;
+        public int StartingLives => startingLives;
+        public int currentLives { get; private set; }
 
-	public Action onLoseLife;
-	public Action onGameOver;
+        public Action ONLoseLife;
+        public Action ONGameOver;
 
-	private void Awake()
-	{
-		CurrentLives = StartingLives;
-	}
+        private void Awake()
+        {
+            currentLives = StartingLives;
+        }
 
-	public void GainLife()
-	{
-		++CurrentLives;
-		if (capMaxLives && CurrentLives > maxLifeCap)
-		{
-			CurrentLives = maxLifeCap;
-		}
-	}
+        public void GainLife()
+        {
+            ++currentLives;
+            if (capMaxLives && currentLives > maxLifeCap) currentLives = maxLifeCap;
+        }
 
-	public void LoseLife()
-	{
-		--CurrentLives;
+        public void LoseLife()
+        {
+            --currentLives;
 
-		onLoseLife?.Invoke();
+            ONLoseLife?.Invoke();
 
-		if (CurrentLives <= 0)
-		{
-			CurrentLives = 0;
-			onGameOver?.Invoke();
-		}
-	}
+            if (currentLives <= 0)
+            {
+                currentLives = 0;
+                ONGameOver?.Invoke();
+            }
+        }
 
-	public void SetNewRespawn(Transform respawnTransform)
-	{
-		this.respawnTransform = respawnTransform;
-	}
+        public void SetNewRespawn(Transform respawn)
+        {
+            respawnTransform = respawn;
+        }
 
-	public void RespawnPlayer()
-	{
-		playerRoot.transform.position = respawnTransform.position;
-		playerRoot.transform.rotation = respawnTransform.rotation;
-	}
+        public void RespawnPlayer()
+        {
+            var pos = playerRoot.transform;
+            pos.position = respawnTransform.position;
+            pos.rotation = respawnTransform.rotation;
+        }
+    }
 }

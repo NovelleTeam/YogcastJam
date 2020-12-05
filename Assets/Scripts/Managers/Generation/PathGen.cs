@@ -9,7 +9,7 @@ public class PathGen
     float _gforce;
 
     float _margin = 0.2f;
-    float mindist = 2;
+    float mindist = 5;
 
     float _maxheightsingle;
     float _maxdistsingle;
@@ -27,7 +27,7 @@ public class PathGen
         _jumpcount = jumpcount;
         _speed = speed;
         _gforce = gforce;
-        _maxheightsingle = _jumpboost * _jumpboost / 2 / _gforce;
+        _maxheightsingle = _jumpboost * _jumpboost  / _gforce;
         _maxdistsingle = 2 * _jumpboost / _gforce * _speed;
         _maxheighttotal = _maxheightsingle * _jumpcount;
         _maxdisttotal = _maxdistsingle * _jumpcount;
@@ -44,10 +44,11 @@ public class PathGen
 
         float chancemod = 1f;
         bool exitcheck = false;
-        float progress = 0.2f;
+        float progress = 1f;
         while (true)
         {
-            float curprog = Random.Range(0f, 1f);
+            float curprog = Random.Range(0f, 1f)/progress;
+            //progress *= 0.99f;
             //float curprog = Mathf.Pow( Random.Range(0.0f, 1.0f),2);
             //curprog *= (1 - Mathf.Abs(1 - curprog /(progress+0.001f)));
             Vector3 platpos = dirvec * curprog;
@@ -80,7 +81,9 @@ public class PathGen
                 if (canJumpto(to - platpos))
                 {
                     exitcheck = true;
+                    
                 }
+                //break;
                 if (curprog > progress) progress = curprog;
                 chancemod = 1;
             }
