@@ -99,6 +99,7 @@ MonoBehaviour:
   groundCheck: {fileID: 100993907928948194}
   moveSpeed: 2000
   maxSpeed: 5
+  counterMovement: 100
   jumpForce: 250
   maxJumps: 1
 --- !u!114 &7571387247072564688

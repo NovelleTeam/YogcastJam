@@ -5,7 +5,7 @@ namespace Controllers.Player
     public class PlayerMovement : MonoBehaviour
     {
         private PlayerInput _controls;
-        
+
         //Assingables
         private Transform _pos;
         [SerializeField] private Transform groundCheck;
@@ -14,18 +14,20 @@ namespace Controllers.Player
         private Rigidbody _rb;
 
         //Movement
-        [SerializeField] private float moveSpeed = 4500;
-        [SerializeField] private float maxSpeed = 20;
+        [SerializeField] private float moveSpeed;
+        [SerializeField] private float maxSpeed;
+        [SerializeField] private float counterMovement;
         private bool isGrounded => Physics.CheckSphere(groundCheck.position, 0.2f, LayerMask.GetMask("Ground"));
         private bool _previousGrounded;
 
         //Jumping
-        [SerializeField] private float jumpForce = 550f;
+        [SerializeField] private float jumpForce;
         [SerializeField] private int maxJumps;
         private int _alreadyJumped;
 
         //Input
         private float _x, _y;
+        private float _previousX, _previousY;
 
         //Sliding
         private readonly Vector3 _normalVector = Vector3.up;
@@ -37,7 +39,7 @@ namespace Controllers.Player
         {
             _rb = GetComponent<Rigidbody>();
             _pos = transform;
-            
+
             _controls = new PlayerInput();
             _controls.Player.Movement.performed += ctx => OnMove(ctx.ReadValue<Vector2>());
             _controls.Player.Jump.performed += ctx => OnJump();
@@ -60,10 +62,13 @@ namespace Controllers.Player
         }
 
         #endregion
-        
+
         private void FixedUpdate()
         {
             Movement();
+
+            _previousX = _x;
+            _previousY = _y;
         }
 
         private void Update()
@@ -96,15 +101,14 @@ namespace Controllers.Player
             var multiplier = 1f;
 
             // Movement in air
-            if (!isGrounded)
-            {
-                multiplier = 0.5f;
-            }
+            if (!isGrounded) multiplier = 0.5f;
+
+            CounterMovement();
 
             //Apply forces to move player
             _rb.AddForce(_pos.forward * (_y * moveSpeed * Time.deltaTime * multiplier) +
                          _pos.right * (_x * moveSpeed * Time.deltaTime * multiplier), ForceMode.Acceleration);
-            
+
             ClampHorizontalVelocity();
         }
 
@@ -119,16 +123,28 @@ namespace Controllers.Player
             _rb.AddForce(_normalVector * (jumpForce * 0.5f), ForceMode.Impulse);
         }
 
+        private void CounterMovement()
+        {
+            var vector = new Vector3();
+
+            if (_x == 0f && _previousX != 0f)
+                vector += _pos.right * -_previousX;
+            if (_y == 0f && _previousY != 0f)
+                vector += _pos.forward * -_previousY;
+
+            _rb.AddForce(vector * counterMovement, ForceMode.Acceleration);
+        }
+
         private void ClampHorizontalVelocity()
         {
             var velocity = _rb.velocity;
             var horizontalVelocity = new Vector2(velocity.x, velocity.z);
-            
+
             if (horizontalVelocity.magnitude <= maxSpeed) return;
 
             var clamped = horizontalVelocity.normalized * maxSpeed;
             var fallSpeed = velocity.y;
-            
+
             _rb.velocity = new Vector3(clamped.x, fallSpeed, clamped.y);
         }
     }
