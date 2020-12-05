@@ -15,6 +15,7 @@ namespace Controllers.Player
         
         // Components
         private Rigidbody _rb;
+        private Transform _pos;
         
         // Ground check object's Transform
         [SerializeField] private Transform groundCheck;
@@ -57,6 +58,7 @@ namespace Controllers.Player
         private void Start()
         {
             _rb = GetComponent<Rigidbody>();
+            _pos = transform;
         }
 
         #endregion
@@ -97,7 +99,10 @@ namespace Controllers.Player
 
         private void Move()
         {
-            _rb.velocity = _input * maxSpeed + Vector3.up * _rb.velocity.y;
+            // Creating a vector relative to where the player is looking
+            var direction = _pos.forward * _input.z + _pos.right * _input.x;
+            
+            _rb.velocity = direction * maxSpeed + Vector3.up * _rb.velocity.y;
         }
 
         private void Jump(float force)

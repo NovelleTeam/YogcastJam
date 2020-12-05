@@ -23,10 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c612c37-deea-42c1-90f1-1fdc2e515782" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayScene/Player/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayScene/Player/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,8 +51,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/3DParty/MouseLook.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/3DParty/CrossPlatformInputManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/3DParty/RigidbodyFirstPersonController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" />
       </list>
     </option>
   </component>
@@ -112,6 +111,7 @@
       <workItem from="1607110678647" duration="1025000" />
       <workItem from="1607117797079" duration="7000" />
       <workItem from="1607152025226" duration="3118000" />
+      <workItem from="1607159544188" duration="941000" />
     </task>
     <servers />
   </component>
