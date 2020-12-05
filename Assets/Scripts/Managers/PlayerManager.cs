@@ -12,16 +12,16 @@ namespace Managers
         public Material miniPlatformLitUp;
         public GameObject bigPlatform;
         [HideInInspector] public BigPlatformManager bigPlatformManager;
+        [HideInInspector]public Vitals vitals;
 
         private PlayerInteract _playerInteract;
-        private Vitals _vitals;
         private PlayerMovement _playerMovement;
         private GameObject _currentPlatform;
 
         private void Start()
         {
             _playerInteract = GetComponent<PlayerInteract>();
-            _vitals = GetComponent<Vitals>();
+            vitals = GetComponent<Vitals>();
             _playerMovement = GetComponent<PlayerMovement>();
             _currentPlatform = Instantiate(bigPlatform);
             bigPlatformManager = _currentPlatform.GetComponent<BigPlatformManager>();
@@ -42,6 +42,7 @@ namespace Managers
 
         private void CompletePart(int partNumber)
         {
+            
         }
     }
 }

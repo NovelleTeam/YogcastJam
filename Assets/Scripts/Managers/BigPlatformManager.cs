@@ -7,12 +7,15 @@ namespace Managers
 {
     public class BigPlatformManager : MonoBehaviour
     {
-        public List<Renderer> cables;
+        public GameObject cables;
         public Material litUpMat;
 
         public void MakeSuprise()
         {
-            foreach (var cable in cables) cable.material = litUpMat;
+            foreach (Transform t in cables.transform)
+            {
+                t.GetComponent<Renderer>().material = litUpMat;
+            }
         }
 
         private IEnumerator WaitForBoss()
