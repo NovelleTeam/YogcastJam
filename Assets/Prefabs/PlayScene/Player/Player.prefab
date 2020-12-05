@@ -112,7 +112,7 @@ MonoBehaviour:
   maxSpeed: 5
   jumpForce: 5
   sprintModifier: 3
-  maxJumps: 3
+  maxJumps: 1
 --- !u!1 &100993908380131474
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,10 +28,10 @@ namespace Controllers.Player
         [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float jumpForce = 5f;
 
-        [SerializeField] private float sprintModifier = 3f;
+        [SerializeField] private float sprintModifier = 2f;
 
         // Maximum number of jumps (can be changed by upgrades/downgrades)
-        public int maxJumps = 1;
+        public int maxJumps = 3;
         
         // Basic setup for the input system and all components
         #region Setup
@@ -79,10 +79,12 @@ namespace Controllers.Player
 
         private void OnJump()
         {
-            // Jumping if possible
-            if (!isGrounded || _jumpsLeft <= 0) return;
-            Jump(jumpForce);
             _jumpsLeft--;
+            
+            // Jumping if possible
+            if (_jumpsLeft <= 0) return;
+            
+            Jump(jumpForce);
         }
 
         private void OnSprintEnter()
@@ -107,6 +109,9 @@ namespace Controllers.Player
 
         private void Jump(float force)
         {
+            var velocity = _rb.velocity;
+            velocity = new Vector3(velocity.x, 0f, velocity.z);
+            _rb.velocity = velocity;
             _rb.AddForce(Vector3.up * force, ForceMode.Impulse);
         }
     }
