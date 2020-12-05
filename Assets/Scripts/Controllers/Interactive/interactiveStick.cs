@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class interactiveStick : interactiveObject
 {
-    public interactiveStick()
-    {
-        IsTakeAble = true;
-        DisableAfterTake = false;
-    }
     public override void Interact()
     {
         

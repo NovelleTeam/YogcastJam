@@ -6,7 +6,7 @@ public class PlayerLives : MonoBehaviour
 	[SerializeField]
 	private Transform playerRoot;
 
-	private Transform _respawn;
+	public Transform respawnTransform;
 
 	[SerializeField]
 	private int startingLives;
@@ -49,12 +49,12 @@ public class PlayerLives : MonoBehaviour
 
 	public void SetNewRespawn(Transform respawnTransform)
 	{
-		_respawn = respawnTransform;
+		this.respawnTransform = respawnTransform;
 	}
 
 	public void RespawnPlayer()
 	{
-		playerRoot.transform.position = _respawn.position;
-		playerRoot.transform.rotation = _respawn.rotation;
+		playerRoot.transform.position = respawnTransform.position;
+		playerRoot.transform.rotation = respawnTransform.rotation;
 	}
 }

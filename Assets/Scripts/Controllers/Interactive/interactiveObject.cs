@@ -7,7 +7,8 @@ public class interactiveObject : MonoBehaviour
 {
     public bool IsTakeAble { get; protected set; }
     public bool DisableAfterTake { get; protected set; }
-    public interactiveObject()
+
+    protected virtual void Awake()
     {
         IsTakeAble = true;
         DisableAfterTake = true;

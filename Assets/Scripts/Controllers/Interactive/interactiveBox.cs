@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class interactiveBox : interactiveObject
 {
-    public interactiveBox()
-    {
-        IsTakeAble = true;
-        DisableAfterTake = true;
-    }
     public override void Interact()
     {
         
