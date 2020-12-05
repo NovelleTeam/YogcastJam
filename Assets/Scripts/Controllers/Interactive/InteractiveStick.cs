@@ -14,7 +14,7 @@ namespace Controllers.Interactive
         public InteractiveStick()
         {
             IsTakeAble = true;
-            DisableAfterTake = false;
+            isStickType = true;
         }
 
         public override void Interact()

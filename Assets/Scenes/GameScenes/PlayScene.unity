@@ -5069,6 +5069,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a999910966d44c18b405f5be52c568c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cables:
+  - {fileID: 988886282}
+  - {fileID: 117206209}
+  - {fileID: 1358568924}
+  - {fileID: 441875705}
+  - {fileID: 709689366}
+  - {fileID: 260755037}
+  - {fileID: 736058281}
+  - {fileID: 985287987}
+  - {fileID: 359922072}
+  - {fileID: 1212417729}
+  - {fileID: 210741327}
+  litUpMat: {fileID: 2100000, guid: 5e75ed14b5aae4c08a9ee4dc342b85f3, type: 2}
 --- !u!1 &1777626728
 GameObject:
   m_ObjectHideFlags: 0
@@ -5758,6 +5771,16 @@ PrefabInstance:
       propertyPath: initialTransform
       value: 
       objectReference: {fileID: 5779754141611687818}
+    - target: {fileID: 4656928569190707135, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
+        type: 3}
+      propertyPath: initialTransform
+      value: 
+      objectReference: {fileID: 5779754141611687818}
+    - target: {fileID: 4656928569190707135, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
+        type: 3}
+      propertyPath: bigPlatformManager
+      value: 
+      objectReference: {fileID: 1770963760}
     - target: {fileID: 5494015447688795989, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
         type: 3}
       propertyPath: takeDistance

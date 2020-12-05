@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Controllers.Interactive;
 using DG.Tweening;
+using Managers;
 using TMPro.EditorUtilities;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerManager))]
 public class PlayerInteract : MonoBehaviour
 {
     public float takeDistance = 3;
@@ -15,6 +17,7 @@ public class PlayerInteract : MonoBehaviour
     private PlayerInput _playerInput;
     private Camera _camera;
     private InteractiveObject _interactive;
+    private PlayerManager _playerManager;
     
     // Start is called before the first frame update
     void Awake()
@@ -22,6 +25,7 @@ public class PlayerInteract : MonoBehaviour
         _camera = Camera.main;
         _playerInput = new PlayerInput();
         _playerInput.Player.Interact.performed += ctx => CheckIfCanTake();
+        _playerManager = GetComponent<PlayerManager>();
     }
 
     private void Start()
@@ -62,14 +66,12 @@ public class PlayerInteract : MonoBehaviour
             }
             if (_interactive != null && Vector3.SqrMagnitude(_interactive.transform.position - transform.position) <= takeDistance)
             {
-                print("aa");
                 if (_interactive.IsTakeAble && _interactive.destenation != null)
                 {
-                    print("bb");
                     interactiveObjectDestination = _interactive.destenation;
                     _interactive.gameObject.transform.DOMove(interactiveObjectDestination.position, interactiveObjectTravelDuration);
                     _interactive.Interact();
-                    if(_interactive.DisableAfterTake)
+                    if(_interactive.isStickType)
                         StartCoroutine(waitForInteract(_interactive));
                     _interactive = null;
                 }
@@ -85,6 +87,24 @@ public class PlayerInteract : MonoBehaviour
     IEnumerator waitForInteract(InteractiveObject interactiveObj)
     {
         yield return new WaitForSeconds(interactiveObjectTravelDuration);
-        interactiveObj.gameObject.SetActive(false);
+        interactiveObj.transform.position = interactiveObjectDestination.position;
+        interactiveObj.transform.rotation = interactiveObjectDestination.rotation;
+        _playerManager.bigPlatformManager.MakeSuprise();
+        Destroy(interactiveObj.gameObject.GetComponent<Rigidbody>());
+        Destroy(interactiveObj);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

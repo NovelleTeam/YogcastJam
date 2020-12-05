@@ -10,10 +10,12 @@ namespace Managers
     public class PlayerManager : MonoBehaviour
     {
         public Transform initialTransform;
+        public BigPlatformManager bigPlatformManager;
         
         private PlayerInteract _playerInteract;
         private Vitals _vitals;
         private PlayerMovement _playerMovement;
+        
 
         private void Start()
         {
@@ -29,6 +31,11 @@ namespace Managers
                 transform.position = initialTransform.position;
                 transform.rotation = initialTransform.rotation;
             }
+        }
+
+        void CompletePart(int partNumber)
+        {
+            
         }
     }
 }

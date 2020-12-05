@@ -5,7 +5,7 @@
         public InteractiveChest()
         {
             IsTakeAble = false;
-            DisableAfterTake = false;
+            isStickType = false;
         }
 
         public override void Interact()
