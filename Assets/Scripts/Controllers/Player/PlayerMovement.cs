@@ -23,8 +23,8 @@ namespace Controllers.Player
         // Ground check object's Transform
         [SerializeField] private Transform groundCheck;
         
-        // Number of jumps made
-        public int alreadyJumped;
+        // Number of jumps left
+        private int _jumpsLeft;
         
         [Header("Values")]
         
@@ -34,7 +34,7 @@ namespace Controllers.Player
         [SerializeField] private float sprintModifier = 2f;
 
         // Maximum number of jumps (can be changed by upgrades/downgrades)
-        public int maxJumps;
+        public int maxJumps = 3;
         
         // Basic setup for the input system and all components
         #region Setup
@@ -69,10 +69,14 @@ namespace Controllers.Player
         private void Update()
         {
             if (!isGrounded) return;
+<<<<<<< HEAD
 
             // If collided with the ground set to 0
             if (!_previousGrounded) alreadyJumped = 0;
             
+=======
+            _jumpsLeft = maxJumps;
+>>>>>>> parent of ce644f4... Merge branch 'main' of https://github.com/NovelleTeam/YogcastJam into main
             Move();
         }
 
@@ -90,9 +94,17 @@ namespace Controllers.Player
 
         private void OnJump()
         {
+<<<<<<< HEAD
             if (alreadyJumped >= maxJumps) return;
 
             alreadyJumped++;
+=======
+            _jumpsLeft--;
+            
+            // Jumping if possible
+            if (_jumpsLeft <= 0) return;
+            
+>>>>>>> parent of ce644f4... Merge branch 'main' of https://github.com/NovelleTeam/YogcastJam into main
             Jump(jumpForce);
         }
 
