@@ -105,13 +105,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100993908289021992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bdcd825877d242d1a08a25dd605313f, type: 3}
+  m_Script: {fileID: 11500000, guid: dcb0c6521bb124135bbe7bc7106715ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 100993907928948194}
+  alreadyJumped: 0
   maxSpeed: 5
   jumpForce: 5
-  sprintModifier: 3
+  sprintModifier: 2
   maxJumps: 1
 --- !u!1 &100993908380131474
 GameObject:
@@ -331,10 +332,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 548290384334118758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a3395081f99b3f4a8f40f189a774349, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a889fc1f3af84412a642e89283d914d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 100993908289021975}
   sensitivity: 20
   xMultiplier: 1.5
   yMultiplier: 1
