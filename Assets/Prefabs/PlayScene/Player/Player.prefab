@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100993907928948194}
   m_Layer: 0
-  m_Name: GroundCheck
+  m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -109,8 +109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 100993907928948194}
-  speed: 5
+  maxSpeed: 5
   jumpForce: 5
+  sprintModifier: 3
   maxJumps: 1
 --- !u!1 &100993908380131474
 GameObject:

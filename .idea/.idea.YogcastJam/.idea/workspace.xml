@@ -22,10 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c612c37-deea-42c1-90f1-1fdc2e515782" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" afterDir="false" />
-    </list>
+    <list default="true" id="6c612c37-deea-42c1-90f1-1fdc2e515782" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
