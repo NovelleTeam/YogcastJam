@@ -10,18 +10,22 @@ namespace Managers
     public class PlayerManager : MonoBehaviour
     {
         public Transform initialTransform;
-        public BigPlatformManager bigPlatformManager;
+        public Material miniPlatformLitUp;
+        public GameObject bigPlatform;
+        [HideInInspector] public BigPlatformManager bigPlatformManager;
         
         private PlayerInteract _playerInteract;
         private Vitals _vitals;
         private PlayerMovement _playerMovement;
-        
+        private GameObject _currentPlatform;
 
         private void Start()
         {
             _playerInteract = GetComponent<PlayerInteract>();
             _vitals = GetComponent<Vitals>();
             _playerMovement = GetComponent<PlayerMovement>();
+            _currentPlatform = Instantiate(bigPlatform);
+            bigPlatformManager = _currentPlatform.GetComponent<BigPlatformManager>();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -30,6 +34,10 @@ namespace Managers
             {
                 transform.position = initialTransform.position;
                 transform.rotation = initialTransform.rotation;
+                bigPlatformManager = null;
+                Destroy(_currentPlatform);
+                _currentPlatform = Instantiate(bigPlatform);
+                bigPlatformManager = _currentPlatform.GetComponent<BigPlatformManager>();
             }
         }
 

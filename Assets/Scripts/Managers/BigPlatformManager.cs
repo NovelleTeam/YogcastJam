@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Managers
@@ -14,6 +16,13 @@ namespace Managers
             {
                 cable.material = litUpMat;
             }
+        }
+
+        IEnumerator waitForBoss()
+        {
+            DOTween.Init();
+            transform.DOMove(transform.position - new Vector3(0, 10, 0), 10);
+            yield return new WaitForSeconds(10);
         }
     }
 }
