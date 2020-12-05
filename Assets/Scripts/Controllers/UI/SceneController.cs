@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 
-public class SceneController : MonoBehaviour
+namespace Controllers.UI
 {
-  public static void SwitchScene(int sceneIndex)
-  {
-    UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
-  }
+    public class SceneController : MonoBehaviour
+    {
+        public static void SwitchScene(int sceneIndex)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
+        }
 
-  public static void SwitchScene(string sceneName)
-  {
-    UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-  }
+        public static void SwitchScene(string sceneName)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        }
 
-  public static void Quit()
-  {
-    Application.Quit();
-  }
+        public static void Quit()
+        {
+            Application.Quit();
+        }
+    }
 }
