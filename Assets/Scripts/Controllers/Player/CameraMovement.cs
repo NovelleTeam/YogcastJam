@@ -8,7 +8,7 @@ namespace Controllers.Player
         
         // Transforms
         private Transform _cameraHolder;
-        [SerializeField] private Transform player;
+        private Transform _player;
         
         // Values needed to move the camera
         private Vector2 _input;
@@ -37,6 +37,7 @@ namespace Controllers.Player
             _cameraHolder = transform;
 
             Cursor.lockState = CursorLockMode.Locked;
+            _player = _cameraHolder.parent;
         }
 
         private void OnEnable()
@@ -50,7 +51,6 @@ namespace Controllers.Player
         }
 
         #endregion
-
         private void Update()
         {
             Look();
@@ -71,7 +71,7 @@ namespace Controllers.Player
             _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
             _cameraHolder.localRotation = Quaternion.Euler(Vector3.right * _xRotation);
-            player.Rotate(Vector3.up * yaw);
+            _player.Rotate(Vector3.up * yaw);
         }
     }
 }

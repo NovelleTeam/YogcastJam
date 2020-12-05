@@ -23,13 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c612c37-deea-42c1-90f1-1fdc2e515782" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/FromTextures/Brick.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/FromTextures/Brick.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/FromTextures/LuckyBlock.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/FromTextures/LuckyBlock.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakadayoTestScene/BakadayoScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakadayoTestScene/BakadayoScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/luckyblock.png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/BigPlatformManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/FromTextures/Grass.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/FromTextures/Grass.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScenes/PlayScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScenes/PlayScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NikinovTestScene/NikinovScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NikinovTestScene/NikinovScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerInteract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerInteract.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,8 +39,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/UI/ClipText.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/BigPlatformManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerInteract.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Interactive/interactiveEnemy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PlayerManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/3DParty/MouseLook.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/UI/ClipText.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Interactive/interactiveStick.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/3DParty/PlatformSpecific/MobileInput.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -56,6 +62,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/3DParty/RigidbodyFirstPersonController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/CameraMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerInteract.cs" />
       </list>
     </option>
   </component>
