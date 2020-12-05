@@ -1,17 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class BigPlatformManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform respawnSpot;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private Transform StartStatePrefab;
+    
+    void PlayerDeth()
     {
         
     }
