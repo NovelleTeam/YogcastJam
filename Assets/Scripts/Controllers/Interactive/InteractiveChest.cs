@@ -4,7 +4,7 @@
     {
         public InteractiveChest()
         {
-            IsTakeAble = false;
+            isTakeAble = false;
             isStickType = false;
         }
 

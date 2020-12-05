@@ -4,15 +4,15 @@ namespace Controllers.Interactive
 {
     public class InteractiveObject : MonoBehaviour
     {
-        public bool IsTakeAble { get; protected set; }
+        public bool isTakeAble { get; protected set; }
         public bool isStickType { get; protected set; }
-        public Transform destenation { get; protected set; }
+        public Transform destination { get; protected set; }
 
         public InteractiveObject()
         {
-            IsTakeAble = true;
+            isTakeAble = true;
             isStickType = true;
-            destenation = null;
+            destination = null;
         }
 
         public virtual void Interact()

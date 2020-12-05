@@ -4,8 +4,9 @@
     {
         public InteractiveEnemy()
         {
-            IsTakeAble = false;
+            isTakeAble = false;
         }
+        
         public override void Interact()
         {
         

@@ -1,97 +1,89 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using Controllers.Interactive;
 using DG.Tweening;
 using Managers;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerManager))]
-public class PlayerInteract : MonoBehaviour
+namespace Controllers.Player
 {
-    public float takeDistance = 3;
-    public Transform interactiveObjectDestination;
-    public float interactiveObjectTravelDuration = 1;
+    [RequireComponent(typeof(PlayerManager))]
+    public class PlayerInteract : MonoBehaviour
+    {
+        public float takeDistance = 3;
+        public Transform interactiveObjectDestination;
+        public float interactiveObjectTravelDuration = 1;
     
-    private PlayerInput _playerInput;
-    private Camera _camera;
-    private InteractiveObject _interactive;
-    private PlayerManager _playerManager;
-    
-    // Start is called before the first frame update
-    void Awake()
-    {
-        _camera = Camera.main;
-        _playerInput = new PlayerInput();
-        _playerInput.Player.Interact.performed += ctx => CheckIfCanTake();
-        _playerManager = GetComponent<PlayerManager>();
-    }
+        private PlayerInput _playerInput;
+        private Camera _camera;
+        private InteractiveObject _interactive;
+        private PlayerManager _playerManager;
 
-    private void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
-    private void OnEnable()
-    {
-        _playerInput.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _playerInput.Disable();
-    }
-
-    private void CheckIfCanTake()
-    {
-        RaycastHit hitInfo;
-
-        //Will check if we looking at some object in takeDistance
-        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hitInfo, takeDistance))
+        private void Awake()
         {
-            if (hitInfo.collider != null && hitInfo.collider.gameObject.GetComponent<InteractiveObject>() != null)
+            _camera = Camera.main;
+            _playerInput = new PlayerInput();
+            _playerInput.Player.Interact.performed += ctx => OnInteract();
+            _playerManager = GetComponent<PlayerManager>();
+        }
+    
+        private void OnEnable()
+        {
+            _playerInput.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _playerInput.Disable();
+        }
+
+        private void OnInteract()
+        {
+            _interactive = GetObjectAtRaycast().GetComponent<InteractiveObject>();
+
+            if (CanTake())
             {
-                _interactive = hitInfo.collider.gameObject.GetComponent<InteractiveObject>();
-            }
-            else
-            {
+                interactiveObjectDestination = _interactive.destination;
+                _interactive.gameObject.transform.DOMove(interactiveObjectDestination.position,
+                    interactiveObjectTravelDuration);
+                        
+                _interactive.Interact();
+                        
+                if (_interactive.isStickType)
+                    StartCoroutine(WaitForInteract(_interactive));
+                        
                 _interactive = null;
             }
-            if (_interactive != null && Vector3.SqrMagnitude(_interactive.transform.position - transform.position) <= takeDistance)
+            else if (_interactive != null)
             {
-                if (_interactive.IsTakeAble && _interactive.destenation != null)
-                {
-                    interactiveObjectDestination = _interactive.destenation;
-                    _interactive.gameObject.transform.DOMove(interactiveObjectDestination.position, interactiveObjectTravelDuration);
-                    _interactive.Interact();
-                    if(_interactive.isStickType)
-                        StartCoroutine(waitForInteract(_interactive));
-                    _interactive = null;
-                }
-                else
-                {
-                    _interactive.Interact();
-                    _interactive = null;
-                }
+                _interactive.Interact();
+                _interactive = null;
             }
         }
-    }
 
-    IEnumerator waitForInteract(InteractiveObject interactiveObj)
-    {
-        yield return new WaitForSeconds(interactiveObjectTravelDuration);
-        interactiveObj.transform.position = interactiveObjectDestination.position;
-        interactiveObj.transform.rotation = interactiveObjectDestination.rotation;
-        _playerManager.bigPlatformManager.MakeSuprise();
-        Destroy(interactiveObj.gameObject.GetComponent<Rigidbody>());
-        Destroy(interactiveObj);
+        private GameObject GetObjectAtRaycast()
+        {
+            if (!Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hitInfo,
+                takeDistance)) return null;
+            return hitInfo.collider != null ? hitInfo.collider.gameObject : null;
+        }
+
+        private bool CanTake()
+        {
+            return _interactive != null &&
+                   Vector3.SqrMagnitude(_interactive.transform.position - transform.position) <=
+                   takeDistance * takeDistance && _interactive.isTakeAble && _interactive.destination != null;
+        }
+
+        private IEnumerator WaitForInteract(Component interactiveObj)
+        {
+            yield return new WaitForSeconds(interactiveObjectTravelDuration);
+            var objTransform = interactiveObj.transform;
+            objTransform.position = interactiveObjectDestination.position;
+            objTransform.rotation = interactiveObjectDestination.rotation;
+            _playerManager.bigPlatformManager.MakeSuprise();
+            Destroy(interactiveObj.gameObject.GetComponent<Rigidbody>());
+            Destroy(interactiveObj);
+        }
     }
 }
 

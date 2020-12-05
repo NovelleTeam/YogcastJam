@@ -8,12 +8,12 @@ namespace Controllers.Interactive
 
         private void Awake()
         {
-            destenation = destenationN;
+            destination = destenationN;
         }
 
         public InteractiveStick()
         {
-            IsTakeAble = true;
+            isTakeAble = true;
             isStickType = true;
         }
 
