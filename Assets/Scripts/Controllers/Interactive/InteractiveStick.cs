@@ -4,11 +4,11 @@ namespace Controllers.Interactive
 {
     public class InteractiveStick : InteractiveObject
     {
-        public Transform destenationN;
+        public Transform destinationN;
 
         private void Awake()
         {
-            destination = destenationN;
+            destination = destinationN;
         }
 
         public InteractiveStick()

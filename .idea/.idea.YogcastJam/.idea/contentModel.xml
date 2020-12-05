@@ -70,6 +70,7 @@
             </e>
             <e p="UI" t="Include">
               <e p="ClipText.cs" t="Include" />
+              <e p="DOTweenController.cs" t="Include" />
               <e p="SceneController.cs" t="Include" />
             </e>
           </e>
@@ -81,6 +82,7 @@
             </e>
             <e p="PlayerManager.cs" t="Include" />
             <e p="UI" t="Include">
+              <e p="MainMenuButtonManager.cs" t="Include" />
               <e p="MainMenuManager.cs" t="Include" />
               <e p="PlayManager.cs" t="Include" />
               <e p="SettingsManager.cs" t="Include" />
