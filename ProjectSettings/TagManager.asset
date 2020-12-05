@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item
-  - DethFloor
+  - DeathFloor
   layers:
   - Default
   - TransparentFX

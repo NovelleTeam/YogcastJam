@@ -1,5 +1,4 @@
-﻿using System;
-using Controllers.Player;
+﻿using Controllers.Player;
 using Controllers.Player.Upgrades;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace Managers
         public Material miniPlatformLitUp;
         public GameObject bigPlatform;
         [HideInInspector] public BigPlatformManager bigPlatformManager;
-        
+
         private PlayerInteract _playerInteract;
         private Vitals _vitals;
         private PlayerMovement _playerMovement;
@@ -30,20 +29,19 @@ namespace Managers
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.collider.gameObject.tag == "DethFloor")
-            {
-                transform.position = initialTransform.position;
-                transform.rotation = initialTransform.rotation;
-                bigPlatformManager = null;
-                Destroy(_currentPlatform);
-                _currentPlatform = Instantiate(bigPlatform);
-                bigPlatformManager = _currentPlatform.GetComponent<BigPlatformManager>();
-            }
+            if (!other.collider.gameObject.CompareTag("DeathFloor")) return;
+            
+            var pos = transform;
+            pos.position = initialTransform.position;
+            pos.rotation = initialTransform.rotation;
+            bigPlatformManager = null;
+            Destroy(_currentPlatform);
+            _currentPlatform = Instantiate(bigPlatform);
+            bigPlatformManager = _currentPlatform.GetComponent<BigPlatformManager>();
         }
 
-        void CompletePart(int partNumber)
+        private void CompletePart(int partNumber)
         {
-            
         }
     }
 }

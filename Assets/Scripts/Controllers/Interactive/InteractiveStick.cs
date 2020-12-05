@@ -19,7 +19,6 @@ namespace Controllers.Interactive
 
         public override void Interact()
         {
-            
         }
     }
 }

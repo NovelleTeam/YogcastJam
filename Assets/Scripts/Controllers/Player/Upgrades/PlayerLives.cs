@@ -12,15 +12,14 @@ namespace Controllers.Player.Upgrades
         [SerializeField] private int startingLives;
         [SerializeField] private bool capMaxLives;
         [SerializeField] private int maxLifeCap;
-        public int StartingLives => startingLives;
         public int currentLives { get; private set; }
 
-        public Action ONLoseLife;
-        public Action ONGameOver;
+        public Action LifeLost;
+        public Action GameOver;
 
         private void Awake()
         {
-            currentLives = StartingLives;
+            currentLives = startingLives;
         }
 
         public void GainLife()
@@ -33,13 +32,11 @@ namespace Controllers.Player.Upgrades
         {
             --currentLives;
 
-            ONLoseLife?.Invoke();
+            LifeLost?.Invoke();
 
-            if (currentLives <= 0)
-            {
-                currentLives = 0;
-                ONGameOver?.Invoke();
-            }
+            if (currentLives > 0) return;
+            currentLives = 0;
+            GameOver?.Invoke();
         }
 
         public void SetNewRespawn(Transform respawn)

@@ -8,7 +8,7 @@ namespace Managers.Generation
         public Transform[] smallPlatforms;
 
         private readonly List<Platform> _platforms = new List<Platform>();
-    
+
         private void Start()
         {
             var p1 = new PathGenerator(10, 1, 10, 10);
@@ -18,13 +18,10 @@ namespace Managers.Generation
             SpawnSmallPlatforms(_platforms);
             Debug.Log(_platforms.Count);
         }
-        
+
         public void SpawnSmallPlatforms(IEnumerable<Platform> plats)
         {
-            foreach (var plat in plats)
-            {
-                Instantiate(smallPlatforms[plat.Index], plat.Position, Quaternion.identity);
-            }
+            foreach (var plat in plats) Instantiate(smallPlatforms[plat.Index], plat.Position, Quaternion.identity);
         }
     }
 }

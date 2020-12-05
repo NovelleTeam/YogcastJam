@@ -1,29 +1,31 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using Managers;
 using UnityEngine;
 
-public class MiniPlatform : MonoBehaviour
+namespace Controllers.Enviroment
 {
-    private bool wasStepedOn = false;
-    private void OnCollisionEnter(Collision other)
+    public class MiniPlatform : MonoBehaviour
     {
-        if (other.gameObject.tag == "Player" && !wasStepedOn)
-        {
-            StartCoroutine(waitForDrop());
-            GetComponent<Renderer>().material = other.gameObject.GetComponent<PlayerManager>().miniPlatformLitUp;
-            wasStepedOn = true;
-        }
-        else if (other.gameObject.tag == "DethFloor")
-        {
-            Destroy(gameObject);
-        }
-    }
+        private bool _wasSteppedOn;
 
-    IEnumerator waitForDrop()
-    {
-        yield return new WaitForSeconds(2);
-        gameObject.AddComponent<Rigidbody>();
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("Player") && !_wasSteppedOn)
+            {
+                StartCoroutine(WaitForDrop());
+                GetComponent<Renderer>().material = other.gameObject.GetComponent<PlayerManager>().miniPlatformLitUp;
+                _wasSteppedOn = true;
+            }
+            else if (other.gameObject.CompareTag("DeathFloor"))
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        private IEnumerator WaitForDrop()
+        {
+            yield return new WaitForSeconds(2);
+            gameObject.AddComponent<Rigidbody>();
+        }
     }
 }

@@ -17,7 +17,6 @@ namespace Controllers.Interactive
 
         public virtual void Interact()
         {
-        
         }
     }
 }

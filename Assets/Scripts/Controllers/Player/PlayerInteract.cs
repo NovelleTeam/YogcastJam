@@ -12,7 +12,7 @@ namespace Controllers.Player
         public float takeDistance = 3;
         public Transform interactiveObjectDestination;
         public float interactiveObjectTravelDuration = 1;
-    
+
         private PlayerInput _playerInput;
         private Camera _camera;
         private InteractiveObject _interactive;
@@ -25,7 +25,7 @@ namespace Controllers.Player
             _playerInput.Player.Interact.performed += ctx => OnInteract();
             _playerManager = GetComponent<PlayerManager>();
         }
-    
+
         private void OnEnable()
         {
             _playerInput.Enable();
@@ -45,12 +45,12 @@ namespace Controllers.Player
                 interactiveObjectDestination = _interactive.destination;
                 _interactive.gameObject.transform.DOMove(interactiveObjectDestination.position,
                     interactiveObjectTravelDuration);
-                        
+
                 _interactive.Interact();
-                        
+
                 if (_interactive.isStickType)
                     StartCoroutine(WaitForInteract(_interactive));
-                        
+
                 _interactive = null;
             }
             else if (_interactive != null)
@@ -86,17 +86,3 @@ namespace Controllers.Player
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

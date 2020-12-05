@@ -7,18 +7,15 @@ namespace Managers
 {
     public class BigPlatformManager : MonoBehaviour
     {
-        public List<Renderer> Cables;
+        public List<Renderer> cables;
         public Material litUpMat;
 
         public void MakeSuprise()
         {
-            foreach (Renderer cable in Cables)
-            {
-                cable.material = litUpMat;
-            }
+            foreach (var cable in cables) cable.material = litUpMat;
         }
 
-        IEnumerator waitForBoss()
+        private IEnumerator WaitForBoss()
         {
             DOTween.Init();
             transform.DOMove(transform.position - new Vector3(0, 10, 0), 10);

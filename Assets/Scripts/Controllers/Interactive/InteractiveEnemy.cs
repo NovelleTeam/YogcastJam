@@ -6,10 +6,9 @@
         {
             isTakeAble = false;
         }
-        
+
         public override void Interact()
         {
-        
         }
     }
 }

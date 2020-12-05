@@ -72,7 +72,7 @@ namespace Managers.Generation
 
                 if (canJump == 0)
                     Debug.Log("boop");
-                
+
                 chance *= canJump;
 
                 chance *= newPlatform.CheckProx(Path, _mindist);
@@ -114,7 +114,7 @@ namespace Managers.Generation
         private bool CanJumpTo(Vector3 relative)
         {
             var total = Mathf.Abs(relative.y) / _maxHeightTotal +
-                         Mathf.Sqrt(relative.x * relative.x + relative.z * relative.z) / _maxDistTotal;
+                        Mathf.Sqrt(relative.x * relative.x + relative.z * relative.z) / _maxDistTotal;
             return total + _margin < 1;
         }
     }
