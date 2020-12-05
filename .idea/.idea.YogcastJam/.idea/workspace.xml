@@ -23,14 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c612c37-deea-42c1-90f1-1fdc2e515782" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YogcastJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayScene/Player/RandomPlayerPrefab.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BakadayoTestScene/BakadayoScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BakadayoTestScene/BakadayoScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/3DParty/RigidbodyFirstPersonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/3DParty/RigidbodyFirstPersonController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Player/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Materials/Crate - Surface Shader Scene.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Materials/Crate - Surface Shader Scene.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
