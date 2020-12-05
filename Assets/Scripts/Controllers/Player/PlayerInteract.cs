@@ -8,8 +8,6 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     public float takeDistance = 3;
-    public Transform interactiveObjectDestination;
-    public float interactiveObjectTravelDuration = 1;
     
     private PlayerInput _playerInput;
     private Camera _camera;
@@ -61,27 +59,10 @@ public class PlayerInteract : MonoBehaviour
             }
             if (_interactive != null && Vector3.SqrMagnitude(_interactive.transform.position - transform.position) <= takeDistance)
             {
-                if (_interactive.IsTakeAble)
-                {
-                    _interactive.gameObject.transform.DOMove(interactiveObjectDestination.position, interactiveObjectTravelDuration);
-                    _interactive.Interact();
-                    if(_interactive.DisableAfterTake)
-                        StartCoroutine(waitForInteract(_interactive));
-                    _interactive = null;
-                }
-                else
-                {
-                    _interactive.Interact();
-                    _interactive = null;
-                }
+                _interactive.Interact();
+                _interactive = null;
             }
         }
-    }
-
-    IEnumerator waitForInteract(interactiveObject interactiveObj)
-    {
-        yield return new WaitForSeconds(interactiveObjectTravelDuration);
-        interactiveObj.gameObject.SetActive(false);
     }
 }
 
