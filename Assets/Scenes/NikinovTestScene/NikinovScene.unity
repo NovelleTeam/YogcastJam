@@ -1019,6 +1019,9 @@ GameObject:
   - component: {fileID: 1563784030}
   - component: {fileID: 1563784035}
   - component: {fileID: 1563784034}
+  - component: {fileID: 1563784036}
+  - component: {fileID: 1563784031}
+  - component: {fileID: 1563784037}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1041,6 +1044,18 @@ MonoBehaviour:
   takeDistance: 3.05
   interactiveObjectDestination: {fileID: 272121688}
   interactiveObjectTravelDuration: 1
+--- !u!114 &1563784031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563784029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb0c6521bb124135bbe7bc7106715ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &1563784032
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1146,6 +1161,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1563784036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563784029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2f72fc3e1464468b74fca37e66393a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1563784037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563784029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805c43cc9b4b547809d1cad275c45bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1630228528
 GameObject:
   m_ObjectHideFlags: 0

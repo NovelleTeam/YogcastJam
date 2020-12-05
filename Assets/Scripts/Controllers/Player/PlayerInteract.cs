@@ -48,7 +48,7 @@ public class PlayerInteract : MonoBehaviour
     {
         RaycastHit hitInfo;
 
-        //Will check if we looking at some object in interactDistance
+        //Will check if we looking at some object in takeDistance
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hitInfo, takeDistance))
         {
             if (hitInfo.collider != null && hitInfo.collider.gameObject.GetComponent<interactiveObject>() != null)
