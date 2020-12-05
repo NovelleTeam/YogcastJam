@@ -45,6 +45,7 @@
           <e p="Controllers" t="Include">
             <e p="Enviroment" t="Include">
               <e p="EnviromentScript.cs" t="Include" />
+              <e p="MiniPlatform.cs" t="Include" />
             </e>
             <e p="Interactive" t="Include">
               <e p="interactiveBox.cs" t="Include" />
@@ -75,8 +76,8 @@
           <e p="Managers" t="Include">
             <e p="BigPlatformManager.cs" t="Include" />
             <e p="Generation" t="Include">
-              <e p="MainGen.cs" t="Include" />
-              <e p="PathGen.cs" t="Include" />
+              <e p="MainGenerator.cs" t="Include" />
+              <e p="PathGenerator.cs" t="Include" />
             </e>
             <e p="PlayerManager.cs" t="Include" />
             <e p="UI" t="Include">
