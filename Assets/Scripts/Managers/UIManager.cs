@@ -53,6 +53,7 @@ namespace Managers
 
         private void Awake()
         {
+            isPaused = false;
             _audioManager = FindObjectOfType<AudioManager>();
             _controls = new PlayerInput();
             _controls.Player.ResetPreferences.performed += ctx => ResetPlayerPrefs();
@@ -130,13 +131,13 @@ namespace Managers
         {
             if (isPaused)
             {
-                ActivatePanel(pausePanel);
+                ActivatePanel(mainPanel);
                 _playerManager.EnableLookAndMovement(true);
                 isPaused = false;
             }
             else
             {
-                ActivatePanel(mainPanel);
+                ActivatePanel(pausePanel);
                 _playerManager.EnableLookAndMovement(false);
                 isPaused = true;
             }
