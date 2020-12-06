@@ -38,7 +38,6 @@ namespace Managers
 
         // floats
         [SerializeField] private float chestDuration = 5;
-        [SerializeField] private Slider audioSlider;
 
         // private stuff :)
         private List<CanvasGroup> _panels;
@@ -90,15 +89,6 @@ namespace Managers
             {
                 FirstFadeIn();
             }
-            if (PlayerPrefs.GetFloat("volume") >= 0 && PlayerPrefs.GetFloat("volume") <= 1)
-            {
-                _audioManager.volume = PlayerPrefs.GetFloat("volume");
-            }
-            else
-            {
-                _audioManager.volume = 1f;
-                PlayerPrefs.SetFloat("volume", 1);
-            }
         }
 
         private void Update()
@@ -116,11 +106,6 @@ namespace Managers
                 CreateHearts(curLives);
 
                 _currentPlayerHarts = curLives;
-            }
-            if (_audioManager.volume != audioSlider.value)
-            {
-                _audioManager.volume = audioSlider.value;
-                PlayerPrefs.SetFloat("volume", audioSlider.value);
             }
         }
 
