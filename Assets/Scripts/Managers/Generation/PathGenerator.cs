@@ -11,7 +11,7 @@ namespace Managers.Generation
         private float _gForce;
 
         private float _margin = 0.3f;
-        private float _mindist = 3f;
+        private float _mindist = 1f;
 
         private float _maxHeightSingle;
         private float _maxDistSingle;
@@ -19,7 +19,7 @@ namespace Managers.Generation
         private float _maxDistTotal;
         private Bounds _jumpRange;
 
-        private Vector2 _pathSize = new Vector2(20, 20);
+        private Vector2 _pathSize = new Vector2(10, 10);
 
         public List<Platform> Path = new List<Platform>();
 
@@ -34,8 +34,8 @@ namespace Managers.Generation
             _maxHeightTotal = _maxHeightSingle * _jumpCount;
             _maxDistTotal = _maxDistSingle * _jumpCount;
 
-            _maxHeightTotal = 7.5f;
-            _maxDistTotal = 20f;
+            _maxHeightTotal = 2f;
+            _maxDistTotal = 8f;
 
 
             Debug.Log(_maxDistTotal);
@@ -111,7 +111,7 @@ namespace Managers.Generation
                 //if (newPlatform.CheckProx(Path, _mindist) == 0) Debug.Log("zoop");
                 chance *= newPlatform.CheckProx(Path, _mindist);
 
-                if (chance > Random.Range(0.0f, 1.1f))
+                if (chance > Random.Range(0.0f, 1f))
                 {
                     Path.Add(newPlatform);
                     //Debug.Log("Added");
@@ -120,12 +120,14 @@ namespace Managers.Generation
                         Debug.Log("Can exit");
                         exitCheck = true;
                     }
-                    /*Debug.Log((platformPos - to).magnitude);
-                    if ((platformPos - to).magnitude < _maxDistTotal*5)
+                    //*
+                    Debug.Log((platformPos - to).magnitude);
+                    if ((platformPos - to).magnitude < _maxDistTotal)
                     {
                         Debug.Log("Can exit");
                         exitCheck = true;
-                    }*/
+                    }
+                    //*/
                     //break;
                     if (currentProgress + _maxDistTotal / direction.magnitude > progress)
                     {
@@ -147,7 +149,7 @@ namespace Managers.Generation
                     Debug.Log("timed out");
                     break;
                 }
-
+                
                 if (exitCheck) break;
             }
         }
