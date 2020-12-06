@@ -5,7 +5,7 @@ namespace Controllers.Interactive
 {
     public class InteractiveJaffaFactory : InteractiveObject
     {
-        protected override void Awake()
+        protected override void Start()
         {
             isTakeAble = false;
             isStickType = false;

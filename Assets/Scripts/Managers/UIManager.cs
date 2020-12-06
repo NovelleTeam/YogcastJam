@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Controllers.Interactive;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -65,7 +66,7 @@ namespace Managers
         {
             foreach (var panel in _panels)
             {
-                if (panel.name == chestPanel.name) continue;
+                if (panel.name != chestPanel.name) continue;
                 panel.DOFade(0, .5f);
                 StartCoroutine(WaitSetActive(panel.gameObject, .5f, false));
             }
@@ -126,16 +127,19 @@ namespace Managers
 
         private IEnumerator WaitForChestFede()
         {
-            var typeOfChestAddons = chestPanel.GetComponent<ChestManager>().insideChest;
+            var typeOfChestAddons = FindObjectOfType<InteractiveChest>().insideChest;
             chestPanel.DOFade(1, .5f);
             yield return new WaitForSeconds(.5f);
             var i = 0;
             foreach (var chestAddon in typeOfChestAddons)
             {
-                chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>().alpha = 1;
-                chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>().DOFade(0, chestDuration);
-                chestPanel.transform.GetChild(i).GetComponent<RectTransform>().DOShakeRotation(chestDuration, 20);
-                chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = chestAddon;
+                var canvasGroup = chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>();
+                var rectTransform = chestPanel.transform.GetChild(i).GetComponent<RectTransform>();
+                var textMeshProUGUI = chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
+                canvasGroup.alpha = 1;
+                canvasGroup.DOFade(0, chestDuration);
+                rectTransform.DOShakeRotation(chestDuration, 20);
+                textMeshProUGUI.text = chestAddon;
                 i += 1;
             }
 

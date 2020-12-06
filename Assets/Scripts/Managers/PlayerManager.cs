@@ -68,6 +68,7 @@ namespace Managers
         public void AddLife(int lifes)
         {
             _playerLives.GainLife(lifes);
+      Debug.Log("trying to add life");
         }
 
         public void AddJump()
