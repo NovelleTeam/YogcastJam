@@ -16,15 +16,17 @@ namespace Managers
 
         private PlayerInteract _playerInteract;
         private PlayerMovement _playerMovement;
-        private GameObject _currentPlatform;
+        private int _currentMainPlatformIndex;
+        private int _nextMainPlatformIndex;
+        private GameObject _currentBigPlatform;
 
         private void Start()
         {
             _playerInteract = GetComponent<PlayerInteract>();
             vitals = GetComponent<Vitals>();
             _playerMovement = GetComponent<PlayerMovement>();
-            _currentPlatform = Instantiate(bigPlatform);
-            bigPlatformManager = _currentPlatform.GetComponent<BigPlatformManager>();
+            _currentBigPlatform = Instantiate(bigPlatform);
+            bigPlatformManager = _currentBigPlatform.GetComponent<BigPlatformManager>();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -35,12 +37,32 @@ namespace Managers
             pos.position = initialTransform.position;
             pos.rotation = initialTransform.rotation;
             bigPlatformManager = null;
-            Destroy(_currentPlatform);
-            _currentPlatform = Instantiate(bigPlatform);
-            bigPlatformManager = _currentPlatform.GetComponent<BigPlatformManager>();
+            Destroy(_currentBigPlatform);
+            _currentBigPlatform = Instantiate(bigPlatform);
+            bigPlatformManager = _currentBigPlatform.GetComponent<BigPlatformManager>();
         }
 
-        private void CompletePart(int partNumber)
+        public void SetCurrentMainPlatformIndex(int mainPlatformIndex)
+        {
+          _currentMainPlatformIndex = mainPlatformIndex;
+        }
+
+        public int GetCurrentMainPlatformIndex()
+        {
+          return _currentMainPlatformIndex;
+        }
+
+        public void SetNextMainPlatformIndex(int mainPlatformIndex)
+        {
+          _nextMainPlatformIndex = mainPlatformIndex;
+        }
+
+        public int GetNextMainPlatformIndex()
+        {
+          return _nextMainPlatformIndex;
+        }
+
+    private void CompletePart(int partNumber)
         {
             
         }
