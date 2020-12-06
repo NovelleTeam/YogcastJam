@@ -14,16 +14,16 @@ namespace Controllers.Player
         private Rigidbody _rb;
 
         //Movement
-        [SerializeField] private float moveSpeed;
-        [SerializeField] private float maxSpeed;
-        [SerializeField] private float counterMovement;
-        [SerializeField] private float sprintModifier;
+        [SerializeField] public float moveSpeed;
+        [SerializeField] public float maxSpeed;
+        [SerializeField] public float counterMovement;
+        [SerializeField] public float sprintModifier;
         private bool isGrounded => Physics.CheckSphere(groundCheck.position, 0.2f, LayerMask.GetMask("Ground"));
         private bool _previousGrounded;
 
         //Jumping
-        [SerializeField] private float jumpForce;
-        [SerializeField] private int maxJumps;
+        [SerializeField] public float jumpForce;
+        [SerializeField] public int maxJumps;
         private int _alreadyJumped;
 
         //Input
