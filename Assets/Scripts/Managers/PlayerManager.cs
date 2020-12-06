@@ -7,6 +7,7 @@ namespace Managers
 {
     [RequireComponent(typeof(Vitals))]
     [RequireComponent(typeof(PlayerInteract))]
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerManager : MonoBehaviour
     {
         public Material miniPlatformLitUp;
@@ -98,6 +99,16 @@ namespace Managers
         {
             _cameraMovement.enabled = enable;
             _playerMovement.enabled = enable;
+        }
+
+        public void FreezMovement()
+        {
+            
+        }
+
+        public void UnfreezMovement()
+        {
+            
         }
     }
 }

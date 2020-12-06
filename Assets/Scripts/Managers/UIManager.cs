@@ -5,6 +5,7 @@ using Controllers.Player.Upgrades;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Managers
@@ -18,6 +19,7 @@ namespace Managers
         [SerializeField] private CanvasGroup fadePanel;
         [SerializeField] private CanvasGroup chestPanel;
         [SerializeField] private CanvasGroup pausePanel;
+        [SerializeField] private CanvasGroup deathPanel;
 
         [SerializeField] private GameObject harts;
         [SerializeField] private GameObject hart;
@@ -42,10 +44,13 @@ namespace Managers
         private PlayerLives _playerLives;
         private int _currentPlayerHarts;
 
+        private PlayerInput _playerInput;
+
         private void Awake()
         {
             _controls = new PlayerInput();
             _controls.Player.ResetPreferences.performed += ctx => ResetPlayerPrefs();
+            _playerInput = new PlayerInput();
         }
 
         private void OnEnable()
@@ -112,6 +117,12 @@ namespace Managers
                     harts.transform
                 );
             }
+        }
+        
+        // pause panel
+        private void PauseGame()
+        {
+            
         }
 
         // make an intro the first time the player enters the play scene
