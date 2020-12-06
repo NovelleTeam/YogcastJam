@@ -417,16 +417,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _generatedPathContainer: {fileID: 1217550716}
-  platmanpref: {fileID: 5674116408657256593, guid: 19005968fd2d349529d01aec21b8360a,
+  platmanpref: {fileID: 5674116408657256593, guid: c04a959b2b00bda4ead3808543b35483,
     type: 3}
   start: {fileID: 0}
   end: {fileID: 0}
   mainPlatforms: []
   smallPlatforms:
   - {fileID: 8983459740195342025, guid: f4e72a811aebb1c44bffc664a5a35034, type: 3}
+  - {fileID: 8983459740195342025, guid: f4e72a811aebb1c44bffc664a5a35034, type: 3}
+  - {fileID: 8983459740195342025, guid: f4e72a811aebb1c44bffc664a5a35034, type: 3}
   - {fileID: 1271502421079003043, guid: 45d10ac987a67884080658f81dbc44da, type: 3}
+  - {fileID: 5334363338971030244, guid: ee56178d80a867745b440d09eef68586, type: 3}
+  - {fileID: 7435386505868797237, guid: 35d2e1d1c9b185a488d3d2d31a017913, type: 3}
+  - {fileID: 7443534619016206627, guid: 1ccb1c91378c3d94ba6a08fe6e8e1552, type: 3}
+  - {fileID: 7443534619016206627, guid: 1ccb1c91378c3d94ba6a08fe6e8e1552, type: 3}
+  - {fileID: 7443534619016206627, guid: 1ccb1c91378c3d94ba6a08fe6e8e1552, type: 3}
   platformPool:
   - {fileID: 2892188926767988259, guid: 5d518ca11e3a94468900de2cee943d8e, type: 3}
+  - {fileID: -1805022369062743220, guid: cffabf8fbb4059a44a35874b5a14db81, type: 3}
+  - {fileID: 2892188926767988259, guid: 5d518ca11e3a94468900de2cee943d8e, type: 3}
+  - {fileID: -1805022369062743220, guid: cffabf8fbb4059a44a35874b5a14db81, type: 3}
   - {fileID: 2892188926767988259, guid: 5d518ca11e3a94468900de2cee943d8e, type: 3}
   randomizedPlatformPool:
   - {fileID: 2892188926767988259, guid: 5d518ca11e3a94468900de2cee943d8e, type: 3}

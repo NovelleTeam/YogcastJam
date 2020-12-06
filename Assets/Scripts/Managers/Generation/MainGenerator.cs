@@ -53,7 +53,7 @@ namespace Managers.Generation
             Vector3 nextpoint = endpoint + new Vector3(Random.Range(-20f, 20f), Random.Range(-10f, 5f), Random.Range(40f, 70f));
             CreatePlatform(nextpoint);
             Controllers.Player.PlayerMovement player = GameObject.FindGameObjectWithTag("Player").GetComponent<Controllers.Player.PlayerMovement>();
-            Generate(endpoint, nextpoint+new Vector3(0,3,0), new List<Platform>(), new PlayerAttributes() { JumpCount = player.maxJumps, JumpForce = player.jumpForce, Speed = player.moveSpeed }, new Vector2(10, 10), new Platform[] { new Platform(new Vector3(0, 0, 0), 1, 0.3f, 0) });
+            Generate(endpoint, nextpoint+new Vector3(0,3,0), new List<Platform>(), new PlayerAttributes() { JumpCount = player.maxJumps, JumpForce = player.jumpForce, Speed = player.moveSpeed }, new Vector2(10, 10), new Platform[] { new Platform(new Vector3(0, 0, 0), 1, 0.3f, 0), new Platform(new Vector3(0, 0, 0), 1, 0.3f, 1), new Platform(new Vector3(0, 0, 0), 1, 0.3f, 2), new Platform(new Vector3(0, 0, 0), 1, 0.3f, 3), new Platform(new Vector3(0, 0, 0), 1, 0.3f, 4), new Platform(new Vector3(0, 0, 0), 1, 0.3f, 5), new Platform(new Vector3(0, 0, 0), 1, 0.3f, 6), new Platform(new Vector3(0, 0, 0), 1, 0.3f, 7), new Platform(new Vector3(0, 0, 0), 1, 0.3f, 8) });
         }
 
         public void CreatePlatform(Vector3 startpoint)
