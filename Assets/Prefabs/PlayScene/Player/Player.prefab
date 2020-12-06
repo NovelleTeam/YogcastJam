@@ -117,8 +117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   takeDistance: 3
-  interactiveObjectDestination: {fileID: 0}
-  interactiveObjectTravelDuration: 1
 --- !u!114 &6483915670667611487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +163,7 @@ MonoBehaviour:
   bigPlatform: {fileID: 0}
   bigPlatformManager: {fileID: 0}
   vitals: {fileID: 0}
+  _cameraMovement: {fileID: 8382465431245909714}
 --- !u!1 &100993908380131474
 GameObject:
   m_ObjectHideFlags: 0

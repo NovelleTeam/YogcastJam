@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Controllers.Interactive;
+using Controllers.Player.Upgrades;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -11,8 +12,6 @@ namespace Managers
     public class UIManager : MonoBehaviour
     {
         private PlayerInput _controls;
-        
-        public int numOfUIHarts;
         
         // panels
         [SerializeField] private CanvasGroup mainPanel;
@@ -37,7 +36,10 @@ namespace Managers
 
         // private stuff :)
         private List<CanvasGroup> _panels;
+
+        private GameObject _player;
         private PlayerManager _playerManager;
+        private PlayerLives _playerLives;
         private int _currentPlayerHarts;
 
         private void Awake()
@@ -58,7 +60,10 @@ namespace Managers
 
         private void Start()
         {
-            _playerManager = FindObjectOfType<PlayerManager>();
+            _player = GameObject.Find("Player");
+            _playerLives = _player.GetComponent<PlayerLives>();
+            _playerManager = _player.GetComponent<PlayerManager>();
+            
             _panels = new List<CanvasGroup> {mainPanel, fadePanel, chestPanel, pausePanel};
             if (PlayerPrefs.GetInt("init") == 1)
             {
@@ -78,16 +83,18 @@ namespace Managers
         private void Update()
         {
             healthSlider.value = (float) _playerManager.vitals.curHealth / _playerManager.vitals.maxHealth;
-            if (numOfUIHarts != _currentPlayerHarts)
+            var curLives = _playerLives.currentLives;
+            
+            if (curLives != _currentPlayerHarts)
             {
                 foreach (Transform t in harts.transform)
                 {
                     Destroy(t.gameObject);
                 }
 
-                CreateHearts(numOfUIHarts);
+                CreateHearts(curLives);
 
-                _currentPlayerHarts = numOfUIHarts;
+                _currentPlayerHarts = curLives;
             }
         }
 
