@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 6583700160608569424, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: chestDuration
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8953001719966714643, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}

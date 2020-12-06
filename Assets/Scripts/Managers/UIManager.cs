@@ -152,8 +152,13 @@ namespace Managers
             }
             else if (upgrade == "ADD ATTACK")
             {
-                //_playerManager.AddAtack();
+                _playerManager.AddAttack();
             }
+            DOTween.CompleteAll();
+            chestPanel.gameObject.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            _playerManager.EnableLookAndMovement(true);
         }
 
         private static IEnumerator WaitSetActive(GameObject go, float time, bool activate)
@@ -193,14 +198,21 @@ namespace Managers
             foreach (var chestAddon in typeOfChestAddons)
             {
                 chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>().alpha = 1;
-                chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>().DOFade(0, chestDuration);
+                chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>().DOFade(0, chestDuration).SetEase(Ease.InExpo);
                 chestPanel.transform.GetChild(i).GetComponent<RectTransform>().DOShakeRotation(chestDuration, 20);
                 chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = chestAddon;
                 i += 1;
             }
 
-            chestPanel.DOFade(0, chestDuration);
+            chestPanel.DOFade(0, chestDuration).SetEase(Ease.InExpo);
             yield return new WaitForSeconds(chestDuration);
+            if (chestPanel.gameObject.activeSelf)
+            {
+                chestPanel.gameObject.SetActive(false);
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                _playerManager.EnableLookAndMovement(true);
+            }
         }
     }
 }
