@@ -47,6 +47,7 @@ namespace Managers
         private PlayerLives _playerLives;
         private AudioManager _audioManager;
         private int _currentPlayerHarts;
+        private InteractiveChest _currentInteractiveChest;
         private string _deathLetter = "HI USER THIS IS PROGRAM SPEAKING I'M SORRY TO TELL YOU THAT BUT YOU HAVE BEEN EXECUTED BY AN UNEXPECTED SURPRISE";
 
         private void Awake()
@@ -201,12 +202,12 @@ namespace Managers
             {
                 _playerManager.AddAttack();
             }
-            ActivatePanel(mainPanel);
             DOTween.CompleteAll();
-            chestPanel.gameObject.SetActive(false);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             _playerManager.EnableLookAndMovement(true);
+            ActivatePanel(mainPanel);
+            StartCoroutine(_currentInteractiveChest.CloseChest());
         }
 
         private static IEnumerator WaitSetActive(GameObject go, float time, bool activate)
@@ -235,12 +236,12 @@ namespace Managers
 
         private IEnumerator WaitForChestFade()
         {
-            var typeOfChestAddons = FindObjectOfType<InteractiveChest>().insideChest;
-            chestPanel.gameObject.SetActive(true);
+            _currentInteractiveChest = FindObjectOfType<InteractiveChest>();
+            var typeOfChestAddons = _currentInteractiveChest.insideChest;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             _playerManager.EnableLookAndMovement(false);
-            chestPanel.DOFade(1, .5f);
+            ActivatePanel(chestPanel);
             yield return new WaitForSeconds(.5f);
             var i = 0;
             foreach (var chestAddon in typeOfChestAddons)
@@ -259,14 +260,16 @@ namespace Managers
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 _playerManager.EnableLookAndMovement(true);
+                ActivatePanel(mainPanel);
+                StartCoroutine(_currentInteractiveChest.CloseChest());
             }
-            ActivatePanel(mainPanel);
         }
         
         private IEnumerator waitForDeath()
         {
             _audioManager.Play("DEATH");
-            _playerManager.FreezeMovement();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             _playerManager.EnableLookAndMovement(false);
             yield return new WaitForSeconds(1);
             _audioManager.Play("DEATH TALK");
