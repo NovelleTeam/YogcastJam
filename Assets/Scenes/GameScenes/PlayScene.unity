@@ -199,6 +199,11 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3831885170555847649, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5205453107337143338, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: m_Sprite
@@ -224,6 +229,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.6603774
       objectReference: {fileID: 0}
+    - target: {fileID: 6310071747742631688, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 17.100037
+      objectReference: {fileID: 0}
     - target: {fileID: 6583700160608569424, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: deathPanel
@@ -231,8 +241,18 @@ PrefabInstance:
       objectReference: {fileID: 880879731}
     - target: {fileID: 6583700160608569424, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
+      propertyPath: audioSlider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583700160608569424, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
       propertyPath: chestDuration
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736594396037565203, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8107637365457017729, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
@@ -269,10 +289,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8953001721305828272, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8953001721305828274, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953001721305828287, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8953001721349080177, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
@@ -508,6 +538,7 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
+  volume: 0
 --- !u!4 &259744384
 Transform:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using DG.Tweening;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Ping = UnityEngine.Ping;
 using Random = UnityEngine.Random;
@@ -24,7 +25,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI surpriseText;
 
     //[SerializeField] private Transform settingsButton;
-
+    
     private string[] startTalk = new[]
     {
         "HI", "USER", "YOU SEE THE THING IS", "THERE IS NO SURPRISE", "I UNDERSTAND", "YOU WARE EXPECTING A SURPRISE",
@@ -70,6 +71,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
+        
     }
 
     private void Talk(string[] talk)

@@ -38,6 +38,7 @@ namespace Managers
 
         // floats
         [SerializeField] private float chestDuration = 5;
+        [SerializeField] private Slider audioSlider;
 
         // private stuff :)
         private List<CanvasGroup> _panels;
@@ -47,6 +48,7 @@ namespace Managers
         private PlayerLives _playerLives;
         private AudioManager _audioManager;
         private int _currentPlayerHarts;
+        private bool isPaused;
         private InteractiveChest _currentInteractiveChest;
         private string _deathLetter = "HI USER THIS IS PROGRAM SPEAKING I'M SORRY TO TELL YOU THAT BUT YOU HAVE BEEN EXECUTED BY AN UNEXPECTED SURPRISE";
 
@@ -55,6 +57,7 @@ namespace Managers
             _audioManager = FindObjectOfType<AudioManager>();
             _controls = new PlayerInput();
             _controls.Player.ResetPreferences.performed += ctx => ResetPlayerPrefs();
+            _controls.Player.Pause.performed += ctx => PauseGame();
         }
 
         private void OnEnable()
@@ -87,6 +90,15 @@ namespace Managers
             {
                 FirstFadeIn();
             }
+            if (PlayerPrefs.GetFloat("volume") >= 0 && PlayerPrefs.GetFloat("volume") <= 1)
+            {
+                _audioManager.volume = PlayerPrefs.GetFloat("volume");
+            }
+            else
+            {
+                _audioManager.volume = 1f;
+                PlayerPrefs.SetFloat("volume", 1);
+            }
         }
 
         private void Update()
@@ -104,6 +116,11 @@ namespace Managers
                 CreateHearts(curLives);
 
                 _currentPlayerHarts = curLives;
+            }
+            if (_audioManager.volume != audioSlider.value)
+            {
+                _audioManager.volume = audioSlider.value;
+                PlayerPrefs.SetFloat("volume", audioSlider.value);
             }
         }
 
@@ -126,7 +143,18 @@ namespace Managers
         // pause panel
         private void PauseGame()
         {
-            ActivatePanel(pausePanel);
+            if (isPaused)
+            {
+                ActivatePanel(pausePanel);
+                _playerManager.EnableLookAndMovement(true);
+                isPaused = false;
+            }
+            else
+            {
+                ActivatePanel(mainPanel);
+                _playerManager.EnableLookAndMovement(false);
+                isPaused = true;
+            }
         }
 
         // make an intro the first time the player enters the play scene

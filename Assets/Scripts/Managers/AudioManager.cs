@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     public sound[] sounds;
+    public float volume;
 
     private void Awake()
     {
@@ -19,6 +20,15 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.pitch = s.pitch;
             s.source.playOnAwake = s.playOnAwake;
+        }
+    }
+
+    private void Update()
+    {
+        foreach (sound s in sounds)
+        {
+            if(s.volume != volume)
+                s.volume = volume;
         }
     }
 
