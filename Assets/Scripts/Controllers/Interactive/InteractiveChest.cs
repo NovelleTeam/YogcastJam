@@ -10,6 +10,9 @@
 
         public override void Interact()
         {
+      transform.GetComponent<ChestManager>().OpenChest();
+      //open menu for selecting item
+      //close once item is selected
         }
     }
 }

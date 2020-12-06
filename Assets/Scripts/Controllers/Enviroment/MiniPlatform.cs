@@ -6,9 +6,18 @@ namespace Controllers.Enviroment
 {
     public class MiniPlatform : MonoBehaviour
     {
-        private bool _wasSteppedOn;
+    [SerializeField]
+    private Material _initialMaterial;
 
-        private void OnCollisionEnter(Collision other)
+    private bool _wasSteppedOn;
+    private Vector3 _initialLocation;
+
+    private void Start()
+    {
+      _initialLocation = transform.position;
+    }
+
+    private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag("Player") && !_wasSteppedOn)
             {
@@ -18,8 +27,11 @@ namespace Controllers.Enviroment
             }
             else if (other.gameObject.CompareTag("DeathFloor"))
             {
-                Destroy(gameObject);
-            }
+        Destroy(GetComponent<Rigidbody>());
+        GetComponent<Renderer>().material = _initialMaterial;
+        _wasSteppedOn = false;
+        transform.position = _initialLocation;
+      }
         }
 
         private IEnumerator WaitForDrop()

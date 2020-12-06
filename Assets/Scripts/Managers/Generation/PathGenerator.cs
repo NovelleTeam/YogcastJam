@@ -91,11 +91,6 @@ namespace Managers.Generation
                 }
 
                 if (canJump == 0)
-<<<<<<< Updated upstream
-                    Debug.Log("boop");
-
-                chance *= canJump;
-=======
                 {
                     Debug.Log("adjusting");
                     var closevec = lastPlatform.Position;
@@ -111,7 +106,6 @@ namespace Managers.Generation
                     newPlatform.Position = platformPos;
                     canJump = 1;
                 }
->>>>>>> Stashed changes
 
                 chance *= canJump;
                 //if (newPlatform.CheckProx(Path, _mindist) == 0) Debug.Log("zoop");
@@ -166,17 +160,6 @@ namespace Managers.Generation
         private void GeneratePlatform()
         {
         }
-
-<<<<<<< Updated upstream
-        private bool CanJumpTo(Vector3 relative)
-        {
-            var total = Mathf.Abs(relative.y) / _maxHeightTotal +
-                        Mathf.Sqrt(relative.x * relative.x + relative.z * relative.z) / _maxDistTotal;
-            return total + _margin < 1;
-        }
-=======
-        
->>>>>>> Stashed changes
     }
 
     public class Platform

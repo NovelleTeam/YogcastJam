@@ -7,6 +7,7 @@ namespace Managers
 {
     public class BigPlatformManager : MonoBehaviour
     {
+    public GameObject rewardPlatform;
         public GameObject cables;
         public Material litUpMat;
 
@@ -16,13 +17,16 @@ namespace Managers
             {
                 t.GetComponent<Renderer>().material = litUpMat;
             }
+      StartCoroutine(WaitForBoss());
         }
 
         private IEnumerator WaitForBoss()
         {
-            DOTween.Init();
-            transform.DOMove(transform.position - new Vector3(0, 10, 0), 10);
-            yield return new WaitForSeconds(10);
+      yield return new WaitForSeconds(3);
+            transform.DOMove(transform.position - new Vector3(0, 8, 0), 8);
+            yield return new WaitForSeconds(9);
+      Destroy(gameObject);
+      Instantiate(rewardPlatform);
         }
     }
 }
