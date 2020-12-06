@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net.NetworkInformation;
+using Managers;
 using UnityEngine;
 
 namespace Controllers.Player.Upgrades
@@ -19,8 +21,12 @@ namespace Controllers.Player.Upgrades
         public event Action LifeLost;
         public event Action GameOver;
 
+        private UIManager _uiManager;
+
         private void Awake()
         {
+            _uiManager = FindObjectOfType<UIManager>();
+            
             currentLives = startingLives;
 
             _vitals = GetComponent<Vitals>();
@@ -28,9 +34,9 @@ namespace Controllers.Player.Upgrades
             GameOver += OnGameOver;
         }
 
-        private static void OnGameOver()
+        private void OnGameOver()
         {
-            Debug.Log("Died lol");
+            _uiManager.Death();
         }
 
         public void GainLife(int lifes)

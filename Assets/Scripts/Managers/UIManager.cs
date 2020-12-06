@@ -51,6 +51,7 @@ namespace Managers
 
         private void Awake()
         {
+            _audioManager = FindObjectOfType<AudioManager>();
             _controls = new PlayerInput();
             _controls.Player.ResetPreferences.performed += ctx => ResetPlayerPrefs();
         }
@@ -113,7 +114,7 @@ namespace Managers
                 // ReSharper disable once UnusedVariable
                 var instantiate = Instantiate(
                     hart,
-                    new Vector3(position.x + 20 * i,
+                    new Vector3((position.x + 20 * i) - 70,
                         position.y),
                     Quaternion.identity,
                     harts.transform
@@ -153,10 +154,15 @@ namespace Managers
         {
             foreach (var panel in _panels)
             {
-                if (panel.name != mainPanel.name)
+                if (panel.name != canvasGroup.gameObject.name)
                 {
                     panel.DOFade(0, .5f);
                     StartCoroutine(WaitSetActive(panel.gameObject, .5f, false));
+                }
+                else
+                {
+                    panel.DOFade(1, .5f);
+                    StartCoroutine(WaitSetActive(panel.gameObject, .5f, true));
                 }
             }
         }
@@ -165,7 +171,13 @@ namespace Managers
         public void Death()
         {
             ActivatePanel(deathPanel);
-            waitForDeath();
+            StartCoroutine(waitForDeath());
+        }
+        
+        // restart
+        public void Restat()
+        {
+            SceneManager.LoadScene(1);
         }
 
         // chest button function
@@ -249,20 +261,21 @@ namespace Managers
             }
             ActivatePanel(mainPanel);
         }
-
+        
         private IEnumerator waitForDeath()
         {
             _audioManager.Play("DEATH");
+            _playerManager.FreezeMovement();
+            _playerManager.EnableLookAndMovement(false);
             yield return new WaitForSeconds(1);
             _audioManager.Play("DEATH TALK");
-
             TextMeshProUGUI letterText = deathLetter.GetComponent<TextMeshProUGUI>();
             string letter = "";
             foreach (char st in _deathLetter)
             {
-                letter = letter + st + "_";
+                letter = letter + st;
                 yield return new WaitForSeconds(.1f);
-                letterText.text = letter;
+                letterText.text = letter + "_";
             }
 
             yield return new WaitForSeconds(1);
