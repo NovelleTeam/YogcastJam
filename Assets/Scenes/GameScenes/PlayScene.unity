@@ -368,9 +368,9 @@ MonoBehaviour:
   fadePanel: {fileID: 1510809781}
   chestPanel: {fileID: 877560959}
   pausePanel: {fileID: 823504208}
-  OnceAponATime: {fileID: 1913723060}
+  onceAponATime: {fileID: 1913723060}
   inAGalaxyFarFarAway: {fileID: 1369972538}
-  AUserHadToUse: {fileID: 103778903}
+  aUserHadToUse: {fileID: 103778903}
   chestDuration: 5
 --- !u!4 &259744384
 Transform:

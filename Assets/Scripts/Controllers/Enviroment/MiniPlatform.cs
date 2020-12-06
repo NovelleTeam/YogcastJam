@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Managers;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Controllers.Enviroment
 {
@@ -14,8 +15,10 @@ namespace Controllers.Enviroment
 
         private void Start()
         {
+            transform.localScale = Vector3.zero;
             _initialLocation = transform.position;
             _initialRotation = transform.rotation;
+            transform.DOScale(new Vector3(2.0f, 0.5f, 2.0f), 1.0f).SetEase(Ease.Linear);
         }
 
         private void OnCollisionEnter(Collision other)
@@ -31,8 +34,10 @@ namespace Controllers.Enviroment
                 Destroy(GetComponent<Rigidbody>());
                 GetComponent<Renderer>().material = _initialMaterial;
                 _wasSteppedOn = false;
+                transform.localScale = Vector3.zero;
                 transform.position = _initialLocation;
                 transform.rotation = _initialRotation;
+                transform.DOScale(new Vector3(2.0f, 0.5f, 2.0f), 1.0f).SetEase(Ease.Linear);
             }
         }
 
