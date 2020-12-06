@@ -8,7 +8,7 @@ public class MainPlatformManager : MonoBehaviour
     [SerializeField] private Transform _playerSpawn;
     [SerializeField] private Transform _platformBegin;
     [SerializeField] private Transform _platformEnd;
-    [SerializeField] private Transform _generatedPathContainer;
+    [SerializeField] public Transform _generatedPathContainer;
     [SerializeField] private int index;
 
     private bool _wasSteppedOn;
