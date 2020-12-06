@@ -31,7 +31,7 @@ namespace Controllers.Interactive
         {
             if (!_generatedPath)
             {
-                transform.GetComponent<ChestManager>().OpenChest();
+                OpenChest();
                 //open menu for selecting item
                 FindObjectOfType<UIManager>().ChestOpen();
                 //close once item is selected
@@ -43,7 +43,6 @@ namespace Controllers.Interactive
                     mainGenerator.mainPlatforms[playerManager.GetCurrentMainPlatformIndex()].GetPlatformEnd(),
                     mainGenerator.mainPlatforms[playerManager.GetNextMainPlatformIndex()].GetPlatformBegin());
                 _generatedPath = true;
-                OpenChest();
 
                 GeneratePlatforms(player);
             }

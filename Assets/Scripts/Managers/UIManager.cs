@@ -26,11 +26,9 @@ namespace Managers
         // private stuff :)
         private List<CanvasGroup> _panels;
         private PlayerManager _playerManager;
-        private InteractiveChest _interactiveChest;
 
         private void Start()
         {
-            _interactiveChest = FindObjectOfType<InteractiveChest>();
             _playerManager = FindObjectOfType<PlayerManager>();
             _panels = new List<CanvasGroup> {mainPanel, fadePanel, chestPanel, pausePanel};
             if (PlayerPrefs.GetInt("init") == 1)
@@ -129,15 +127,15 @@ namespace Managers
 
         private IEnumerator WaitForChestFede()
         {
-            var typeOfChestAddons = _interactiveChest.insideChest;
+            var typeOfChestAddons = FindObjectOfType<InteractiveChest>().insideChest;
             chestPanel.DOFade(1, .5f);
             yield return new WaitForSeconds(.5f);
             var i = 0;
-            var canvasGroup = chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>();
-            var rectTransform = chestPanel.transform.GetChild(i).GetComponent<RectTransform>();
-            var textMeshProUGUI = chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
             foreach (var chestAddon in typeOfChestAddons)
             {
+                var canvasGroup = chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>();
+                var rectTransform = chestPanel.transform.GetChild(i).GetComponent<RectTransform>();
+                var textMeshProUGUI = chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
                 canvasGroup.alpha = 1;
                 canvasGroup.DOFade(0, chestDuration);
                 rectTransform.DOShakeRotation(chestDuration, 20);
