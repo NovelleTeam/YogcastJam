@@ -230,9 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e013ed12510c314f97cd0aae15c8578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chestHinge: {fileID: 8093232735174342902}
-  _chestLock: {fileID: 8093232733884015516}
-  _targetScale: 1
+  insideChest: []
+  chestHinge: {fileID: 8093232735174342902}
+  chestLock: {fileID: 8093232733884015516}
+  targetScale: 1
   _chestScaleDuration: 1
   _openAngle: 70
   _openDuration: 1

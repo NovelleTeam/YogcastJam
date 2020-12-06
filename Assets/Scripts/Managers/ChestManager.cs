@@ -4,14 +4,14 @@ using DG.Tweening;
 
 public class ChestManager : MonoBehaviour
 {
-  public String[] insideChest;
+  public string[] insideChest;
   
   [SerializeField]
-  private Transform _chestHinge;
+  private Transform chestHinge;
   [SerializeField]
-  private Transform _chestLock;
+  private Transform chestLock;
   [SerializeField]
-  private float _targetScale = 1.0f;
+  private float targetScale = 1.0f;
   [Range(0.05f, 10.0f), SerializeField]
   private float _chestScaleDuration = 1.0f;
   [SerializeField]
@@ -24,18 +24,18 @@ public class ChestManager : MonoBehaviour
   private void Start()
   {
     transform.localScale = Vector3.zero;
-    transform.DOScale(_targetScale, _chestScaleDuration).SetEase(Ease.Linear);
+    transform.DOScale(targetScale, _chestScaleDuration).SetEase(Ease.Linear);
   }
 
   public void OpenChest()
   {
     DOTween.Sequence()
-      .Append(_chestLock.DOScale(0.0f, _chestLockScaleDuration))
-      .Append(_chestHinge.DOLocalRotate(new Vector3(0, 0, -_openAngle), _openDuration).SetEase(Ease.Linear));
+      .Append(chestLock.DOScale(0.0f, _chestLockScaleDuration))
+      .Append(chestHinge.DOLocalRotate(new Vector3(0, 0, -_openAngle), _openDuration).SetEase(Ease.Linear));
   }
 
   public void CloseChest()
   {
-    _chestHinge.DOLocalRotate(new Vector3(0, 0, _openAngle), _openDuration).SetEase(Ease.Linear);
+    chestHinge.DOLocalRotate(new Vector3(0, 0, _openAngle), _openDuration).SetEase(Ease.Linear);
   }
 }

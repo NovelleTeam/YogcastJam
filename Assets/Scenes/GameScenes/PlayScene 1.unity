@@ -493,6 +493,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &852989199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 852989200}
+  m_Layer: 0
+  m_Name: Respawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &852989200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852989199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: -17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!225 &874495079 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 8953001720847497808, guid: 6b927c0f5a92146f995a17b82e2795e7,
@@ -1136,6 +1166,11 @@ PrefabInstance:
       propertyPath: bigPlatformManager
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4937313029999042836, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
+        type: 3}
+      propertyPath: respawnTransform
+      value: 
+      objectReference: {fileID: 852989200}
     - target: {fileID: 5494015447688795989, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
         type: 3}
       propertyPath: takeDistance
@@ -1143,29 +1178,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21f39eb1b940b0342b854e3ac12b3d5d, type: 3}
---- !u!1 &1955323467 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100993908289021992, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1955323466}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1955323468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955323467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a618956f377604d9732bada68bbb37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRoot: {fileID: 1803114372}
-  respawnTransform: {fileID: 0}
-  startingLives: 0
-  capMaxLives: 0
-  maxLifeCap: 0
 --- !u!1001 &8953001721585255991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1173,6 +1185,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2164570305804879686, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164570305804879686, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8953001719969348212, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

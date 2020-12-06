@@ -101,10 +101,11 @@ namespace Controllers.Player
             var multiplier = 1f;
 
             // Movement in air
-            if (!isGrounded) multiplier = 0.5f;
-
-            CounterMovement();
-
+            if (!isGrounded)
+                multiplier = 0.5f;
+            else 
+                CounterMovement();
+            
             //Apply forces to move player
             _rb.AddForce(_pos.forward * (_y * moveSpeed * Time.deltaTime * multiplier) +
                          _pos.right * (_x * moveSpeed * Time.deltaTime * multiplier), ForceMode.Acceleration);
