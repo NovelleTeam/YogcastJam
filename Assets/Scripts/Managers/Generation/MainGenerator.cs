@@ -32,18 +32,22 @@ namespace Managers.Generation
 
         public void Generate(Vector3 startLocation, Vector3 endLocation)
         {
-            var p1 = new PathGenerator(5, 1, 5, 8);
-            p1.Path.Add(new Platform(startLocation, 1, 0));
+            //Debug.Log(endLocation);
+            var p1 = new PathGenerator(250, 1, 2000, 10, new Vector2(20,20),new Platform[] { new Platform(new Vector3(0, 0, 0), 1, 0.3f, 0) });
+            p1.Path.Add(new Platform(startLocation, 1, 0.3f, 0));
             p1.GeneratePath(startLocation, endLocation);
             _platforms.AddRange(p1.GetPlatforms());
             SpawnSmallPlatforms(_platforms);
-            Debug.Log(_platforms.Count);
+            //Debug.Log(_platforms.Count);
         }
 
         private void SpawnSmallPlatforms(IEnumerable<Platform> plats)
         {
             foreach (var plat in plats)
-                Instantiate(smallPlatforms[plat.Index], plat.Position, Quaternion.identity, _generatedPathContainer);
+            {
+
+                if (plat.Index >=0) Instantiate(smallPlatforms[plat.Index], plat.Position, Quaternion.identity, _generatedPathContainer);
+            }
         }
     }
 }

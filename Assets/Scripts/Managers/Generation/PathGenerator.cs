@@ -22,24 +22,26 @@ namespace Managers.Generation
         private Vector2 _pathSize = new Vector2(10, 10);
 
         public List<Platform> Path = new List<Platform>();
+        private Platform[] _platformPool;
 
-        public PathGenerator(float jumpBoost, int jumpCount, float speed, float gForce)
+        public PathGenerator(float jumpBoost, int jumpCount, float speed, float gForce, Vector2 pathSize, Platform[] platforms)
         {
-            _jumpBoost = jumpBoost;
+            _jumpBoost = jumpBoost/50;
             _jumpCount = jumpCount;
-            _speed = speed;
+            _speed = speed / 250;
             _gForce = gForce;
             _maxHeightSingle = _jumpBoost * _jumpBoost / _gForce;
             _maxDistSingle = 2 * _jumpBoost / _gForce * _speed;
             _maxHeightTotal = _maxHeightSingle * _jumpCount;
             _maxDistTotal = _maxDistSingle * _jumpCount;
+            _pathSize = pathSize;
 
-            _maxHeightTotal = 2f;
-            _maxDistTotal = 8f;
+            //_maxHeightTotal = 2f;
+            //_maxDistTotal = 8f;
+            _platformPool = platforms;
 
-
-            Debug.Log(_maxDistTotal);
-            Debug.Log(_maxHeightTotal);
+            //Debug.Log(_maxDistTotal);
+            //Debug.Log(_maxHeightTotal);
 
             _jumpRange = new Bounds(new Vector3(0, 0, 0), new Vector3(_maxDistTotal, _maxDistTotal, _maxHeightTotal));
         }
@@ -53,7 +55,7 @@ namespace Managers.Generation
             var exitCheck = false;
             var progress = 1f;
             var lastPlatform = Path[0];
-            lastPlatform = new Platform(new Vector3(0, 0, 0), 0, -1);
+            lastPlatform = new Platform(new Vector3(0, 0, 0), 0,1, -1);
 
             while (true)
             {
@@ -77,7 +79,9 @@ namespace Managers.Generation
                 var chance = 1f;
                 var canJump = 0f;
 
-                var newPlatform = new Platform(platformPos, 1, 0); // Replace with one that randomizes platform
+
+                var newPlatform = _platformPool[Random.Range(0, _platformPool.Length)];
+                newPlatform = new Platform(newPlatform.Position + platformPos, newPlatform.Radius,newPlatform.Height, newPlatform.Index); 
 
 
                 foreach (var platform in Path)
@@ -92,17 +96,17 @@ namespace Managers.Generation
 
                 if (canJump == 0)
                 {
-                    Debug.Log("adjusting");
+                    //Debug.Log("adjusting");
                     var closevec = lastPlatform.Position;
                     var closeDirection = platformPos - closevec;
                     closeDirection = closeDirection.normalized;
-                    Debug.Log(closeDirection);
+                    //Debug.Log(closeDirection);
                     closeDirection.x *= _maxDistTotal * Random.Range(0.7f, 1f);
                     closeDirection.y *= _maxHeightTotal * Random.Range(0.7f, 1f);
                     closeDirection.z *= _maxDistTotal * Random.Range(0.7f, 1f);
-                    Debug.Log(closeDirection);
+                    //Debug.Log(closeDirection);
                     platformPos = closevec + closeDirection;
-                    Debug.Log(platformPos);
+                    //Debug.Log(platformPos);
                     newPlatform.Position = platformPos;
                     canJump = 1;
                 }
@@ -115,17 +119,17 @@ namespace Managers.Generation
                 {
                     Path.Add(newPlatform);
                     //Debug.Log("Added");
-                    if (newPlatform.CanJumpTo(new Platform(to, 0, -1), _maxHeightTotal, _maxDistTotal, _margin))
+                    if (newPlatform.CanJumpTo(new Platform(to, 0, 1, -1), _maxHeightTotal, _maxDistTotal, _margin))
                     {
-                        Debug.Log("Can exit");
+                        //Debug.Log("Can exit");
                         exitCheck = true;
                     }
 
                     //*
-                    Debug.Log((platformPos - to).magnitude);
+                    //Debug.Log((platformPos - to).magnitude);
                     if ((platformPos - to).magnitude < _maxDistTotal)
                     {
-                        Debug.Log("Can exit");
+                        //Debug.Log("Can exit");
                         exitCheck = true;
                     }
 
@@ -170,14 +174,16 @@ namespace Managers.Generation
     public class Platform
     {
         public Vector3 Position;
-        public int Radius;
+        public float Radius;
         public int Index;
+        public float Height;
 
-        public Platform(Vector3 position, int radius, int index)
+        public Platform(Vector3 position, float radius, float height, int index)
         {
             Position = position;
             Radius = radius;
             Index = index;
+            Height = height;
         }
 
         public float CheckProx(IEnumerable<Platform> list, float mindist)
@@ -186,10 +192,10 @@ namespace Managers.Generation
             foreach (var plat in list)
             {
                 var to = plat.Position - Position;
-                to.y = to.y * 3;
-                Debug.Log(to);
+                to.y = to.y * Height/Radius;
+                //Debug.Log(to);
                 var dist = to.magnitude;
-                Debug.Log(dist + "; " + (Radius + mindist + plat.Radius));
+                //Debug.Log(dist + "; " + (Radius + mindist + plat.Radius));
                 if (dist < Radius + mindist + plat.Radius) ans = 0;
             }
 
@@ -198,11 +204,12 @@ namespace Managers.Generation
 
         public bool CanJumpTo(Platform target, float maxHeight, float maxDist, float margin)
         {
+            if (target.Index == -2) return false;
             var relative = target.Position - Position;
             var total = (Mathf.Clamp(relative.y, 0, Mathf.Infinity) + 1) / maxHeight +
                         Mathf.Sqrt(relative.x * relative.x + relative.z * relative.z) / maxDist;
             //if (target.Index == -1) Debug.Log(total);
-            if (total < 1) Debug.Log("yay");
+            //if (total < 1) Debug.Log("yay");
             return total < 1;
         }
 
