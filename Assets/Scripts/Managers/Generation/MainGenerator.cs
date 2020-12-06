@@ -11,14 +11,15 @@ namespace Managers.Generation
         //[SerializeField]
         //private Vector3 _endLocation = new Vector3(0, 0, 200);
         [SerializeField] private Transform _generatedPathContainer;
+        [SerializeField] private MainPlatformManager platmanpref;
         public Transform start;
         public Transform end;
         private int platformCount = 0;
 
         public List<MainPlatformManager> mainPlatforms= new List<MainPlatformManager>();
         public Transform[] smallPlatforms;
-        public List<MainPlatformManager> platformPool = new List<MainPlatformManager>();
-        private List<MainPlatformManager> randomizedPlatformPool = new List<MainPlatformManager>();
+        public List<BigPlatformManager> platformPool = new List<BigPlatformManager>();
+        public List<BigPlatformManager> randomizedPlatformPool = new List<BigPlatformManager>();
 
         private readonly List<Platform> _platforms = new List<Platform>();
 
@@ -57,7 +58,8 @@ namespace Managers.Generation
 
         public void CreatePlatform(Vector3 startpoint)
         {
-            MainPlatformManager newplatform = Instantiate(randomizedPlatformPool[platformCount], startpoint - randomizedPlatformPool[platformCount].GetPlatformBegin(), Quaternion.identity);
+            //MainPlatformManager newplatform = Instantiate(randomizedPlatformPool[platformCount], startpoint - randomizedPlatformPool[platformCount].GetPlatformBegin(), Quaternion.identity);
+            MainPlatformManager newplatform = Instantiate(platmanpref, startpoint - platmanpref.GetPlatformBegin(), Quaternion.identity);
             mainPlatforms.Add( newplatform);
             newplatform.gameObject.layer = 9;
             newplatform._generatedPathContainer = GameObject.Find("GeneratedPathContainer").transform;
