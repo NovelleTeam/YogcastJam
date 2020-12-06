@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using DG.Tweening;
 
 public class ChestManager : MonoBehaviour
 {
+  public String[] insideChest;
+  
   [SerializeField]
   private Transform _chestHinge;
   [SerializeField]

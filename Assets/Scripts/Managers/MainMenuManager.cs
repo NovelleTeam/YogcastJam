@@ -110,7 +110,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlaySceneGo()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(waitForTheRealPlayscene());
     }
 
     IEnumerator waitForTalk(String[] talkList)
@@ -154,6 +154,13 @@ public class MainMenuManager : MonoBehaviour
         fadeOutPanel2.gameObject.SetActive(true);
         fadeOutPanel2.DOFade(1, 1);
         yield return new WaitForSeconds(8);
+    }
+
+    IEnumerator waitForTheRealPlayscene()
+    {
+        fadeOutPanel2.DOFade(0, 1);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(1);
     }
 }
 
