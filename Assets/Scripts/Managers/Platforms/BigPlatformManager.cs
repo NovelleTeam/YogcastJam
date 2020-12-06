@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Managers
+namespace Managers.Platforms
 {
     public class BigPlatformManager : MonoBehaviour
     {
