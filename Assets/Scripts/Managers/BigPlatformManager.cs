@@ -22,11 +22,12 @@ namespace Managers
 
         private IEnumerator WaitForBoss()
         {
-      yield return new WaitForSeconds(3);
-            transform.DOMove(transform.position - new Vector3(0, 8, 0), 8);
-            yield return new WaitForSeconds(9);
-      Destroy(gameObject);
+      //yield return new WaitForSeconds(3);
+            transform.DOMove(transform.position - new Vector3(0, 7, 0), 7);
+            yield return new WaitForSeconds(5);
       Instantiate(rewardPlatform);
+      yield return new WaitForSeconds(3);
+      Destroy(gameObject);
         }
     }
 }

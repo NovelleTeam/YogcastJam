@@ -11,10 +11,12 @@ namespace Controllers.Enviroment
 
     private bool _wasSteppedOn;
     private Vector3 _initialLocation;
+    private Quaternion _initialRotation;
 
     private void Start()
     {
       _initialLocation = transform.position;
+      _initialRotation = transform.rotation;
     }
 
     private void OnCollisionEnter(Collision other)
@@ -31,6 +33,7 @@ namespace Controllers.Enviroment
         GetComponent<Renderer>().material = _initialMaterial;
         _wasSteppedOn = false;
         transform.position = _initialLocation;
+        transform.rotation = _initialRotation;
       }
         }
 

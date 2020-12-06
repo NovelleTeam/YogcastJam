@@ -20,6 +20,7 @@ public class ChestManager : MonoBehaviour
 
   private void Start()
   {
+    transform.localScale = Vector3.zero;
     transform.DOScale(_targetScale, _chestScaleDuration).SetEase(Ease.Linear);
   }
 
