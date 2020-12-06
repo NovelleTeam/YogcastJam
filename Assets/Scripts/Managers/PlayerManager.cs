@@ -11,7 +11,7 @@ namespace Managers
         public Material miniPlatformLitUp;
         public GameObject bigPlatform;
         [HideInInspector] public BigPlatformManager bigPlatformManager;
-        [HideInInspector]public Vitals vitals;
+        [HideInInspector] public Vitals vitals;
 
         private PlayerInteract _playerInteract;
         private PlayerMovement _playerMovement;
@@ -42,47 +42,46 @@ namespace Managers
 
         public void SetCurrentMainPlatformIndex(int mainPlatformIndex)
         {
-          _currentMainPlatformIndex = mainPlatformIndex;
+            _currentMainPlatformIndex = mainPlatformIndex;
         }
 
         public int GetCurrentMainPlatformIndex()
         {
-          return _currentMainPlatformIndex;
+            return _currentMainPlatformIndex;
         }
 
         public void SetNextMainPlatformIndex(int mainPlatformIndex)
         {
-          _nextMainPlatformIndex = mainPlatformIndex;
+            _nextMainPlatformIndex = mainPlatformIndex;
         }
 
         public int GetNextMainPlatformIndex()
         {
-          return _nextMainPlatformIndex;
+            return _nextMainPlatformIndex;
         }
 
         public void SetPlayerRespawn(Transform newRespawn)
         {
-          _playerLives.SetNewRespawn(newRespawn);
+            _playerLives.SetNewRespawn(newRespawn);
         }
 
-        public void AddHealth()
+        public void AddLife(int lifes)
         {
-          _playerLives.GainLife();
+            _playerLives.GainLife(lifes);
         }
 
         public void AddJump()
         {
-          _playerMovement.AddMaxJump();
+            _playerMovement.AddMaxJump();
         }
 
         public void AddSpeed()
         {
-          _playerMovement.AddMaxSpeed();
+            _playerMovement.AddMaxSpeed();
         }
 
         public void AddAttack()
         {
-          
         }
     }
 }

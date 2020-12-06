@@ -17,7 +17,7 @@ namespace Controllers.Interactive
             isStickType = true;
         }
 
-        public override void Interact()
+        public override void Interact(GameObject player)
         {
         }
     }

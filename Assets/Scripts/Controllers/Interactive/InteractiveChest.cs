@@ -1,5 +1,6 @@
 ﻿using Managers;
 using Managers.Generation;
+using UnityEngine;
 
 namespace Controllers.Interactive
 {
@@ -11,16 +12,18 @@ namespace Controllers.Interactive
             isStickType = false;
         }
 
-        public override void Interact()
+        public override void Interact(GameObject player)
         {
-      transform.GetComponent<ChestManager>().OpenChest();
-      //open menu for selecting item
-      //close once item is selected
-      //set index depending item chosen
-      PlayerManager playerManager = FindObjectOfType<PlayerManager>();
-      playerManager.SetNextMainPlatformIndex(2);
-      MainGenerator mainGenerator = FindObjectOfType<MainGenerator>();
-      mainGenerator.Generate(mainGenerator.mainPlatforms[playerManager.GetCurrentMainPlatformIndex()].GetPlatformEnd(), mainGenerator.mainPlatforms[playerManager.GetNextMainPlatformIndex()].GetPlatformBegin());
+            transform.GetComponent<ChestManager>().OpenChest();
+            //open menu for selecting item
+            //close once item is selected
+            //set index depending item chosen
+            var playerManager = player.GetComponent<PlayerManager>();
+            playerManager.SetNextMainPlatformIndex(2);
+            var mainGenerator = FindObjectOfType<MainGenerator>();
+            mainGenerator.Generate(
+                mainGenerator.mainPlatforms[playerManager.GetCurrentMainPlatformIndex()].GetPlatformEnd(),
+                mainGenerator.mainPlatforms[playerManager.GetNextMainPlatformIndex()].GetPlatformBegin());
         }
     }
 }

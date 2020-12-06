@@ -1,4 +1,6 @@
-﻿namespace Controllers.Interactive
+﻿using UnityEngine;
+
+namespace Controllers.Interactive
 {
     public class InteractiveEnemy : InteractiveObject
     {
@@ -7,7 +9,7 @@
             isTakeAble = false;
         }
 
-        public override void Interact()
+        public override void Interact(GameObject player)
         {
         }
     }

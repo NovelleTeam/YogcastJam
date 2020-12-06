@@ -13,15 +13,15 @@ namespace Managers
         [SerializeField] private CanvasGroup fadePanel;
         [SerializeField] private CanvasGroup chestPanel;
         [SerializeField] private CanvasGroup pausePanel;
-    
+
         // texts
         [SerializeField] private CanvasGroup onceAponATime;
         [SerializeField] private CanvasGroup inAGalaxyFarFarAway;
         [SerializeField] private CanvasGroup aUserHadToUse;
-    
+
         // floats
         [SerializeField] private float chestDuration = 5;
-    
+
         // private stuff :)
         private List<CanvasGroup> _panels;
         private PlayerManager _playerManager;
@@ -32,7 +32,7 @@ namespace Managers
             _panels = new List<CanvasGroup> {mainPanel, fadePanel, chestPanel, pausePanel};
             if (PlayerPrefs.GetInt("init") == 1)
             {
-                foreach (CanvasGroup panel in _panels)
+                foreach (var panel in _panels)
                 {
                     if (panel.name == mainPanel.name) continue;
                     panel.DOFade(0, .5f);
@@ -63,28 +63,28 @@ namespace Managers
         // open the UI for the chest
         public void ChestOpen()
         {
-            foreach (CanvasGroup panel in _panels)
+            foreach (var panel in _panels)
             {
                 if (panel.name == chestPanel.name) continue;
                 panel.DOFade(0, .5f);
                 StartCoroutine(WaitSetActive(panel.gameObject, .5f, false));
             }
-        
+
             StartCoroutine(WaitForChestFede());
         }
-    
+
         // delete all saved data
         private static void ResetPlayerPrefs()
         {
             PlayerPrefs.DeleteAll();
         }
-    
+
         // chest button function
         public void ChestButtonPressed(string upgrade)
         {
             if (upgrade == "ADD HEALTH")
             {
-                _playerManager.AddHealth();
+                _playerManager.AddLife(1);
             }
             else if (upgrade == "ADD JUMP")
             {
@@ -138,16 +138,9 @@ namespace Managers
                 chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = chestAddon;
                 i += 1;
             }
+
             chestPanel.DOFade(0, chestDuration);
             yield return new WaitForSeconds(chestDuration);
-        }    
+        }
     }
 }
-
-
-
-
-
-
-
-

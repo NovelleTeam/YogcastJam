@@ -52,12 +52,12 @@ namespace Managers.Generation
             var chanceModifier = 1f;
             var exitCheck = false;
             var progress = 1f;
-            Platform lastPlatform = Path[0];
+            var lastPlatform = Path[0];
             lastPlatform = new Platform(new Vector3(0, 0, 0), 0, -1);
 
             while (true)
             {
-                var currentProgress = Random.Range(1f-progress, 1f);// * progress;
+                var currentProgress = Random.Range(1f - progress, 1f); // * progress;
                 //currentProgress = 0.9f;
                 //progress *= 0.99f;
                 //float currentProgress = Mathf.Pow(Random.Range(0.0f, 1.0f), 2);
@@ -115,11 +115,12 @@ namespace Managers.Generation
                 {
                     Path.Add(newPlatform);
                     //Debug.Log("Added");
-                    if (newPlatform.CanJumpTo(new Platform(to,0,-1), _maxHeightTotal, _maxDistTotal, _margin))
+                    if (newPlatform.CanJumpTo(new Platform(to, 0, -1), _maxHeightTotal, _maxDistTotal, _margin))
                     {
                         Debug.Log("Can exit");
                         exitCheck = true;
                     }
+
                     //*
                     Debug.Log((platformPos - to).magnitude);
                     if ((platformPos - to).magnitude < _maxDistTotal)
@@ -127,6 +128,7 @@ namespace Managers.Generation
                         Debug.Log("Can exit");
                         exitCheck = true;
                     }
+
                     //*/
                     //break;
                     if (currentProgress + _maxDistTotal / direction.magnitude > progress)
@@ -134,6 +136,7 @@ namespace Managers.Generation
                         //progress /= 1.1f;
                         lastPlatform = newPlatform;
                     }
+
                     chanceModifier = 1;
                 }
                 else
@@ -149,7 +152,7 @@ namespace Managers.Generation
                     Debug.Log("timed out");
                     break;
                 }
-                
+
                 if (exitCheck) break;
             }
         }
@@ -182,8 +185,7 @@ namespace Managers.Generation
             var ans = 1f;
             foreach (var plat in list)
             {
-                
-                Vector3 to = plat.Position - Position;
+                var to = plat.Position - Position;
                 to.y = to.y * 3;
                 Debug.Log(to);
                 var dist = to.magnitude;
@@ -197,12 +199,13 @@ namespace Managers.Generation
         public bool CanJumpTo(Platform target, float maxHeight, float maxDist, float margin)
         {
             var relative = target.Position - Position;
-            var total = (Mathf.Clamp(relative.y,0,Mathf.Infinity)+1) / maxHeight +
-                         (Mathf.Sqrt(relative.x * relative.x + relative.z * relative.z)) / maxDist;
+            var total = (Mathf.Clamp(relative.y, 0, Mathf.Infinity) + 1) / maxHeight +
+                        Mathf.Sqrt(relative.x * relative.x + relative.z * relative.z) / maxDist;
             //if (target.Index == -1) Debug.Log(total);
             if (total < 1) Debug.Log("yay");
             return total < 1;
         }
+
         public Vector3 distanceTo(Platform target)
         {
             return target.Position - Position;

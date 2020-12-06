@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class RewardPlatform : MonoBehaviour
 {
-  public RewardPlatformManager rewardPlatformManager;
-  private bool _wasSteppedOn;
+    public RewardPlatformManager rewardPlatformManager;
+    private bool _wasSteppedOn;
 
-  private void OnCollisionEnter(Collision other)
-  {
-    if (other.gameObject.CompareTag("Player") && !_wasSteppedOn)
+    private void OnCollisionEnter(Collision other)
     {
-      rewardPlatformManager.SpawnChest();
-      _wasSteppedOn = true;
+        if (other.gameObject.CompareTag("Player") && !_wasSteppedOn)
+        {
+            rewardPlatformManager.SpawnChest();
+            _wasSteppedOn = true;
+        }
     }
-  }
 }

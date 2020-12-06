@@ -1,8 +1,10 @@
-﻿namespace Controllers.Interactive
+﻿using UnityEngine;
+
+namespace Controllers.Interactive
 {
     public class InteractiveBox : InteractiveObject
     {
-        public override void Interact()
+        public override void Interact(GameObject player)
         {
         }
     }

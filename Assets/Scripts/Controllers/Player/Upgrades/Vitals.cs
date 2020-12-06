@@ -5,8 +5,8 @@ namespace Controllers.Player.Upgrades
 {
     public class Vitals : MonoBehaviour
     {
-        [SerializeField] private float maxHealth;
-        public float curHealth { get; private set; }
+        public int maxHealth;
+        public int curHealth { get; private set; }
         public bool isDead => curHealth <= 0;
 
         public event Action Dead;

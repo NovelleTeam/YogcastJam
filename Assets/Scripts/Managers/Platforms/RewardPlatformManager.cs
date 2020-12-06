@@ -5,18 +5,16 @@ using DG.Tweening;
 
 public class RewardPlatformManager : MonoBehaviour
 {
-  [SerializeField]
-  private Transform _chestSpawn;
-  [SerializeField]
-  private GameObject _chest;
+    [SerializeField] private Transform _chestSpawn;
+    [SerializeField] private GameObject _chest;
 
-  private void Start()
-  {
-    transform.DOMoveY(0.0f, 2.0f).SetEase(Ease.Linear);
-  }
+    private void Start()
+    {
+        transform.DOMoveY(0.0f, 2.0f).SetEase(Ease.Linear);
+    }
 
-  public void SpawnChest()
-  {
-    Instantiate(_chest, _chestSpawn.position, _chestSpawn.rotation);
-  }
+    public void SpawnChest()
+    {
+        Instantiate(_chest, _chestSpawn.position, _chestSpawn.rotation);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Managers;
+using UnityEngine;
 
 namespace Controllers.Interactive
 {
@@ -8,15 +9,16 @@ namespace Controllers.Interactive
         public bool isStickType { get; protected set; }
         public Transform destination { get; protected set; }
 
-        public InteractiveObject()
+        protected virtual void Awake()
         {
             isTakeAble = true;
             isStickType = true;
             destination = null;
         }
 
-        public virtual void Interact()
+        public virtual void Interact(GameObject player)
         {
+            player.GetComponent<PlayerManager>().AddLife(1);
         }
     }
 }

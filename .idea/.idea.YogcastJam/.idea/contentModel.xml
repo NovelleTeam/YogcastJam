@@ -61,6 +61,7 @@
               <e p="interactiveBox.cs" t="Include" />
               <e p="InteractiveChest.cs" t="Include" />
               <e p="interactiveEnemy.cs" t="Include" />
+              <e p="InteractiveJaffaFactory.cs" t="Include" />
               <e p="interactiveObject.cs" t="Include" />
               <e p="interactiveStick.cs" t="Include" />
             </e>

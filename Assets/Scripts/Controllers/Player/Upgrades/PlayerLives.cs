@@ -22,9 +22,9 @@ namespace Controllers.Player.Upgrades
             currentLives = startingLives;
         }
 
-        public void GainLife()
+        public void GainLife(int lifes)
         {
-            ++currentLives;
+            currentLives += lifes;
             if (capMaxLives && currentLives > maxLifeCap) currentLives = maxLifeCap;
         }
 

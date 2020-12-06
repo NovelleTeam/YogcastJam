@@ -101,6 +101,7 @@ MonoBehaviour:
   moveSpeed: 2000
   maxSpeed: 5
   counterMovement: 100
+  sprintModifier: 3
   jumpForce: 250
   maxJumps: 1
 --- !u!114 &7571387247072564688
@@ -160,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bba628732992ff4093b92aa0f72a883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialTransform: {fileID: 0}
   miniPlatformLitUp: {fileID: 0}
   bigPlatform: {fileID: 0}
   bigPlatformManager: {fileID: 0}

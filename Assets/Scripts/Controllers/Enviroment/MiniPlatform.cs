@@ -6,20 +6,19 @@ namespace Controllers.Enviroment
 {
     public class MiniPlatform : MonoBehaviour
     {
-    [SerializeField]
-    private Material _initialMaterial;
+        [SerializeField] private Material _initialMaterial;
 
-    private bool _wasSteppedOn;
-    private Vector3 _initialLocation;
-    private Quaternion _initialRotation;
+        private bool _wasSteppedOn;
+        private Vector3 _initialLocation;
+        private Quaternion _initialRotation;
 
-    private void Start()
-    {
-      _initialLocation = transform.position;
-      _initialRotation = transform.rotation;
-    }
+        private void Start()
+        {
+            _initialLocation = transform.position;
+            _initialRotation = transform.rotation;
+        }
 
-    private void OnCollisionEnter(Collision other)
+        private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag("Player") && !_wasSteppedOn)
             {
@@ -29,12 +28,12 @@ namespace Controllers.Enviroment
             }
             else if (other.gameObject.CompareTag("DeathFloor"))
             {
-        Destroy(GetComponent<Rigidbody>());
-        GetComponent<Renderer>().material = _initialMaterial;
-        _wasSteppedOn = false;
-        transform.position = _initialLocation;
-        transform.rotation = _initialRotation;
-      }
+                Destroy(GetComponent<Rigidbody>());
+                GetComponent<Renderer>().material = _initialMaterial;
+                _wasSteppedOn = false;
+                transform.position = _initialLocation;
+                transform.rotation = _initialRotation;
+            }
         }
 
         private IEnumerator WaitForDrop()

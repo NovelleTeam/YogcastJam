@@ -10,6 +10,7 @@ namespace Controllers.UI
     {
         private Button _button;
         private UIManager _uiManager;
+
         private void Awake()
         {
             _button = GetComponent<Button>();

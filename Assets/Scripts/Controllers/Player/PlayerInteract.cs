@@ -46,14 +46,14 @@ namespace Controllers.Player
             {
                 return;
             }
-            
+
             if (CanTake())
             {
                 interactiveObjectDestination = _interactive.destination;
                 _interactive.gameObject.transform.DOMove(interactiveObjectDestination.position,
                     interactiveObjectTravelDuration);
 
-                _interactive.Interact();
+                _interactive.Interact(gameObject);
 
                 if (_interactive.isStickType)
                     StartCoroutine(WaitForInteract(_interactive));
@@ -62,7 +62,7 @@ namespace Controllers.Player
             }
             else if (_interactive != null)
             {
-                _interactive.Interact();
+                _interactive.Interact(gameObject);
                 _interactive = null;
             }
         }

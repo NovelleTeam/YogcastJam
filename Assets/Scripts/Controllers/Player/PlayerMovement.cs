@@ -17,6 +17,7 @@ namespace Controllers.Player
         [SerializeField] private float moveSpeed;
         [SerializeField] private float maxSpeed;
         [SerializeField] private float counterMovement;
+        [SerializeField] private float sprintModifier;
         private bool isGrounded => Physics.CheckSphere(groundCheck.position, 0.2f, LayerMask.GetMask("Ground"));
         private bool _previousGrounded;
 
@@ -43,6 +44,8 @@ namespace Controllers.Player
             _controls = new PlayerInput();
             _controls.Player.Movement.performed += ctx => OnMove(ctx.ReadValue<Vector2>());
             _controls.Player.Jump.performed += ctx => OnJump();
+            _controls.Player.SprintEnter.performed += ctx => OnSprintEnter();
+            _controls.Player.SprintExit.performed += ctx => OnSprintExit();
         }
 
         private void OnEnable()
@@ -82,6 +85,8 @@ namespace Controllers.Player
             _previousGrounded = isGrounded;
         }
 
+        #region Input Event Functions
+
         private void OnMove(Vector2 input)
         {
             _x = input.x;
@@ -95,6 +100,18 @@ namespace Controllers.Player
             _alreadyJumped++;
         }
 
+        private void OnSprintEnter()
+        {
+            maxSpeed += sprintModifier;
+        }
+
+        private void OnSprintExit()
+        {
+            maxSpeed -= sprintModifier;
+        }
+
+        #endregion
+
         private void Movement()
         {
             //Some multipliers
@@ -103,9 +120,9 @@ namespace Controllers.Player
             // Movement in air
             if (!isGrounded)
                 multiplier = 0.5f;
-            else 
+            else
                 CounterMovement();
-            
+
             //Apply forces to move player
             _rb.AddForce(_pos.forward * (_y * moveSpeed * Time.deltaTime * multiplier) +
                          _pos.right * (_x * moveSpeed * Time.deltaTime * multiplier), ForceMode.Acceleration);
@@ -153,10 +170,10 @@ namespace Controllers.Player
         {
             maxJumps += 1;
         }
-        
+
         public void AddMaxSpeed()
         {
             maxSpeed += 1;
         }
-  }
+    }
 }
