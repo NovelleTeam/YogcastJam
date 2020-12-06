@@ -179,6 +179,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -27.900024
       objectReference: {fileID: 0}
+    - target: {fileID: 6014396275877394907, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6583700160608569424, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: chestDuration
@@ -187,7 +192,12 @@ PrefabInstance:
     - target: {fileID: 8953001719966714643, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953001720072719785, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8953001720847497810, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}

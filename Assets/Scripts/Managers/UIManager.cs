@@ -43,6 +43,7 @@ namespace Managers
         private PlayerManager _playerManager;
         private PlayerLives _playerLives;
         private int _currentPlayerHarts;
+        private InteractiveChest _currentInteractiveChest;
 
         private PlayerInput _playerInput;
 
@@ -177,6 +178,9 @@ namespace Managers
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             _playerManager.EnableLookAndMovement(true);
+            mainPanel.gameObject.SetActive(true);
+            mainPanel.DOFade(1, 0.5f);
+            StartCoroutine(_currentInteractiveChest.CloseChest());
         }
 
         private static IEnumerator WaitSetActive(GameObject go, float time, bool activate)
@@ -205,7 +209,8 @@ namespace Managers
 
         private IEnumerator WaitForChestFede()
         {
-            var typeOfChestAddons = FindObjectOfType<InteractiveChest>().insideChest;
+            _currentInteractiveChest = FindObjectOfType<InteractiveChest>();
+            var typeOfChestAddons = _currentInteractiveChest.insideChest;
             chestPanel.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -230,6 +235,9 @@ namespace Managers
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 _playerManager.EnableLookAndMovement(true);
+                mainPanel.gameObject.SetActive(true);
+                mainPanel.DOFade(1, 0.5f);
+                StartCoroutine(_currentInteractiveChest.CloseChest());
             }
         }
     }

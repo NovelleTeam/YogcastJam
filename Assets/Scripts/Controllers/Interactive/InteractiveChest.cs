@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using Managers;
 using Managers.Generation;
+using System.Collections;
 using UnityEngine;
 
 namespace Controllers.Interactive
@@ -64,9 +65,13 @@ namespace Controllers.Interactive
                 .Append(chestHinge.DOLocalRotate(new Vector3(0, 0, -openAngle), openDuration).SetEase(Ease.Linear));
         }
 
-        private void CloseChest()
+        public IEnumerator CloseChest()
         {
-            chestHinge.DOLocalRotate(new Vector3(0, 0, openAngle), openDuration).SetEase(Ease.Linear);
+            DOTween.Sequence()
+                .Append(chestHinge.DOLocalRotate(new Vector3(0, 0, 0), openDuration).SetEase(Ease.Linear))
+                .Append(transform.DOScale(0, chestScaleDuration).SetEase(Ease.Linear));
+            yield return new WaitForSeconds(openDuration + chestScaleDuration);
+            Destroy(gameObject);
         }
     }
 }
