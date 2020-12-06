@@ -55,7 +55,7 @@ namespace Controllers.Interactive
                 new System.Collections.Generic.List<Platform>(),
                 new MainGenerator.PlayerAttributes() { JumpCount = 1,JumpForce = 250, Speed = 2000 },
                 new Vector2(20, 20),
-                new Platform[] { new Platform(new Vector3(0, 0, 0), 1, 0.3f, 0) });
+                new Platform[] { new Platform(new Vector3(0, 0, 0), 1, 0.3f, 1) });
         }
 
         private void OpenChest()
