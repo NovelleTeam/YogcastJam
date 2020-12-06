@@ -146,7 +146,7 @@ namespace Managers
         {
             ActivatePanel(chestPanel);
 
-            StartCoroutine(WaitForChestFede());
+            StartCoroutine(WaitForChestFade());
         }
         
         // activate specific panel
@@ -156,13 +156,15 @@ namespace Managers
             {
                 if (panel.name != canvasGroup.gameObject.name)
                 {
+                    print(panel.gameObject.name + " was deactivated");
                     panel.DOFade(0, .5f);
                     StartCoroutine(WaitSetActive(panel.gameObject, .5f, false));
                 }
                 else
                 {
+                    print(panel.gameObject.name + " was activated");
                     panel.DOFade(1, .5f);
-                    StartCoroutine(WaitSetActive(panel.gameObject, .5f, true));
+                    StartCoroutine(WaitSetActive(panel.gameObject, 0, true));
                 }
             }
         }
@@ -199,6 +201,7 @@ namespace Managers
             {
                 _playerManager.AddAttack();
             }
+            ActivatePanel(mainPanel);
             DOTween.CompleteAll();
             chestPanel.gameObject.SetActive(false);
             Cursor.visible = false;
@@ -230,9 +233,8 @@ namespace Managers
             yield return new WaitForSeconds(1);
         }
 
-        private IEnumerator WaitForChestFede()
+        private IEnumerator WaitForChestFade()
         {
-            _playerManager.FreezeMovement();
             var typeOfChestAddons = FindObjectOfType<InteractiveChest>().insideChest;
             chestPanel.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -252,7 +254,6 @@ namespace Managers
 
             chestPanel.DOFade(0, chestDuration).SetEase(Ease.InExpo);
             yield return new WaitForSeconds(chestDuration);
-            _playerManager.UnfreezeMovement();
             if (chestPanel.gameObject.activeSelf)
             {
                 Cursor.visible = false;
