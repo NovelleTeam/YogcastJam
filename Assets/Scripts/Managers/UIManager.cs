@@ -1,24 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Controllers.Interactive;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Managers
 {
     public class UIManager : MonoBehaviour
     {
+        public int numOfUIHarts;
+        
         // panels
         [SerializeField] private CanvasGroup mainPanel;
         [SerializeField] private CanvasGroup fadePanel;
         [SerializeField] private CanvasGroup chestPanel;
         [SerializeField] private CanvasGroup pausePanel;
 
+        [SerializeField] private GameObject harts;
+        [SerializeField] private GameObject hart;
+        [SerializeField] private GameObject hartPlaceHolder;
+
         // texts
         [SerializeField] private CanvasGroup onceAponATime;
         [SerializeField] private CanvasGroup inAGalaxyFarFarAway;
         [SerializeField] private CanvasGroup aUserHadToUse;
+        
+        // main panel stuff
+        [SerializeField] private Slider healthSlider;
 
         // floats
         [SerializeField] private float chestDuration = 5;
@@ -26,6 +35,7 @@ namespace Managers
         // private stuff :)
         private List<CanvasGroup> _panels;
         private PlayerManager _playerManager;
+        private int _currentPlayerHarts;
 
         private void Start()
         {
@@ -52,6 +62,28 @@ namespace Managers
             {
                 ResetPlayerPrefs();
             }
+
+            healthSlider.value = (float)_playerManager.vitals.curHealth / (float)_playerManager.vitals.maxHealth;
+            if (numOfUIHarts != _currentPlayerHarts)
+            {
+                foreach (Transform t in harts.transform)
+                {
+                    Destroy(t.gameObject);
+                }
+
+                for (int i = 0; i < numOfUIHarts; i++)
+                {
+                    GameObject go = Instantiate(
+                        hart,
+                        new Vector3(hartPlaceHolder.transform.position.x + 20 * i, hartPlaceHolder.transform.position.y),
+                        Quaternion.identity,
+                        harts.transform
+                        );
+                    
+                }
+
+                _currentPlayerHarts = numOfUIHarts;
+            }
         }
 
         // make an intro the first time the player enters the play scene
@@ -66,9 +98,11 @@ namespace Managers
         {
             foreach (var panel in _panels)
             {
-                if (panel.name != chestPanel.name) continue;
-                panel.DOFade(0, .5f);
-                StartCoroutine(WaitSetActive(panel.gameObject, .5f, false));
+                if (panel.name != chestPanel.name)
+                {
+                    panel.DOFade(0, .5f);
+                    StartCoroutine(WaitSetActive(panel.gameObject, .5f, false));
+                }
             }
 
             StartCoroutine(WaitForChestFede());
@@ -127,19 +161,16 @@ namespace Managers
 
         private IEnumerator WaitForChestFede()
         {
-            var typeOfChestAddons = FindObjectOfType<InteractiveChest>().insideChest;
+            var typeOfChestAddons = chestPanel.GetComponent<ChestManager>().insideChest;
             chestPanel.DOFade(1, .5f);
             yield return new WaitForSeconds(.5f);
             var i = 0;
             foreach (var chestAddon in typeOfChestAddons)
             {
-                var canvasGroup = chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>();
-                var rectTransform = chestPanel.transform.GetChild(i).GetComponent<RectTransform>();
-                var textMeshProUGUI = chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
-                canvasGroup.alpha = 1;
-                canvasGroup.DOFade(0, chestDuration);
-                rectTransform.DOShakeRotation(chestDuration, 20);
-                textMeshProUGUI.text = chestAddon;
+                chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>().alpha = 1;
+                chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>().DOFade(0, chestDuration);
+                chestPanel.transform.GetChild(i).GetComponent<RectTransform>().DOShakeRotation(chestDuration, 20);
+                chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = chestAddon;
                 i += 1;
             }
 
