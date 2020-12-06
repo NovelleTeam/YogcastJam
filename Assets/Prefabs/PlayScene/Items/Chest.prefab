@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: 6807148661587742336}
   - component: {fileID: 6926187246938244773}
   - component: {fileID: 7390850925839503659}
-  - component: {fileID: 5390451872952813339}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Item
@@ -218,26 +217,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aebf1ab31ecb744094887c8fac96793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5390451872952813339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5390451872952813338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e013ed12510c314f97cd0aae15c8578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   insideChest: []
   chestHinge: {fileID: 8093232735174342902}
   chestLock: {fileID: 8093232733884015516}
   targetScale: 1
-  _chestScaleDuration: 1
-  _openAngle: 70
-  _openDuration: 1
-  _chestLockScaleDuration: 0.5
+  chestScaleDuration: 1
+  openAngle: 70
+  openDuration: 1
+  chestLockScaleDuration: 0.5
 --- !u!1 &5935982835393464810
 GameObject:
   m_ObjectHideFlags: 0
