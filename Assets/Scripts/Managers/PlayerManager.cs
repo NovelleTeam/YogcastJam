@@ -1,5 +1,4 @@
-﻿using System;
-using Controllers.Player;
+﻿using Controllers.Player;
 using Controllers.Player.Upgrades;
 using UnityEngine;
 
@@ -43,8 +42,9 @@ namespace Managers
         {
             if (!other.collider.gameObject.CompareTag("DeathFloor")) return;
 
-            //lose life
-            _playerLives.LoseLife();
+            vitals.TakeDamage(50);
+            Debug.Log("Health: " + vitals.currentHealth);
+            
             //respawn player
             _playerLives.RespawnPlayer();
         }

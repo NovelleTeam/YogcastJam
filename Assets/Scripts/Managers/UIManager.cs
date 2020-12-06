@@ -82,7 +82,7 @@ namespace Managers
 
         private void Update()
         {
-            healthSlider.value = (float) _playerManager.vitals.curHealth / _playerManager.vitals.maxHealth;
+            healthSlider.value = (float) _playerManager.vitals.currentHealth / _playerManager.vitals.maxHealth;
             var curLives = _playerLives.currentLives;
             
             if (curLives != _currentPlayerHarts)

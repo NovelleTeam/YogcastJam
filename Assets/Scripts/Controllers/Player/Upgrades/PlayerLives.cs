@@ -14,12 +14,23 @@ namespace Controllers.Player.Upgrades
         [SerializeField] private int maxLifeCap;
         public int currentLives { get; private set; }
 
+        private Vitals _vitals;
+
         public event Action LifeLost;
         public event Action GameOver;
 
         private void Awake()
         {
             currentLives = startingLives;
+
+            _vitals = GetComponent<Vitals>();
+            
+            GameOver += OnGameOver;
+        }
+
+        private static void OnGameOver()
+        {
+            Debug.Log("Died lol");
         }
 
         public void GainLife(int lifes)
@@ -28,15 +39,23 @@ namespace Controllers.Player.Upgrades
             if (capMaxLives && currentLives > maxLifeCap) currentLives = maxLifeCap;
         }
 
-        public void LoseLife()
+        private void LoseLife()
         {
             --currentLives;
 
             LifeLost?.Invoke();
+        }
 
-            if (currentLives > 0) return;
-            currentLives = 0;
-            GameOver?.Invoke();
+        public void Die()
+        {
+            LoseLife();
+            
+            if (currentLives > 0)
+                _vitals.HealDamage(100);
+            else
+            {
+                GameOver?.Invoke();
+            }
         }
 
         public void SetNewRespawn(Transform respawn)
