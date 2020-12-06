@@ -1,6 +1,8 @@
-﻿using Controllers.Player;
+﻿using System.Collections;
+using Controllers.Player;
 using Controllers.Player.Upgrades;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -21,9 +23,13 @@ namespace Managers
         private int _currentMainPlatformIndex;
         private int _nextMainPlatformIndex;
         private GameObject _currentBigPlatform;
+        private Rigidbody _rigidbody;
+        private UIManager _uiManager;
 
         private void Start()
         {
+            _uiManager = FindObjectOfType<UIManager>();
+            _rigidbody = GetComponent<Rigidbody>();
             _playerInteract = GetComponent<PlayerInteract>();
             vitals = GetComponent<Vitals>();
             _playerMovement = GetComponent<PlayerMovement>();
@@ -101,14 +107,27 @@ namespace Managers
             _playerMovement.enabled = enable;
         }
 
-        public void FreezMovement()
+        public void FreezeMovement()
         {
-            
+            _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
 
-        public void UnfreezMovement()
+        public void UnfreezeMovement()
         {
-            
+            _rigidbody.constraints = RigidbodyConstraints.None;
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

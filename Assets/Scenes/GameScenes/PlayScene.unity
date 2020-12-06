@@ -179,10 +179,45 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -27.900024
       objectReference: {fileID: 0}
+    - target: {fileID: 5205453107337143338, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205453107337143338, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.6039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205453107337143338, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205453107337143338, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205453107337143338, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.6603774
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583700160608569424, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: deathPanel
+      value: 
+      objectReference: {fileID: 880879731}
     - target: {fileID: 6583700160608569424, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: chestDuration
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953001719966714641, guid: 6b927c0f5a92146f995a17b82e2795e7,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8953001719966714643, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
@@ -197,7 +232,7 @@ PrefabInstance:
     - target: {fileID: 8953001721305828274, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8953001721349080177, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
@@ -321,6 +356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 259744384}
   - component: {fileID: 259744382}
+  - component: {fileID: 259744383}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -349,6 +385,89 @@ MonoBehaviour:
   - {fileID: 1582389762}
   smallPlatforms:
   - {fileID: 8983459740195342025, guid: f4e72a811aebb1c44bffc664a5a35034, type: 3}
+--- !u!114 &259744383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259744381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00424d416df040d28b2e1d2f4863ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: CHEST OPEN
+    clip: {fileID: 8300000, guid: 0f85986c6ac384aaa9879531d21da13b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: DEATH
+    clip: {fileID: 8300000, guid: 0f85986c6ac384aaa9879531d21da13b, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: DEATH TALK
+    clip: {fileID: 8300000, guid: af65bd7a6e4304773af1cb2736e15314, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!4 &259744384
 Transform:
   m_ObjectHideFlags: 0
@@ -629,6 +748,12 @@ Transform:
   m_Father: {fileID: 938334388}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &880879731 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 427529420094770719, guid: 6b927c0f5a92146f995a17b82e2795e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 219072963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &938334384
 GameObject:
   m_ObjectHideFlags: 0

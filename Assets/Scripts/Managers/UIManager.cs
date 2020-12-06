@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Controllers.Interactive;
 using Controllers.Player.Upgrades;
@@ -6,6 +7,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Managers
@@ -26,9 +28,10 @@ namespace Managers
         [SerializeField] private GameObject hartPlaceHolder;
 
         // texts
-        [SerializeField] private CanvasGroup onceAponATime;
+        [SerializeField] private CanvasGroup onceUponATime;
         [SerializeField] private CanvasGroup inAGalaxyFarFarAway;
         [SerializeField] private CanvasGroup aUserHadToUse;
+        [SerializeField] private CanvasGroup deathLetter;
         
         // main panel stuff
         [SerializeField] private Slider healthSlider;
@@ -42,15 +45,14 @@ namespace Managers
         private GameObject _player;
         private PlayerManager _playerManager;
         private PlayerLives _playerLives;
+        private AudioManager _audioManager;
         private int _currentPlayerHarts;
-
-        private PlayerInput _playerInput;
+        private string _deathLetter = "HI USER THIS IS PROGRAM SPEAKING I'M SORRY TO TELL YOU THAT BUT YOU HAVE BEEN EXECUTED BY AN UNEXPECTED SURPRISE";
 
         private void Awake()
         {
             _controls = new PlayerInput();
             _controls.Player.ResetPreferences.performed += ctx => ResetPlayerPrefs();
-            _playerInput = new PlayerInput();
         }
 
         private void OnEnable()
@@ -69,7 +71,7 @@ namespace Managers
             _playerLives = _player.GetComponent<PlayerLives>();
             _playerManager = _player.GetComponent<PlayerManager>();
             
-            _panels = new List<CanvasGroup> {mainPanel, fadePanel, chestPanel, pausePanel};
+            _panels = new List<CanvasGroup> {mainPanel, fadePanel, chestPanel, pausePanel, deathPanel};
             if (PlayerPrefs.GetInt("init") == 1)
             {
                 foreach (var panel in _panels)
@@ -122,7 +124,7 @@ namespace Managers
         // pause panel
         private void PauseGame()
         {
-            
+            ActivatePanel(pausePanel);
         }
 
         // make an intro the first time the player enters the play scene
@@ -131,26 +133,39 @@ namespace Managers
             StartCoroutine(WaitForFirstFade());
             PlayerPrefs.SetInt("init", 1);
         }
+        
+        // delete all saved data
+        private static void ResetPlayerPrefs()
+        {
+            PlayerPrefs.DeleteAll();
+        }
 
         // open the UI for the chest
         public void ChestOpen()
         {
+            ActivatePanel(chestPanel);
+
+            StartCoroutine(WaitForChestFede());
+        }
+        
+        // activate specific panel
+        public void ActivatePanel(CanvasGroup canvasGroup)
+        {
             foreach (var panel in _panels)
             {
-                if (panel.name != chestPanel.name)
+                if (panel.name != mainPanel.name)
                 {
                     panel.DOFade(0, .5f);
                     StartCoroutine(WaitSetActive(panel.gameObject, .5f, false));
                 }
             }
-
-            StartCoroutine(WaitForChestFede());
         }
-
-        // delete all saved data
-        private static void ResetPlayerPrefs()
+        
+        // pause panel
+        public void Death()
         {
-            PlayerPrefs.DeleteAll();
+            ActivatePanel(deathPanel);
+            waitForDeath();
         }
 
         // chest button function
@@ -187,9 +202,9 @@ namespace Managers
 
         private IEnumerator WaitForFirstFade()
         {
-            onceAponATime.DOFade(1, 2);
+            onceUponATime.DOFade(1, 2);
             yield return new WaitForSeconds(1);
-            onceAponATime.DOFade(0, 2);
+            onceUponATime.DOFade(0, 2);
             inAGalaxyFarFarAway.DOFade(1, 2);
             yield return new WaitForSeconds(1);
             inAGalaxyFarFarAway.DOFade(0, 2);
@@ -205,6 +220,7 @@ namespace Managers
 
         private IEnumerator WaitForChestFede()
         {
+            _playerManager.FreezeMovement();
             var typeOfChestAddons = FindObjectOfType<InteractiveChest>().insideChest;
             chestPanel.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -224,13 +240,36 @@ namespace Managers
 
             chestPanel.DOFade(0, chestDuration).SetEase(Ease.InExpo);
             yield return new WaitForSeconds(chestDuration);
+            _playerManager.UnfreezeMovement();
             if (chestPanel.gameObject.activeSelf)
             {
-                chestPanel.gameObject.SetActive(false);
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 _playerManager.EnableLookAndMovement(true);
             }
+            ActivatePanel(mainPanel);
+        }
+
+        private IEnumerator waitForDeath()
+        {
+            _audioManager.Play("DEATH");
+            yield return new WaitForSeconds(1);
+            _audioManager.Play("DEATH TALK");
+
+            TextMeshProUGUI letterText = deathLetter.GetComponent<TextMeshProUGUI>();
+            string letter = "";
+            foreach (char st in _deathLetter)
+            {
+                letter = letter + st + "_";
+                yield return new WaitForSeconds(.1f);
+                letterText.text = letter;
+            }
+
+            yield return new WaitForSeconds(1);
+            SceneManager.LoadScene(0);
         }
     }
 }
+
+
+
