@@ -33,11 +33,15 @@ namespace Controllers.Player
         //Sliding
         private readonly Vector3 _normalVector = Vector3.up;
         private Vector3 _wallNormalVector;
+        
+        // audio manager
+        private AudioManager _audioManager;
 
         #region Setup
-
+        
         private void Awake()
         {
+            _audioManager = FindObjectOfType<AudioManager>();
             _rb = GetComponent<Rigidbody>();
             _pos = transform;
 
@@ -62,6 +66,7 @@ namespace Controllers.Player
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            _audioManager.Play("START");
         }
 
         #endregion
@@ -136,7 +141,8 @@ namespace Controllers.Player
             var velocity = _rb.velocity;
             velocity = new Vector3(velocity.x, 0f, velocity.z);
             _rb.velocity = velocity;
-
+            _audioManager.Play("JUMP" + Random.Range(1, 5).ToString());
+            print("JUMP" + Random.Range(1, 5).ToString());
             _rb.AddForce(Vector2.up * (jumpForce * 1.5f), ForceMode.Impulse);
             _rb.AddForce(_normalVector * (jumpForce * 0.5f), ForceMode.Impulse);
         }

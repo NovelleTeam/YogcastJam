@@ -459,52 +459,52 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
+  - name: HURT
+    clip: {fileID: 8300000, guid: 256936c525443489aa72c9a393c8d02e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
+  - name: START
+    clip: {fileID: 8300000, guid: 0f366c5a4e301401382aaf82a3029442, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: JUMP1
+    clip: {fileID: 8300000, guid: 1e1a0d2af0be9412ca94833f91e050f3, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: JUMP2
+    clip: {fileID: 8300000, guid: 448a7f4afeb834256ae33a6cefe342a2, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: JUMP3
+    clip: {fileID: 8300000, guid: f9170cf55e2d94ae1a5687e08779eeba, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: JUMP4
+    clip: {fileID: 8300000, guid: 46d7c84595b8e45b88deaf715f1f1e29, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: JUMP5
+    clip: {fileID: 8300000, guid: 38bcf0b446cfa4c00ae6a261e94f8e27, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}

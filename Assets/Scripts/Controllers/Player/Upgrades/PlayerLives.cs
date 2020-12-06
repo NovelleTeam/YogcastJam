@@ -22,10 +22,12 @@ namespace Controllers.Player.Upgrades
         public event Action GameOver;
 
         private UIManager _uiManager;
+        private AudioManager _audioManager;
 
         private void Awake()
         {
             _uiManager = FindObjectOfType<UIManager>();
+            _audioManager = FindObjectOfType<AudioManager>();
             
             currentLives = startingLives;
 
@@ -54,6 +56,7 @@ namespace Controllers.Player.Upgrades
 
         public void Die()
         {
+            _audioManager.Play("HURT");
             LoseLife();
             
             if (currentLives > 0)
