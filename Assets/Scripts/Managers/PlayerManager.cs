@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Controllers.Player;
 using Controllers.Player.Upgrades;
+using Managers.Platforms;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -49,7 +50,8 @@ namespace Managers
         {
             if (!other.collider.gameObject.CompareTag("DeathFloor")) return;
 
-            vitals.TakeDamage(50);
+            _playerLives.Die();
+            
             Debug.Log("Health: " + vitals.currentHealth);
             
             //respawn player
