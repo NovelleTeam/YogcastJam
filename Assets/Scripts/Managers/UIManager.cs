@@ -65,7 +65,7 @@ namespace Managers
         {
             foreach (var panel in _panels)
             {
-                if (panel.name == chestPanel.name) continue;
+                if (panel.name != chestPanel.name) continue;
                 panel.DOFade(0, .5f);
                 StartCoroutine(WaitSetActive(panel.gameObject, .5f, false));
             }
@@ -126,7 +126,7 @@ namespace Managers
 
         private IEnumerator WaitForChestFede()
         {
-            var typeOfChestAddons = chestPanel.GetComponent<ChestManager>().insideChest;
+            var typeOfChestAddons = FindObjectOfType<ChestManager>().insideChest;
             chestPanel.DOFade(1, .5f);
             yield return new WaitForSeconds(.5f);
             var i = 0;

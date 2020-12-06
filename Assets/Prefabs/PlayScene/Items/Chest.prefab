@@ -230,14 +230,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e013ed12510c314f97cd0aae15c8578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  insideChest: []
+  insideChest:
+  - ADD HEALTH
+  - ADD JUMP
+  - ADD SPEED
+  - ADD ATTACK
   chestHinge: {fileID: 8093232735174342902}
   chestLock: {fileID: 8093232733884015516}
   targetScale: 1
-  _chestScaleDuration: 1
-  _openAngle: 70
-  _openDuration: 1
-  _chestLockScaleDuration: 0.5
+  chestScaleDuration: 1
+  openAngle: 70
+  openDuration: 1
+  chestLockScaleDuration: 0.5
 --- !u!1 &5935982835393464810
 GameObject:
   m_ObjectHideFlags: 0
