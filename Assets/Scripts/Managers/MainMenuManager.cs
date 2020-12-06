@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
+﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
-using Ping = UnityEngine.Ping;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioManager))]
 public class MainMenuManager : MonoBehaviour

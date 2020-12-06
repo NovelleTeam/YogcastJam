@@ -38,9 +38,7 @@ namespace Controllers.Player.Upgrades
 
             currentHealth += health;
 
-            // Health clamping
-            if (currentHealth > maxHealth)
-                currentHealth = maxHealth;
+            if (currentHealth > maxHealth) currentHealth = maxHealth;
         }
     }
 }
