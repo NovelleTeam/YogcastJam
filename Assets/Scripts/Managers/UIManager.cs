@@ -182,7 +182,11 @@ namespace Managers
 
         private IEnumerator WaitForChestFede()
         {
-            var typeOfChestAddons = chestPanel.GetComponent<InteractiveChest>().insideChest;
+            var typeOfChestAddons = FindObjectOfType<InteractiveChest>().insideChest;
+            chestPanel.gameObject.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            _playerManager.EnableLookAndMovement(false);
             chestPanel.DOFade(1, .5f);
             yield return new WaitForSeconds(.5f);
             var i = 0;

@@ -181,14 +181,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6583700160608569424, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
-      propertyPath: hart
-      value: 
-      objectReference: {fileID: 2081760223}
-    - target: {fileID: 6583700160608569424, guid: 6b927c0f5a92146f995a17b82e2795e7,
-        type: 3}
-      propertyPath: hartPlaceHolder
-      value: 
-      objectReference: {fileID: 481171451}
+      propertyPath: chestDuration
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8953001719966714643, guid: 6b927c0f5a92146f995a17b82e2795e7,
         type: 3}
       propertyPath: m_IsActive
@@ -363,12 +358,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &481171451 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1558869731754287089, guid: 6b927c0f5a92146f995a17b82e2795e7,
-    type: 3}
-  m_PrefabInstance: {fileID: 219072963}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &483089140
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +883,18 @@ Transform:
   m_Father: {fileID: 1582389761}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1175036160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8382465431245909714, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1955323466}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9692723e9800d4f82272e68a3ff257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1217550715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,6 +1438,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 656cca7a7f1424ceab56056e64922307, type: 2}
     - target: {fileID: 4656928569190707135, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
         type: 3}
+      propertyPath: _cameraMovement
+      value: 
+      objectReference: {fileID: 1175036160}
+    - target: {fileID: 4656928569190707135, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
+        type: 3}
       propertyPath: initialTransform
       value: 
       objectReference: {fileID: 1523793188}
@@ -1462,9 +1468,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21f39eb1b940b0342b854e3ac12b3d5d, type: 3}
---- !u!1 &2081760223 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3041811204761312940, guid: 6b927c0f5a92146f995a17b82e2795e7,
-    type: 3}
-  m_PrefabInstance: {fileID: 219072963}
-  m_PrefabAsset: {fileID: 0}

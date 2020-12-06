@@ -217,7 +217,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aebf1ab31ecb744094887c8fac96793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  insideChest: []
+  insideChest:
+  - ADD HEALTH
+  - ADD JUMP
+  - ADD SPEED
+  - ADD ATTACK
   chestHinge: {fileID: 8093232735174342902}
   chestLock: {fileID: 8093232733884015516}
   targetScale: 1

@@ -1841,8 +1841,8 @@ MonoBehaviour:
   fadePanel: {fileID: 8953001719966714641}
   chestPanel: {fileID: 8953001720072719767}
   pausePanel: {fileID: 8953001721305828272}
-  harts: {fileID: 2164570307682309340}
-  hart: {fileID: 3041811204761312940}
+  harts: {fileID: 3041811204761312940}
+  hart: {fileID: 5146864527595867389, guid: 88717dc3d11f2417d9363c9c8a83f2be, type: 3}
   hartPlaceHolder: {fileID: 1558869731754287089}
   onceAponATime: {fileID: 8953001721409330753}
   inAGalaxyFarFarAway: {fileID: 8953001719753106531}

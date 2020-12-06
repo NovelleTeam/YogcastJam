@@ -14,6 +14,7 @@ namespace Managers
         [HideInInspector] public BigPlatformManager bigPlatformManager;
         [HideInInspector] public Vitals vitals;
 
+        [SerializeField] private CameraMovement _cameraMovement;
         private PlayerInteract _playerInteract;
         private PlayerMovement _playerMovement;
         private PlayerLives _playerLives;
@@ -91,6 +92,12 @@ namespace Managers
 
         public void AddAttack()
         {
+        }
+
+        public void EnableLookAndMovement(bool enable)
+        {
+            _cameraMovement.enabled = enable;
+            _playerMovement.enabled = enable;
         }
     }
 }
