@@ -39,14 +39,12 @@ namespace Controllers.Interactive
                 //set index depending item chosen
                 
                 _generatedPath = true;
-
-                GeneratePlatforms(player);
             }
         }
 
-        private static void GeneratePlatforms(GameObject player)
+        private static void GeneratePlatforms()
         {
-            var playerManager = player.GetComponent<PlayerManager>();
+            var playerManager = FindObjectOfType<PlayerManager>();
             playerManager.SetNextMainPlatformIndex(2);
             var mainGenerator = FindObjectOfType<MainGenerator>();
             mainGenerator.NextPlatform(mainGenerator.mainPlatforms[playerManager.GetCurrentMainPlatformIndex()].GetPlatformEnd());
@@ -72,8 +70,10 @@ namespace Controllers.Interactive
             DOTween.Sequence()
                 .Append(chestHinge.DOLocalRotate(new Vector3(0, 0, 0), openDuration).SetEase(Ease.Linear))
                 .Append(transform.DOScale(0, chestScaleDuration).SetEase(Ease.Linear));
-            yield return new WaitForSeconds(openDuration + chestScaleDuration);
+            yield return new WaitForSeconds(openDuration);
+            GeneratePlatforms();
+            yield return new WaitForSeconds(chestScaleDuration);
             Destroy(gameObject);
-        }
+    }
     }
 }
