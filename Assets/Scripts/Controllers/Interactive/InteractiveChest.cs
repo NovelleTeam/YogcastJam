@@ -36,12 +36,7 @@ namespace Controllers.Interactive
                 FindObjectOfType<UIManager>().ChestOpen();
                 //close once item is selected
                 //set index depending item chosen
-                var playerManager = player.GetComponent<PlayerManager>();
-                playerManager.SetNextMainPlatformIndex(2);
-                var mainGenerator = FindObjectOfType<MainGenerator>();
-                mainGenerator.Generate(
-                    mainGenerator.mainPlatforms[playerManager.GetCurrentMainPlatformIndex()].GetPlatformEnd(),
-                    mainGenerator.mainPlatforms[playerManager.GetNextMainPlatformIndex()].GetPlatformBegin());
+                
                 _generatedPath = true;
 
                 GeneratePlatforms(player);
@@ -55,7 +50,11 @@ namespace Controllers.Interactive
             var mainGenerator = FindObjectOfType<MainGenerator>();
             mainGenerator.Generate(
                 mainGenerator.mainPlatforms[playerManager.GetCurrentMainPlatformIndex()].GetPlatformEnd(),
-                mainGenerator.mainPlatforms[playerManager.GetNextMainPlatformIndex()].GetPlatformBegin());
+                mainGenerator.mainPlatforms[playerManager.GetNextMainPlatformIndex()].GetPlatformBegin(),
+                new System.Collections.Generic.List<Platform>(),
+                new MainGenerator.PlayerAttributes() { JumpCount = 1,JumpForce = 250, Speed = 2000 },
+                new Vector2(20, 20),
+                new Platform[] { new Platform(new Vector3(0, 0, 0), 1, 0.3f, 0) });
         }
 
         private void OpenChest()

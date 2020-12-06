@@ -30,14 +30,18 @@ namespace Managers.Generation
         //  Debug.Log(_platforms.Count);
         //}
 
-        public void Generate(Vector3 startLocation, Vector3 endLocation)
+        public List<Platform> Generate(Vector3 startLocation, Vector3 endLocation, List<Platform> existingPlatforms, PlayerAttributes attributes, Vector2 pathSize, Platform[] availablePlatforms)
         {
             //Debug.Log(endLocation);
-            var p1 = new PathGenerator(250, 1, 2000, 10, new Vector2(20,20),new Platform[] { new Platform(new Vector3(0, 0, 0), 1, 0.3f, 0) });
-            p1.Path.Add(new Platform(startLocation, 1, 0.3f, 0));
+            var p1 = new PathGenerator(attributes.JumpForce, attributes.JumpCount, attributes.Speed, 10, pathSize,availablePlatforms);
+            
+            p1.AllPlatforms = existingPlatforms;
+            p1.Path.Add(new Platform(startLocation, 1, 0.3f, -1));
+            p1.AllPlatforms.Add(new Platform(startLocation, 1, 0.3f, -1));
             p1.GeneratePath(startLocation, endLocation);
             _platforms.AddRange(p1.GetPlatforms());
             SpawnSmallPlatforms(_platforms);
+            return p1.AllPlatforms;
             //Debug.Log(_platforms.Count);
         }
 
@@ -48,6 +52,12 @@ namespace Managers.Generation
 
                 if (plat.Index >=0) Instantiate(smallPlatforms[plat.Index], plat.Position, Quaternion.identity, _generatedPathContainer);
             }
+        }
+        public struct PlayerAttributes
+        {
+            public float Speed;
+            public int JumpCount;
+            public float JumpForce;
         }
     }
 }

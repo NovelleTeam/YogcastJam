@@ -23,6 +23,7 @@ namespace Managers.Generation
 
         public List<Platform> Path = new List<Platform>();
         private Platform[] _platformPool;
+        public List<Platform> AllPlatforms;
 
         public PathGenerator(float jumpBoost, int jumpCount, float speed, float gForce, Vector2 pathSize, Platform[] platforms)
         {
@@ -55,7 +56,7 @@ namespace Managers.Generation
             var exitCheck = false;
             var progress = 1f;
             var lastPlatform = Path[0];
-            lastPlatform = new Platform(new Vector3(0, 0, 0), 0,1, -1);
+            lastPlatform = new Platform(pfrom, 0,1, -1);
 
             while (true)
             {
@@ -84,7 +85,7 @@ namespace Managers.Generation
                 newPlatform = new Platform(newPlatform.Position + platformPos, newPlatform.Radius,newPlatform.Height, newPlatform.Index); 
 
 
-                foreach (var platform in Path)
+                foreach (var platform in AllPlatforms)
                 {
                     if (newPlatform.CanJumpTo(platform, _maxHeightTotal, _maxDistTotal, _margin))
                         canJump = 1;
@@ -113,11 +114,12 @@ namespace Managers.Generation
 
                 chance *= canJump;
                 //if (newPlatform.CheckProx(Path, _mindist) == 0) Debug.Log("zoop");
-                chance *= newPlatform.CheckProx(Path, _mindist);
+                chance *= newPlatform.CheckProx(AllPlatforms, _mindist);
 
                 if (chance > Random.Range(0.0f, 1f))
                 {
                     Path.Add(newPlatform);
+                    AllPlatforms.Add(newPlatform);
                     //Debug.Log("Added");
                     if (newPlatform.CanJumpTo(new Platform(to, 0, 1, -1), _maxHeightTotal, _maxDistTotal, _margin))
                     {
@@ -198,6 +200,7 @@ namespace Managers.Generation
                 //Debug.Log(dist + "; " + (Radius + mindist + plat.Radius));
                 if (dist < Radius + mindist + plat.Radius) ans = 0;
             }
+            
 
             return ans;
         }
