@@ -33,8 +33,8 @@ namespace Managers.Generation
             _gForce = gForce;
             _maxHeightSingle = _jumpBoost * _jumpBoost / _gForce;
             _maxDistSingle = 2 * _jumpBoost / _gForce * _speed;
-            _maxHeightTotal = _maxHeightSingle * _jumpCount;
-            _maxDistTotal = _maxDistSingle * _jumpCount;
+            _maxHeightTotal = _maxHeightSingle * Mathf.Pow(_jumpCount,0.5f);
+            _maxDistTotal = _maxDistSingle * Mathf.Pow( _jumpCount, 0.5f);
             _pathSize = pathSize;
 
             //_maxHeightTotal = 2f;
