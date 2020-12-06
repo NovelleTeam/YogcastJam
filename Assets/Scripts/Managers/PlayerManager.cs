@@ -8,7 +8,6 @@ namespace Managers
     [RequireComponent(typeof(PlayerInteract))]
     public class PlayerManager : MonoBehaviour
     {
-        public Transform initialTransform;
         public Material miniPlatformLitUp;
         public GameObject bigPlatform;
         [HideInInspector] public BigPlatformManager bigPlatformManager;
@@ -16,6 +15,7 @@ namespace Managers
 
         private PlayerInteract _playerInteract;
         private PlayerMovement _playerMovement;
+        private PlayerLives _playerLives;
         private int _currentMainPlatformIndex;
         private int _nextMainPlatformIndex;
         private GameObject _currentBigPlatform;
@@ -25,6 +25,7 @@ namespace Managers
             _playerInteract = GetComponent<PlayerInteract>();
             vitals = GetComponent<Vitals>();
             _playerMovement = GetComponent<PlayerMovement>();
+            _playerLives = GetComponent<PlayerLives>();
             _currentBigPlatform = Instantiate(bigPlatform);
             bigPlatformManager = _currentBigPlatform.GetComponent<BigPlatformManager>();
         }
@@ -32,14 +33,11 @@ namespace Managers
         private void OnCollisionEnter(Collision other)
         {
             if (!other.collider.gameObject.CompareTag("DeathFloor")) return;
-            
-            var pos = transform;
-            pos.position = initialTransform.position;
-            pos.rotation = initialTransform.rotation;
-            bigPlatformManager = null;
-            Destroy(_currentBigPlatform);
-            _currentBigPlatform = Instantiate(bigPlatform);
-            bigPlatformManager = _currentBigPlatform.GetComponent<BigPlatformManager>();
+
+            //lose life
+            _playerLives.LoseLife();
+            //respawn player
+            _playerLives.RespawnPlayer();
         }
 
         public void SetCurrentMainPlatformIndex(int mainPlatformIndex)
@@ -62,9 +60,29 @@ namespace Managers
           return _nextMainPlatformIndex;
         }
 
-    private void CompletePart(int partNumber)
+        public void SetPlayerRespawn(Transform newRespawn)
         {
-            
+          _playerLives.SetNewRespawn(newRespawn);
+        }
+
+        public void AddHealth()
+        {
+          _playerLives.GainLife();
+        }
+
+        public void AddJump()
+        {
+          _playerMovement.AddMaxJump();
+        }
+
+        public void AddSpeed()
+        {
+          _playerMovement.AddMaxSpeed();
+        }
+
+        public void AddAttack()
+        {
+          
         }
     }
 }

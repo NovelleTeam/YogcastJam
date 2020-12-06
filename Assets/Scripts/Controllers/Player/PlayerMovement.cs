@@ -147,5 +147,15 @@ namespace Controllers.Player
 
             _rb.velocity = new Vector3(clamped.x, fallSpeed, clamped.y);
         }
-    }
+
+        public void AddMaxJump()
+        {
+            maxJumps += 1;
+        }
+        
+        public void AddMaxSpeed()
+        {
+            maxSpeed += 1;
+        }
+  }
 }

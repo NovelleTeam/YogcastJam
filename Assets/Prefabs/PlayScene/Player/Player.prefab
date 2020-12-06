@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 952623204815796896}
   - component: {fileID: 7571387247072564688}
   - component: {fileID: 6483915670667611487}
+  - component: {fileID: 4937313029999042836}
   - component: {fileID: 4656928569190707135}
   m_Layer: 0
   m_Name: Player
@@ -130,6 +131,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!114 &4937313029999042836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100993908289021992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a618956f377604d9732bada68bbb37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRoot: {fileID: 100993908289021975}
+  respawnTransform: {fileID: 0}
+  startingLives: 2
+  capMaxLives: 0
+  maxLifeCap: 0
 --- !u!114 &4656928569190707135
 MonoBehaviour:
   m_ObjectHideFlags: 0

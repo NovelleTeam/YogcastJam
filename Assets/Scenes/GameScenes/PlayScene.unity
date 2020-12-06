@@ -872,7 +872,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217550715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 452.38394, y: -48.480904, z: 327.50073}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1162,7 +1162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792655508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -20, z: 0}
   m_LocalScale: {x: 1000, y: 10, z: 1000}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1404,6 +1404,11 @@ PrefabInstance:
       propertyPath: bigPlatformManager
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4937313029999042836, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
+        type: 3}
+      propertyPath: respawnTransform
+      value: 
+      objectReference: {fileID: 1523793188}
     - target: {fileID: 5494015447688795989, guid: 21f39eb1b940b0342b854e3ac12b3d5d,
         type: 3}
       propertyPath: takeDistance

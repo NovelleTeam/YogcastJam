@@ -22,7 +22,7 @@ public class MainPlatformManager : MonoBehaviour
   {
     if (other.gameObject.CompareTag("Player") && !_wasSteppedOn)
     {
-      other.gameObject.GetComponent<PlayerManager>().initialTransform = _playerSpawn;
+      other.gameObject.GetComponent<PlayerManager>().SetPlayerRespawn(_playerSpawn);
       other.gameObject.GetComponent<PlayerManager>().SetCurrentMainPlatformIndex(index);
       _wasSteppedOn = true;
       foreach (Transform platform in _generatedPathContainer)
