@@ -7,7 +7,7 @@ namespace Controllers.Player.Upgrades
     {
         public int maxHealth;
         public int curHealth { get; private set; }
-        public bool isDead => curHealth <= 0;
+        private bool isDead => curHealth <= 0;
 
         public event Action Dead;
         public event Action DamageTaken;
@@ -15,6 +15,14 @@ namespace Controllers.Player.Upgrades
         private void Awake()
         {
             curHealth = maxHealth;
+            
+            Dead += OnDead;
+            Dead += gameObject.GetComponent<PlayerLives>().LoseLife;
+        }
+
+        private void OnDead()
+        {
+            HealDamage(maxHealth - curHealth);
         }
 
         public void TakeDamage(int health)
@@ -25,9 +33,8 @@ namespace Controllers.Player.Upgrades
 
             DamageTaken?.Invoke();
 
-            if (!isDead) return;
-            curHealth = 0;
-            Dead?.Invoke();
+            if (isDead) 
+                Dead?.Invoke();
         }
 
         public void HealDamage(int health)
@@ -35,6 +42,9 @@ namespace Controllers.Player.Upgrades
             if (health < 0) throw new Exception("Vitals.HealDamage used to damage! Use Vitals.TakeDamage instead.");
 
             curHealth += health;
+
+            if (curHealth > maxHealth)
+                curHealth = maxHealth;
         }
     }
 }

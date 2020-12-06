@@ -14,8 +14,8 @@ namespace Controllers.Player.Upgrades
         [SerializeField] private int maxLifeCap;
         public int currentLives { get; private set; }
 
-        public Action LifeLost;
-        public Action GameOver;
+        public event Action LifeLost;
+        public event Action GameOver;
 
         private void Awake()
         {

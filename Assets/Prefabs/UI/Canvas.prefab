@@ -268,9 +268,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 4
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 4
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1836,7 +1836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33538d4e25984be4a03fb80e0fdf205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numOfUIHarts: 0
   mainPanel: {fileID: 8953001720847497808}
   fadePanel: {fileID: 8953001719966714641}
   chestPanel: {fileID: 8953001720072719767}
