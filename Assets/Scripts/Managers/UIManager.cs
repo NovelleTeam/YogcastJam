@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Controllers.Interactive;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Managers
 {
     public class UIManager : MonoBehaviour
     {
+        private PlayerInput _controls;
+        
         public int numOfUIHarts;
         
         // panels
@@ -37,6 +40,22 @@ namespace Managers
         private PlayerManager _playerManager;
         private int _currentPlayerHarts;
 
+        private void Awake()
+        {
+            _controls = new PlayerInput();
+            _controls.Player.ResetPreferences.performed += ctx => ResetPlayerPrefs();
+        }
+
+        private void OnEnable()
+        {
+            _controls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _controls.Disable();
+        }
+
         private void Start()
         {
             _playerManager = FindObjectOfType<PlayerManager>();
@@ -58,12 +77,7 @@ namespace Managers
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                ResetPlayerPrefs();
-            }
-
-            healthSlider.value = (float)_playerManager.vitals.curHealth / (float)_playerManager.vitals.maxHealth;
+            healthSlider.value = (float) _playerManager.vitals.curHealth / _playerManager.vitals.maxHealth;
             if (numOfUIHarts != _currentPlayerHarts)
             {
                 foreach (Transform t in harts.transform)
@@ -71,18 +85,25 @@ namespace Managers
                     Destroy(t.gameObject);
                 }
 
-                for (int i = 0; i < numOfUIHarts; i++)
-                {
-                    GameObject go = Instantiate(
-                        hart,
-                        new Vector3(hartPlaceHolder.transform.position.x + 20 * i, hartPlaceHolder.transform.position.y),
-                        Quaternion.identity,
-                        harts.transform
-                        );
-                    
-                }
+                CreateHearts(numOfUIHarts);
 
                 _currentPlayerHarts = numOfUIHarts;
+            }
+        }
+
+        private void CreateHearts(int hearts)
+        {
+            for (var i = 0; i < hearts; i++)
+            {
+                var position = hartPlaceHolder.transform.position;
+                // ReSharper disable once UnusedVariable
+                var instantiate = Instantiate(
+                    hart,
+                    new Vector3(position.x + 20 * i,
+                        position.y),
+                    Quaternion.identity,
+                    harts.transform
+                );
             }
         }
 
@@ -161,7 +182,7 @@ namespace Managers
 
         private IEnumerator WaitForChestFede()
         {
-            var typeOfChestAddons = chestPanel.GetComponent<ChestManager>().insideChest;
+            var typeOfChestAddons = chestPanel.GetComponent<InteractiveChest>().insideChest;
             chestPanel.DOFade(1, .5f);
             yield return new WaitForSeconds(.5f);
             var i = 0;

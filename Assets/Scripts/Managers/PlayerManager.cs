@@ -1,4 +1,5 @@
-﻿using Controllers.Player;
+﻿using System;
+using Controllers.Player;
 using Controllers.Player.Upgrades;
 using UnityEngine;
 
@@ -26,8 +27,15 @@ namespace Managers
             vitals = GetComponent<Vitals>();
             _playerMovement = GetComponent<PlayerMovement>();
             _playerLives = GetComponent<PlayerLives>();
-            _currentBigPlatform = Instantiate(bigPlatform);
-            bigPlatformManager = _currentBigPlatform.GetComponent<BigPlatformManager>();
+            try
+            {
+                _currentBigPlatform = Instantiate(bigPlatform);
+                bigPlatformManager = _currentBigPlatform.GetComponent<BigPlatformManager>();
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         private void OnCollisionEnter(Collision other)

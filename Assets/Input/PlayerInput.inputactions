@@ -60,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "Reset Preferences",
+                    "type": "Button",
+                    "id": "f790d285-7e48-4bb1-bfe6-ad9f803e3eab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -236,6 +244,17 @@
                     "processors": "",
                     "groups": "Mouse & Keyboard",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "786d98b5-a9e8-4b16-b3b7-41a994a74b75",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset Preferences",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

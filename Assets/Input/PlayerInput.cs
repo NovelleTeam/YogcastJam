@@ -73,6 +73,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Reset Preferences"",
+                    ""type"": ""Button"",
+                    ""id"": ""f790d285-7e48-4bb1-bfe6-ad9f803e3eab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -251,6 +259,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""786d98b5-a9e8-4b16-b3b7-41a994a74b75"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset Preferences"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +302,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_ResetPreferences = m_Player.FindAction("Reset Preferences", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +359,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_ResetPreferences;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -350,6 +371,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @ResetPreferences => m_Wrapper.m_Player_ResetPreferences;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -380,6 +402,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @ResetPreferences.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetPreferences;
+                @ResetPreferences.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetPreferences;
+                @ResetPreferences.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetPreferences;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -405,6 +430,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @ResetPreferences.started += instance.OnResetPreferences;
+                @ResetPreferences.performed += instance.OnResetPreferences;
+                @ResetPreferences.canceled += instance.OnResetPreferences;
             }
         }
     }
@@ -427,5 +455,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnResetPreferences(InputAction.CallbackContext context);
     }
 }
