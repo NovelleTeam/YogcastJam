@@ -16,7 +16,7 @@ namespace Controllers.Interactive
         {
             var vitals = player.GetComponent<Vitals>();
 
-            vitals.HealDamage(vitals.maxHealth - vitals.curHealth);
+            vitals.HealDamage(vitals.maxHealth - vitals.currentHealth);
             Debug.Log("Healed!");
         }
     }
