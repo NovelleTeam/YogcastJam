@@ -120,7 +120,7 @@ namespace Controllers.Player
             // Movement in air
             if (!isGrounded)
                 multiplier = 0.5f;
-            else
+            else if (!IsIce())
                 CounterMovement();
 
             //Apply forces to move player
@@ -153,6 +153,11 @@ namespace Controllers.Player
             _rb.AddForce(vector * counterMovement, ForceMode.Acceleration);
         }
 
+        private bool IsIce()
+        {
+            return Physics.Raycast(groundCheck.position, -groundCheck.up, out var hitInfo, 0.4f) && hitInfo.collider.gameObject.CompareTag("Ice");
+        }
+
         private void ClampHorizontalVelocity()
         {
             var velocity = _rb.velocity;
@@ -173,7 +178,7 @@ namespace Controllers.Player
 
         public void AddMaxSpeed()
         {
-            maxSpeed += 1;
+            maxSpeed += 1f;
         }
     }
 }
