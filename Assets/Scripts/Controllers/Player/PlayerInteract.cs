@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Controllers.Interactive;
-using DG.Tweening;
 using Managers;
 using UnityEngine;
 
@@ -10,8 +9,6 @@ namespace Controllers.Player
     public class PlayerInteract : MonoBehaviour
     {
         public float takeDistance = 3;
-        public Transform interactiveObjectDestination;
-        public float interactiveObjectTravelDuration = 1;
 
         private PlayerInput _playerInput;
         private Camera _camera;
@@ -47,24 +44,14 @@ namespace Controllers.Player
                 return;
             }
 
-            if (CanTake())
-            {
-                interactiveObjectDestination = _interactive.destination;
-                _interactive.gameObject.transform.DOMove(interactiveObjectDestination.position,
-                    interactiveObjectTravelDuration);
+            if (_interactive == null) return;
+            
+            _interactive.Interact(gameObject);
 
-                _interactive.Interact(gameObject);
+            if (_interactive.isStickType)
+                StartCoroutine(WaitForInteract(_interactive));
 
-                if (_interactive.isStickType)
-                    StartCoroutine(WaitForInteract(_interactive));
-
-                _interactive = null;
-            }
-            else if (_interactive != null)
-            {
-                _interactive.Interact(gameObject);
-                _interactive = null;
-            }
+            _interactive = null;
         }
 
         private GameObject GetObjectAtRaycast()
@@ -74,22 +61,18 @@ namespace Controllers.Player
             return hitInfo.collider != null ? hitInfo.collider.gameObject : null;
         }
 
-        private bool CanTake()
+        private IEnumerator WaitForInteract(InteractiveObject interactiveObj)
         {
-            return _interactive != null &&
-                   Vector3.SqrMagnitude(_interactive.transform.position - transform.position) <=
-                   takeDistance * takeDistance && _interactive.isTakeAble && _interactive.destination != null;
-        }
+            yield return new WaitForSeconds(interactiveObj.travelDuration);
+            
+            interactiveObj.SyncPos();
 
-        private IEnumerator WaitForInteract(Component interactiveObj)
-        {
-            yield return new WaitForSeconds(interactiveObjectTravelDuration);
-            var objTransform = interactiveObj.transform;
-            objTransform.position = interactiveObjectDestination.position;
-            objTransform.rotation = interactiveObjectDestination.rotation;
             _playerManager.bigPlatformManager.MakeSuprise();
+            
             Destroy(interactiveObj.gameObject.GetComponent<Rigidbody>());
             Destroy(interactiveObj);
+            
+            Debug.Log("In place!");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Controllers.Interactive;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -25,9 +26,11 @@ namespace Managers
         // private stuff :)
         private List<CanvasGroup> _panels;
         private PlayerManager _playerManager;
+        private InteractiveChest _interactiveChest;
 
         private void Start()
         {
+            _interactiveChest = FindObjectOfType<InteractiveChest>();
             _playerManager = FindObjectOfType<PlayerManager>();
             _panels = new List<CanvasGroup> {mainPanel, fadePanel, chestPanel, pausePanel};
             if (PlayerPrefs.GetInt("init") == 1)
@@ -126,16 +129,19 @@ namespace Managers
 
         private IEnumerator WaitForChestFede()
         {
-            var typeOfChestAddons = FindObjectOfType<ChestManager>().insideChest;
+            var typeOfChestAddons = _interactiveChest.insideChest;
             chestPanel.DOFade(1, .5f);
             yield return new WaitForSeconds(.5f);
             var i = 0;
+            var canvasGroup = chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>();
+            var rectTransform = chestPanel.transform.GetChild(i).GetComponent<RectTransform>();
+            var textMeshProUGUI = chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
             foreach (var chestAddon in typeOfChestAddons)
             {
-                chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>().alpha = 1;
-                chestPanel.transform.GetChild(i).GetComponent<CanvasGroup>().DOFade(0, chestDuration);
-                chestPanel.transform.GetChild(i).GetComponent<RectTransform>().DOShakeRotation(chestDuration, 20);
-                chestPanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = chestAddon;
+                canvasGroup.alpha = 1;
+                canvasGroup.DOFade(0, chestDuration);
+                rectTransform.DOShakeRotation(chestDuration, 20);
+                textMeshProUGUI.text = chestAddon;
                 i += 1;
             }
 
